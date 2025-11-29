@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { X, Image, Settings } from "lucide-react";
 
-export default function EditVideoDetails() {
+export const VideoDetailsEditor= ()=> {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [tagInput, setTagInput] = useState("");
