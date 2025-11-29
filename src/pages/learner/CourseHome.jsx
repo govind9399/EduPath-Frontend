@@ -3,7 +3,7 @@ import React from "react";
 import { Footer } from "../../componets/student/footer";
 import { Navbar } from "../../componets/creator/navbar";
 
-export default function Homepage() {
+export const Homepage=()=> {
   const stats = [
     { label: "Courses", value: "10K+" },
     { label: "Learners", value: "500K+" },

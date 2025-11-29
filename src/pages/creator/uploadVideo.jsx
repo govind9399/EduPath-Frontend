@@ -9,7 +9,6 @@ export default function UploadVideo() {
         <button className="flex items-center gap-2 text-gray-600 hover:text-gray-800 mb-6">
           ← Back
         </button>
-
         <h1 className="text-3xl font-semibold">Upload Video</h1>
         <p className="text-gray-500 mt-1">
           Share your educational content with millions of learners
