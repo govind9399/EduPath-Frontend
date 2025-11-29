@@ -106,11 +106,6 @@ import { VideoDetailsEditor } from "./pages/creator/VideodetailsEditior"
          path:"student-dashboard",
         element:<StudentDashboard/>
          },
-        {
-          path:"video-player",
-          element:<V
-        }
-
           ])
   return <RouterProvider router={router}/>
 }
