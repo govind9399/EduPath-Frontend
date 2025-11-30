@@ -1,15 +1,8 @@
-// src/components/Homepage.jsx
-import React from "react";
 import { Footer } from "../../componets/student/footer";
 import { Navbar } from "../../componets/creator/navbar";
-
-export const Homepage=()=> {
-  const stats = [
-    { label: "Courses", value: "10K+" },
-    { label: "Learners", value: "500K+" },
-    { label: "Creators", value: "1K+" },
-  ];
-
+import { NavLink } from "react-router-dom";
+import { Play } from "lucide-react";
+export const Homepage = () => {
   const trendingCourses = [
     {
       id: 1,
@@ -19,7 +12,7 @@ export const Homepage=()=> {
       instructor: "Alex Johnson",
       videos: "120 videos",
       hours: "45 hours",
-      enrolled: "125.0K enrolled",
+      views: "125.0K views",
       image: "/images/trending-web-bootcamp.jpg",
     },
     {
@@ -30,7 +23,7 @@ export const Homepage=()=> {
       instructor: "Sarah Chen",
       videos: "95 videos",
       hours: "38 hours",
-      enrolled: "98.0K enrolled",
+      views: "98.0K views",
       image: "/images/trending-python-ds.jpg",
     },
     {
@@ -41,7 +34,7 @@ export const Homepage=()=> {
       instructor: "Mike Rodriguez",
       videos: "85 videos",
       hours: "32 hours",
-      enrolled: "87.0K enrolled",
+      views: "87.0K views",
       image: "/images/trending-marketing.jpg",
     },
     {
@@ -52,7 +45,7 @@ export const Homepage=()=> {
       instructor: "Emma Wilson",
       videos: "110 videos",
       hours: "42 hours",
-      enrolled: "76.0K enrolled",
+      views: "76.0K views",
       image: "/images/trending-advanced-react.jpg",
     },
     {
@@ -63,7 +56,7 @@ export const Homepage=()=> {
       instructor: "Lisa Park",
       videos: "75 videos",
       hours: "28 hours",
-      enrolled: "65.0K enrolled",
+      views: "65.0K views",
       image: "/images/trending-uiux.jpg",
     },
     {
@@ -74,26 +67,58 @@ export const Homepage=()=> {
       instructor: "James Kumar",
       videos: "88 videos",
       hours: "35 hours",
-      enrolled: "54.0K enrolled",
+      views: "54.0K views",
       image: "/images/trending-aws.jpg",
     },
   ];
 
   const categories = [
-    { name: "Web Development", count: "1250 courses", iconBg: "from-blue-500 to-cyan-500" },
-    { name: "Data Science", count: "890 courses", iconBg: "from-pink-500 to-purple-500" },
-    { name: "Design", count: "756 courses", iconBg: "from-orange-500 to-red-500" },
-    { name: "Business", count: "1100 courses", iconBg: "from-green-500 to-emerald-500" },
-    { name: "Marketing", count: "645 courses", iconBg: "from-rose-500 to-pink-500" },
-    { name: "Mobile Development", count: "520 courses", iconBg: "from-indigo-500 to-blue-500" },
-    { name: "Cloud Computing", count: "430 courses", iconBg: "from-sky-500 to-cyan-500" },
-    { name: "AI & Machine Learning", count: "680 courses", iconBg: "from-violet-500 to-purple-500" },
+    {
+      name: "Web Development",
+      count: "1250 courses",
+      iconBg: "from-blue-500 to-cyan-500",
+    },
+    {
+      name: "Data Science",
+      count: "890 courses",
+      iconBg: "from-pink-500 to-purple-500",
+    },
+    {
+      name: "Design",
+      count: "756 courses",
+      iconBg: "from-orange-500 to-red-500",
+    },
+    {
+      name: "Business",
+      count: "1100 courses",
+      iconBg: "from-green-500 to-emerald-500",
+    },
+    {
+      name: "Marketing",
+      count: "645 courses",
+      iconBg: "from-rose-500 to-pink-500",
+    },
+    {
+      name: "Mobile Development",
+      count: "520 courses",
+      iconBg: "from-indigo-500 to-blue-500",
+    },
+    {
+      name: "Cloud Computing",
+      count: "430 courses",
+      iconBg: "from-sky-500 to-cyan-500",
+    },
+    {
+      name: "AI & Machine Learning",
+      count: "680 courses",
+      iconBg: "from-violet-500 to-purple-500",
+    },
   ];
 
   return (
     <div className="min-h-screen bg-white">
-      {/* NAVBAR */} 
-        <Navbar/>
+      {/* NAVBAR */}
+      <Navbar />
       {/* HERO */}
       <section className="bg-gradient-to-b from-blue-50 via-white to-orange-50">
         <div className="max-w-5xl mx-auto px-6 py-16 text-center">
@@ -105,8 +130,9 @@ export const Homepage=()=> {
             <span className="text-gray-900">Teach Everything</span>
           </h1>
           <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
-            Access thousands of high-quality educational courses completely free.
-            Learn from expert creators and grow your skills at your own pace.
+            Access thousands of high-quality educational courses completely
+            free. Learn from expert creators and grow your skills at your own
+            pace.
           </p>
 
           {/* Search bar */}
@@ -117,11 +143,7 @@ export const Homepage=()=> {
                 placeholder="Search courses, skills, creators..."
               />
               <button className="flex items-center justify-center w-12 h-12 rounded-full bg-blue-600 text-white mr-1 hover:bg-blue-700">
-                <svg
-                  className="w-5 h-5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                >
+                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
                   <path
                     d="M21 21l-4.35-4.35"
                     stroke="currentColor"
@@ -150,18 +172,6 @@ export const Homepage=()=> {
               Become a Creator
             </button>
           </div>
-
-          {/* Stats */}
-          <div className="mt-10 flex flex-col sm:flex-row gap-6 justify-center">
-            {stats.map((s) => (
-              <div key={s.label} className="flex flex-col items-center">
-                <div className="text-xl font-semibold text-blue-700">
-                  {s.value}
-                </div>
-                <div className="text-xs text-gray-500">{s.label}</div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -176,63 +186,69 @@ export const Homepage=()=> {
               Most popular courses this week
             </p>
           </div>
-          <button className="hidden sm:inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-sm hover:bg-gray-50">
+          <NavLink
+            to="/search-result"
+            className="hidden sm:inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-sm hover:bg-gray-50"
+          >
             View All
             <span>→</span>
-          </button>
+          </NavLink>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
           {trendingCourses.map((course) => (
-            <article
-              key={course.id}
-              className="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden flex flex-col"
-            >
-              <div className="relative">
-                <img
-                  src={course.image}
-                  alt={course.title}
-                  className="w-full h-40 object-cover"
-                />
-                <div className="absolute top-3 left-3">
-                  <span className="inline-flex items-center px-2 py-1 rounded-full bg-blue-600 text-white text-xs">
-                    {course.category}
-                  </span>
-                </div>
-                <div className="absolute top-3 right-3">
-                  <span className="inline-flex items-center px-2 py-1 rounded-full bg-black/70 text-white text-xs">
-                    {course.level}
-                  </span>
-                </div>
-              </div>
-
-              <div className="p-4 flex-1 flex flex-col">
-                <h3 className="text-sm font-semibold text-gray-900">
-                  {course.title}
-                </h3>
-                <div className="mt-2 flex items-center gap-2 text-sm text-gray-600">
-                  <span className="w-6 h-6 rounded-full bg-gray-200" />
-                  {course.instructor}
+            <NavLink to="/video-player">
+              <article
+                key={course.id}
+                className="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden flex flex-col hover:shadow-2xl"
+              >
+                <div className="relative">
+                  <div className="bg-black rounded-xl h-[300px]  w-[400px] md:flex  hidden items-center justify-center hover:shadow-lg">
+                    <Play className="text-white w-20 h-20 opacity-40" />
+                  </div>
+                  <div className="absolute top-3 left-3">
+                    <span className="inline-flex items-center px-2 py-1 rounded-full bg-blue-600 text-white text-xs">
+                      {course.category}
+                    </span>
+                  </div>
+                  <div className="absolute top-3 right-3">
+                    <span className="inline-flex items-center px-2 py-1 rounded-full bg-black/70 text-white text-xs">
+                      {course.level}
+                    </span>
+                  </div>
                 </div>
 
-                <div className="mt-3 flex items-center gap-4 text-xs text-gray-500">
-                  <span>🎬 {course.videos}</span>
-                  <span>⏱ {course.hours}</span>
-                </div>
+                <div className="p-4 flex-1 flex flex-col">
+                  <h3 className="text-sm font-semibold text-gray-900">
+                    {course.title}
+                  </h3>
+                  <div className="mt-2 flex items-center gap-2 text-sm text-gray-600">
+                    <span className="w-6 h-6 rounded-full bg-gray-200" />
+                    {course.instructor}
+                  </div>
 
-                <div className="mt-3 text-xs text-gray-500">
-                  {course.enrolled}
+                  <div className="mt-3 flex items-center gap-4 text-xs text-gray-500">
+                    <span>🎬 {course.videos}</span>
+                    <span>⏱ {course.hours}</span>
+                  </div>
+
+                  <div className="mt-3 text-xs text-gray-500">
+                    {course.views}
+                  </div>
                 </div>
-              </div>
-            </article>
+              </article>
+            </NavLink>
           ))}
         </div>
 
         <div className="sm:hidden mt-4 flex justify-center">
-          <button className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-sm hover:bg-gray-50">
+          <NavLink
+            to="/search-result"
+            className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-sm hover:bg-gray-50"
+          >
             View All
             <span>→</span>
-          </button>
+          </NavLink>
         </div>
       </section>
 
@@ -248,21 +264,23 @@ export const Homepage=()=> {
 
           <div className="mt-8 grid gap-5 md:grid-cols-4 sm:grid-cols-2">
             {categories.map((cat) => (
-              <div
-                key={cat.name}
-                className="bg-white border border-gray-200 rounded-xl shadow-sm p-5 flex flex-col gap-3"
-              >
+              <NavLink to="/search-result">
                 <div
-                  className={`w-9 h-9 rounded-xl bg-gradient-to-br ${cat.iconBg} flex items-center justify-center text-white text-lg`}
+                  key={cat.name}
+                  className="bg-white border border-gray-200 rounded-xl shadow-sm p-5 flex flex-col gap-3"
                 >
-                  {/* simple icon placeholder */}
-                  <span>⌘</span>
+                  <div
+                    className={`w-9 h-9 rounded-xl bg-gradient-to-br ${cat.iconBg} flex items-center justify-center text-white text-lg`}
+                  >
+                    {/* simple icon placeholder */}
+                    <span>⌘</span>
+                  </div>
+                  <div>
+                    <div className="font-medium text-gray-900">{cat.name}</div>
+                    <div className="text-xs text-gray-500">{cat.count}</div>
+                  </div>
                 </div>
-                <div>
-                  <div className="font-medium text-gray-900">{cat.name}</div>
-                  <div className="text-xs text-gray-500">{cat.count}</div>
-                </div>
-              </div>
+              </NavLink>
             ))}
           </div>
         </div>
@@ -314,23 +332,10 @@ export const Homepage=()=> {
           </div>
 
           {/* Stats row again */}
-          <div className="mt-10 flex flex-col sm:flex-row gap-8 justify-center text-center">
-            <div>
-              <div className="text-xl font-semibold text-blue-700">10K+</div>
-              <div className="text-xs text-gray-500">Courses Available</div>
-            </div>
-            <div>
-              <div className="text-xl font-semibold text-blue-700">500K+</div>
-              <div className="text-xs text-gray-500">Active Learners</div>
-            </div>
-            <div>
-              <div className="text-xl font-semibold text-blue-700">1K+</div>
-              <div className="text-xs text-gray-500">Expert Creators</div>
-            </div>
-          </div>
+          <div className="mt-10 flex flex-col sm:flex-row gap-8 justify-center text-center"></div>
         </div>
       </section>
-      <Footer/>
+      <Footer />
     </div>
   );
-}
+};

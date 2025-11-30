@@ -1,11 +1,16 @@
 import React from "react";
-import { Upload, Search, CheckCircle, Trash2, PlusCircle } from "lucide-react";
-
+import { Upload, Search, CheckCircle, Trash2, PlusCircle} from "lucide-react";
+import { NavLink } from "react-router-dom";
+import { Navbar } from "../../componets/creator/navbar";
+import { Sidebar } from "../../componets/creator/sidebar";
+ 
 export const ChannelSettings =()=> {
   return (
     <div className="flex min-h-screen bg-gray-50">
+              <Navbar/>
+
       {/* ───────── Sidebar ───────── */}
-      <aside className="w-60 h-screen border-r bg-white p-4 flex flex-col">
+      <aside className="w-60 h-screen border-r bg-white p-4 flex flex-col fixed mt-16 ">
         <div className="flex items-center gap-3 mb-6">
           <img
             src="https://via.placeholder.com/40"
@@ -17,23 +22,12 @@ export const ChannelSettings =()=> {
             <p className="text-xs text-gray-500">Creator Studio</p>
           </div>
         </div>
-
-        <nav className="space-y-3 text-sm">
-          {["Dashboard", "Upload Video", "Course Management", "Channel Settings", "Comment Moderation", "Monetization"].map(
-            (item, i) => (
-              <button
-                key={i}
-                className={`w-full text-left px-3 py-2 rounded hover:bg-gray-100 ${
-                  item === "Channel Settings"
-                    ? "bg-blue-50 text-blue-600 font-medium"
-                    : "text-gray-700"
-                }`}
-              >
-                {item}
-              </button>
-            )
-          )}
-        </nav>
+      
+         
+        {/* // Sidebar */}
+         {/* <div className="space-y-3 text-sm flex flex-col"> */}
+          <Sidebar/>
+        {/* </div> */}
 
         <div className="mt-auto text-xs text-gray-500 p-2 flex items-center gap-2">
           <img
@@ -46,37 +40,10 @@ export const ChannelSettings =()=> {
       </aside>
 
       {/* ───────── Content Area ───────── */}
-      <main className="flex-1">
-
-        {/* Top Navbar */}
-        <header className="h-16 flex items-center justify-between border-b bg-white px-6">
-          <div className="flex items-center gap-2">
-            <span className="text-xl font-bold text-gray-800">EduStream</span>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <div className="relative">
-              <input
-                className="w-72 pl-9 pr-3 py-2 border rounded-lg text-sm bg-gray-50 focus:outline-none"
-                placeholder="Search courses, videos, creators..."
-              />
-              <Search className="w-4 absolute left-3 top-2.5 text-gray-400" />
-            </div>
-
-            <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm rounded">
-              <Upload className="w-4" /> Upload
-            </button>
-
-            <img
-              src="https://via.placeholder.com/35"
-              className="w-8 h-8 rounded-full"
-              alt=""
-            />
-          </div>
-        </header>
+ <main className="flex-1 ml-60 mt-18">
 
         {/* Page Title */}
-        <div className="px-10 py-8">
+        <div className="px-10 py-8 ">
           <h1 className="text-3xl font-bold text-gray-900">Channel Settings</h1>
           <p className="text-sm text-gray-600 mt-1">
             Customize your channel profile, branding, and identity to reflect your style.
@@ -168,7 +135,7 @@ export const ChannelSettings =()=> {
 
           {/* Buttons */}
           <div className="flex justify-end gap-3 mt-6">
-            <button className="px-4 py-2 border rounded-md bg-white">Back to Dashboard</button>
+            <NavLink to="/creator-dashboard" className="px-4 py-2 border rounded-md bg-white">Back to Dashboard</NavLink>
             <button className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
               Save Settings
             </button>

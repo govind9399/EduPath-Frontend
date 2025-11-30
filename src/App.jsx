@@ -25,6 +25,11 @@ import { SearchResult } from "./pages/learner/SearchResults"
 import { CourseCategoryBrowse } from "./pages/search/CourseCategoryBrowse"
 import { PersonalizedRecommendation } from "./pages/search/PersonalizedRecommendation"
 import { VideoSearch } from "./pages/search/VideoSearch"
+import { FAQArticleDetail } from "./pages/support/FAQArticleDetail"
+import { HelpCenterPage } from "./pages/support/HelpCenter"
+import { ReportIssuePage } from "./pages/support/ReportIssue"
+import { FeedbackPage } from "./pages/support/SendFeedback"
+import { FeedbackSuccessPage } from "./pages/support/SubmissionConfirmation"
  const App=()=> {
      const router=createBrowserRouter([
       //Auth
@@ -147,7 +152,24 @@ import { VideoSearch } from "./pages/search/VideoSearch"
         },
         // Support
        {
-         path:"/"
+         path:"/faq-article-detail",
+         element:<FAQArticleDetail/>
+       },
+       {
+         path:"/help-center",
+         element:<HelpCenterPage/>
+       },
+       {
+         path:"/report-issues",
+         element:<ReportIssuePage/>
+       },
+       {
+         path:"/feedback",
+         element:<FeedbackPage/>
+       },
+       {
+         path:"/feedback-success",
+         element:<FeedbackSuccessPage/>
        }
           ])
   return <RouterProvider router={router}/>

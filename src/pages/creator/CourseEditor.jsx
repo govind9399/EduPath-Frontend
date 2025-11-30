@@ -1,9 +1,6 @@
+ import React from "react";
 
-import React from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-
-export default function EditCourse() {
+export const CourseEditior = () => {
   return (
     <div className="w-full min-h-screen bg-white text-[#111] font-sans flex flex-col">
       {/* Top Navigation */}
@@ -12,14 +9,16 @@ export default function EditCourse() {
           <div className="h-8 w-8 rounded-full bg-[#0038FF] flex items-center justify-center text-white font-bold">ES</div>
           <span className="font-semibold text-lg">EduStream</span>
         </div>
+
         <div className="flex-1 flex justify-center">
           <input
             placeholder="Search courses, videos, creators..."
             className="w-[50%] border rounded-lg px-4 py-2 text-sm"
           />
         </div>
+
         <div className="flex items-center space-x-4">
-          <Button className="bg-[#0038FF] text-white">Upload</Button>
+          <button className="bg-[#0038FF] text-white px-4 py-2 rounded-md">Upload</button>
           <div className="h-8 w-8 rounded-full bg-gray-300 flex items-center justify-center">U</div>
         </div>
       </header>
@@ -28,9 +27,10 @@ export default function EditCourse() {
         {/* Sidebar */}
         <aside className="w-60 min-h-screen border-r p-4 bg-white">
           <h2 className="font-semibold mb-6">
-            Tech Academy<br />
+            Tech Academy <br />
             <span className="text-sm text-gray-500">Creator Studio</span>
           </h2>
+
           <ul className="space-y-4 text-[15px]">
             <li>Dashboard</li>
             <li>Upload Video</li>
@@ -48,9 +48,10 @@ export default function EditCourse() {
               <h1 className="text-2xl font-bold">Edit Course</h1>
               <p className="text-gray-600 -mt-1">Build and organize your course structure</p>
             </div>
+
             <div className="space-x-3">
-              <Button variant="outline">Cancel</Button>
-              <Button className="bg-[#0038FF] text-white">💾 Save Course</Button>
+              <button className="border px-4 py-2 rounded-md bg-white">Cancel</button>
+              <button className="bg-[#0038FF] text-white px-4 py-2 rounded-md">💾 Save Course</button>
             </div>
           </div>
 
@@ -62,48 +63,49 @@ export default function EditCourse() {
           </div>
 
           {/* Course Form */}
-          <Card className="shadow-sm border rounded-lg w-[80%] p-4">
-            <CardContent className="space-y-6">
+          <div className="shadow-sm border rounded-lg w-[80%] p-6 space-y-6">
+            <div>
+              <h2 className="font-semibold">Course Information</h2>
+              <p className="text-sm text-gray-500 -mt-1">Set the basic details for your course</p>
+            </div>
+
+            {/* Title */}
+            <div>
+              <p className="font-medium text-sm">Course Title</p>
+              <input
+                className="border rounded-md w-full mt-1 px-3 py-2 text-sm"
+                value="Advanced DSA in C++ (Part 2)"
+              />
+              <p className="text-xs text-gray-400 mt-1">
+                Make it descriptive and clear about what learners will achieve
+              </p>
+            </div>
+
+            {/* Description */}
+            <div>
+              <p className="font-medium text-sm">Course Description</p>
+              <textarea
+                className="border rounded-md w-full mt-1 px-3 py-2 text-sm h-32"
+                defaultValue="A comprehensive continuation course covering advanced topics in Data Structures and Algorithms necessary for top tech job interviews."
+              />
+              <p className="text-xs text-gray-400 mt-1">133/500 characters</p>
+            </div>
+
+            {/* Stats */}
+            <div className="flex space-x-20 pt-4">
               <div>
-                <h2 className="font-semibold">Course Information</h2>
-                <p className="text-sm text-gray-500 -mt-1">Set the basic details for your course</p>
+                <p className="text-sm text-gray-500">Total Modules</p>
+                <p className="text-2xl font-bold">2</p>
               </div>
 
-              {/* Title */}
               <div>
-                <p className="font-medium text-sm">Course Title</p>
-                <input
-                  className="border rounded-md w-full mt-1 px-3 py-2 text-sm"
-                  value="Advanced DSA in C++ (Part 2)"
-                />
-                <p className="text-xs text-gray-400 mt-1">Make it descriptive and clear about what learners will achieve</p>
+                <p className="text-sm text-gray-500">Total Videos</p>
+                <p className="text-2xl font-bold">3</p>
               </div>
-
-              {/* Description */}
-              <div>
-                <p className="font-medium text-sm">Course Description</p>
-                <textarea
-                  className="border rounded-md w-full mt-1 px-3 py-2 text-sm h-32"
-                  defaultValue="A comprehensive continuation course covering advanced topics in Data Structures and Algorithms necessary for top tech job interviews."
-                />
-                <p className="text-xs text-gray-400 mt-1">133/500 characters</p>
-              </div>
-
-              {/* Stats */}
-              <div className="flex space-x-20 pt-4">
-                <div>
-                  <p className="text-sm text-gray-500">Total Modules</p>
-                  <p className="text-2xl font-bold">2</p>
-                </div>
-                <div>
-                  <p className="text-sm text-gray-500">Total Videos</p>
-                  <p className="text-2xl font-bold">3</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         </main>
       </div>
     </div>
   );
-}
+};

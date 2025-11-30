@@ -1,29 +1,18 @@
  import { useState, useEffect, useRef } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { RiAccountCircleLine } from "react-icons/ri";
+import { CiSearch } from "react-icons/ci";
 
 const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
-
-  // CLOSE DROPDOWN ON OUTSIDE CLICK
-  // useEffect(() => {
-    // const handler = (e) => {
-      // if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
-        // setDropdownOpen(false);
-      // }
-    // };
-    // document.addEventListener("mousedown", handler);
-    // return () => document.removeEventListener("mousedown", handler);
-  // }, []);
-
   return (
     <>
-      <header className="w-full border-b border-gray-200 bg-white sticky top-0 z-50">
+      <header className="w-full border-b border-gray-200 bg-white  top-0 z-50 fixed">
         <div className="max-w-7xl mx-auto h-16 px-6 flex items-center justify-between">
           
           {/* LOGO */}
-          <NavLink to="/" className="flex items-center gap-3">
+          <NavLink to="/homepage" className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-md bg-gradient-to-br from-blue-500 to-amber-400 flex items-center justify-center text-white font-bold">
               EP
             </div>
@@ -43,8 +32,8 @@ const Navbar = () => {
                 viewBox="0 0 24 24"
                 fill="none"
               >
-                <path d="M21 21l-4.35-4.35" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                <circle cx="11" cy="11" r="6" stroke="currentColor" strokeWidth="2" />
+              <CiSearch className="text-3xl font-semibold" />
+   
               </svg>
             </div>
           </div>
@@ -63,7 +52,7 @@ const Navbar = () => {
               <div className="absolute right-0 mt-2 w-56 bg-white border shadow-lg rounded-lg text-sm py-2 animate-fade-in">
                 
                 <Link
-                  to="/"
+                  to="/student-dashboard"
                   onClick={() => setDropdownOpen(false)}
                   className="block px-4 py-2 hover:bg-gray-100"
                 >
