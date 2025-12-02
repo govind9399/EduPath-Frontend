@@ -1,6 +1,5 @@
-import React from "react";
 
-export default function EnrollHelpPage() {
+export const FAQArticleDetail=()=> {
   return (
     <div style={{ fontFamily: "Inter, sans-serif", background: "#fff", color: "#111", paddingBottom: "120px" }}>
       {/* HEADER */}

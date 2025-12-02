@@ -1,3 +1,4 @@
+
 import React from "react";
 
 /**
@@ -9,7 +10,7 @@ import React from "react";
  * 2. Place this file in your project and import <EduPathBrowseCategories />.
  */
 
-export default function EduPathBrowseCategories() {
+export const CourseCategoryBrowse=()=>{
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800">
       <TopNav />
@@ -514,4 +515,5 @@ function GlobeIcon({ className }) {
       <path d="M12 3a12 12 0 010 18c-3-3-4.5-7-4.5-9S9 6 12 3z" />
     </svg>
   );
+
 }

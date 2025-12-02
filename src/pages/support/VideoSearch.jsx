@@ -1,6 +1,5 @@
-import React from "react";
 
-export default function FindNextCoursePage() {
+export const VideoSearch=()=>{
   return (
     <div style={{ fontFamily: 'Inter, sans-serif', background: '#fff', width: '100%', minHeight: '100vh' }}>
       {/* HEADER */}

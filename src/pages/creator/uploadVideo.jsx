@@ -1,4 +1,5 @@
 import { Upload } from "lucide-react";
+import { NavLink } from "react-router-dom";
 
 export default function UploadVideo() {
   return (
@@ -9,7 +10,6 @@ export default function UploadVideo() {
         <button className="flex items-center gap-2 text-gray-600 hover:text-gray-800 mb-6">
           ← Back
         </button>
-
         <h1 className="text-3xl font-semibold">Upload Video</h1>
         <p className="text-gray-500 mt-1">
           Share your educational content with millions of learners
@@ -35,9 +35,9 @@ export default function UploadVideo() {
             <p className="text-gray-500 text-sm">or click to browse from your computer</p>
 
             {/* Upload Button */}
-            <button className="mt-5 bg-blue-600 text-white px-6 py-2 rounded-lg text-sm hover:bg-blue-700">
+            <NavLink to="/video-details-editor" className="mt-5 bg-blue-600 text-white px-6 py-2 rounded-lg text-sm hover:bg-blue-700">
               Choose File
-            </button>
+            </NavLink>
 
             <p className="text-gray-400 text-xs mt-3">
               Supported: MP4, WebM, MOV, AVI • Max size: 5GB

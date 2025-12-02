@@ -1,6 +1,5 @@
-import React from "react";
 
-export default function EduPathHome() {
+export const PersonalizedRecommendation=()=>{
   return (
     <div className="bg-[#fafafa] min-h-screen text-gray-900">
 
@@ -447,4 +446,5 @@ function FooterColumn({ title, links }) {
       </ul>
     </div>
   );
+
 }

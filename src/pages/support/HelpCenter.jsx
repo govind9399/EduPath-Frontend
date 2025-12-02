@@ -1,6 +1,5 @@
-import React from "react";
 
-export default function HelpCenterPage() {
+export const HelpCenterPage=()=>{
   return (
     <div style={{ fontFamily: "Inter, sans-serif", background: "#fff", color: "#111" }}>
       {/* HEADER */}

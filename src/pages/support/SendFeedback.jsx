@@ -1,6 +1,5 @@
-import React from "react";
 
-export default function FeedbackPage() {
+export const FeedbackPage=()=> {
   return (
     <div style={{ fontFamily: "Inter, sans-serif", background: "#fff", minHeight: "100vh" }}>
       {/* HEADER */}

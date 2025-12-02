@@ -1,6 +1,5 @@
-import React from "react";
 
-export default function FeedbackSuccessPage() {
+export const FeedbackSuccessPage=()=>{
   return (
     <div style={{ fontFamily: "Inter, sans-serif", background: "#fff" }}>
       {/* HEADER */}

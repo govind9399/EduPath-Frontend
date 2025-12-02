@@ -4,7 +4,7 @@ import React from "react";
 // No CSS file, no logic, 100% pixel‑style static layout
 // All styling done using Tailwind classes only
 
-export default function CoursePage() {
+export const CourseDetails=()=>{
   return (
     <div className="w-full min-h-screen bg-white text-[#0f172a]">
       {/* TOP NAVBAR */}
@@ -198,4 +198,3 @@ export default function CoursePage() {
     </div>
   );
 }
-

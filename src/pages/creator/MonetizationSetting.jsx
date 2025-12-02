@@ -1,52 +1,21 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
+import { Navbar } from "../../componets/creator/navbar";
+import { Sidebar } from "../../componets/creator/sidebar";
 
 // EduPath Monetization Settings - single-file React component (Tailwind CSS)
 // Usage: place this component in your app and ensure Tailwind is configured.
 
-export default function MonetizationSettings() {
+export const MonetizationSetting=()=> {
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800">
       <div className="max-w-[1200px] mx-auto flex gap-6 p-6">
         {/* LEFT SIDEBAR */}
-        <aside className="w-64 bg-white rounded-2xl shadow-sm p-6 sticky top-6 h-fit">
-          <div className="flex items-center gap-3 mb-6">
-            <img src="/avatar-placeholder.png" alt="avatar" className="w-12 h-12 rounded-full object-cover" />
-            <div>
-              <div className="font-semibold">Alex Johnson</div>
-              <div className="text-xs text-gray-500">Creator Studio</div>
-            </div>
-          </div>
+         <Sidebar/>
 
-          <nav className="space-y-3">
-            {[
-              "Dashboard",
-              "Upload Video",
-              "Course Management",
-              "Channel Settings",
-              "Comment Moderation",
-              "Monetization",
-            ].map((item) => (
-              <div key={item} className="text-sm text-gray-700 px-3 py-2 rounded-lg hover:bg-gray-50 cursor-pointer">
-                {item}
-              </div>
-            ))}
-          </nav>
-
-          <div className="mt-6 text-sm text-gray-500">Account</div>
-        </aside>
-
+           <Navbar/>
         {/* MAIN CONTENT */}
-        <main className="flex-1">
-          <header className="flex items-center justify-between mb-6">
-            <div>
-              <h1 className="text-3xl font-extrabold">Monetization Settings</h1>
-              <p className="text-sm text-gray-500">Configure your channel's revenue generation and ad preferences</p>
-            </div>
-            <div className="flex items-center gap-3">
-              <button className="px-4 py-2 bg-white border rounded-lg">Cancel</button>
-              <button className="px-4 py-2 bg-blue-600 text-white rounded-lg shadow">Save and Exit</button>
-            </div>
-          </header>
+        <main className="flex-1 ">
 
           {/* Eligibility Card */}
           <section className="bg-white rounded-2xl p-6 shadow mb-6">

@@ -6,8 +6,7 @@ import ResetPassword from "./pages/Auth/resetpassword"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import UserProfileSetup from "./pages/Auth/UserProfileSetup"
 import VerifyEmail from "./pages/Auth/VerifyEmail"
-import Homepage from "./pages/courseHomepage"
- import CreatorDashboard from "./pages/creator/creatorDashboard"
+  import CreatorDashboard from "./pages/creator/creatorDashboard"
 import { VideoPlayer } from "./pages/learner/VideoPlayer"
 import { StudentDashboard } from "./pages/learner/StudentDashboard"
 import { ChannelSettings } from "./pages/creator/channelSetting"
@@ -19,6 +18,18 @@ import { RevenueAnalyticsReport } from "./pages/creator/RevenueAnalyticsReport"
 import { CourseEditior } from "./pages/creator/CourseEditor"
 import UploadVideo from "./pages/creator/uploadVideo"
 import { VideoDetailsEditor } from "./pages/creator/VideodetailsEditior"
+import VideoComments from "./pages/learner/CommentSection"
+import { CourseDetails } from "./pages/learner/CourseDetails"
+import { Homepage } from "./pages/learner/CourseHome"
+import { SearchResult } from "./pages/learner/SearchResults"
+import { CourseCategoryBrowse } from "./pages/search/CourseCategoryBrowse"
+import { PersonalizedRecommendation } from "./pages/search/PersonalizedRecommendation"
+import { VideoSearch } from "./pages/search/VideoSearch"
+import { FAQArticleDetail } from "./pages/support/FAQArticleDetail"
+import { HelpCenterPage } from "./pages/support/HelpCenter"
+import { ReportIssuePage } from "./pages/support/ReportIssue"
+import { FeedbackPage } from "./pages/support/SendFeedback"
+import { FeedbackSuccessPage } from "./pages/support/SubmissionConfirmation"
  const App=()=> {
      const router=createBrowserRouter([
       //Auth
@@ -71,11 +82,11 @@ import { VideoDetailsEditor } from "./pages/creator/VideodetailsEditior"
          element:<VideoDetailsEditor/>
       },
       {
-         path:"course-management",
+         path:"/course-management",
          element:<CourseManagement/>
        }, 
         {
-         path:"course-editior",
+         path:"/course-editior",
          element:<CourseEditior/>
        },  
         
@@ -84,28 +95,82 @@ import { VideoDetailsEditor } from "./pages/creator/VideodetailsEditior"
          element:<ChannelSettings/> 
       },
        {
-         path:"comment-moderation",
+         path:"/comment-moderation",
          element:<CommentModeration/>
        },     
       {
-       path:"monetization-dashboard",
+       path:"/monetization-dashboard",
        element:<MonetizationDashboard/>
      },  
 
        {
-         path:"revenue-analytics-report",
+         path:"/revenue-analytics-report",
          element:<RevenueAnalyticsReport/>
        },
        {
-        path:"monetization-setting",
+        path:"/monetization-setting",
         element:<MonetizationSetting/>
       },     
      
      // learner
        {
-         path:"student-dashboard",
+         path:"/student-dashboard",
         element:<StudentDashboard/>
          },
+        {
+          path:"/comment-section",
+          element:<VideoComments/>
+        },
+        {
+          path:"/course-details",
+          element:<CourseDetails/>
+        },
+        {
+          path:"/homepage",
+          element:<Homepage/>
+        },
+        {
+          path:"/video-player",
+          element:<VideoPlayer/>
+        },
+        {
+          path:"/search-result",
+          element:<SearchResult/>
+        },
+        //Search
+        {
+          path:"/course-category-browse",
+          element:<CourseCategoryBrowse/>
+        },
+        {
+          path:"/personalized-recommendation",
+          element:<PersonalizedRecommendation/>
+        },
+        {
+           path:"/video-search",
+           element:<VideoSearch/>
+        },
+        // Support
+       {
+         path:"/faq-article-detail",
+         element:<FAQArticleDetail/>
+       },
+       {
+         path:"/help-center",
+         element:<HelpCenterPage/>
+       },
+       {
+         path:"/report-issues",
+         element:<ReportIssuePage/>
+       },
+       {
+         path:"/feedback",
+         element:<FeedbackPage/>
+       },
+       {
+         path:"/feedback-success",
+         element:<FeedbackSuccessPage/>
+       }
           ])
   return <RouterProvider router={router}/>
 }

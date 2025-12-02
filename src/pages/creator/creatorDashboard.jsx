@@ -67,9 +67,9 @@ export default function CreatorDashboard() {
               </div>
 
               <div className="flex items-center gap-3">
-                <button className="px-4 py-2 border border-gray-200 rounded-md text-sm bg-white shadow-sm">
+                <NavLink to="/channel-setting" className="px-4 py-2 border border-gray-200 rounded-md text-sm bg-white shadow-sm">
                   Edit Channel
-                </button>
+                </NavLink>
                 <button className="px-4 py-2 border border-transparent rounded-md text-sm bg-transparent text-gray-700">
                   View Channel
                 </button>
@@ -84,14 +84,14 @@ export default function CreatorDashboard() {
 
         {/* ACTION CARDS */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-6">
-          <div className="col-span-1 md:col-span-1 bg-white rounded-xl p-6 shadow-sm border border-gray-200 flex items-center justify-center">
+          <NavLink to="/upload-video" className="col-span-1 md:col-span-1 bg-white rounded-xl p-6 shadow-sm border border-gray-200 flex items-center justify-center">
             <div className="w-full text-center">
               <div className="w-full h-28 rounded-lg bg-gradient-to-br from-blue-600 to-blue-500 flex items-center justify-center text-white font-medium">
                 Upload Video
               </div>
               <p className="text-sm text-gray-500 mt-3">Add new educational content</p>
             </div>
-          </div>
+          </NavLink>
 
           <div className="col-span-1 md:col-span-1 bg-white rounded-xl p-6 shadow-sm border border-gray-200 flex flex-col items-center justify-center">
             <svg className="w-10 h-10 mb-2 text-blue-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -138,7 +138,7 @@ export default function CreatorDashboard() {
         <section className="mt-10 bg-white rounded-xl shadow-sm border border-gray-200 p-6">
           <div className="flex items-center justify-between">
             <h3 className="text-sm font-medium text-gray-700">Monetization Overview</h3>
-            <button className="text-sm px-4 py-1 border rounded-md bg-white hover:bg-gray-50">View Details →</button>
+            <NavLink to="/monetization-dashboard" className="text-sm px-4 py-1 border rounded-md bg-white hover:bg-gray-50">View Details →</NavLink>
           </div>
 
           <div className="mt-5 p-6 rounded-xl border bg-gradient-to-r from-blue-50 to-orange-50">
@@ -167,15 +167,15 @@ export default function CreatorDashboard() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
-            <button className="flex items-center justify-center gap-2 px-4 py-3 bg-blue-600 text-white rounded-md text-sm font-medium">
+            <NavLink to="/revenue-analytics-report" className="flex items-center justify-center gap-2 px-4 py-3 bg-blue-600 text-white rounded-md text-sm font-medium">
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
               View Revenue Analytics
-            </button>
+            </NavLink>
 
-            <button className="flex items-center justify-center gap-2 px-4 py-3 border border-gray-300 rounded-md text-sm font-medium">
+            <NavLink to="/monetization-setting" className="flex items-center justify-center gap-2 px-4 py-3 border border-gray-300 rounded-md text-sm font-medium">
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2v20M5 7h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
               Monetization Settings
-            </button>
+            </NavLink>
           </div>
         </section>
 

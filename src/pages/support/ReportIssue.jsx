@@ -1,6 +1,5 @@
-import React from "react";
 
-export default function ReportIssuePage() {
+export const ReportIssuePage=()=> {
   return (
     <div style={{ fontFamily: "Inter, sans-serif", background: "#fff", paddingBottom: 80 }}>
       {/* HEADER */}

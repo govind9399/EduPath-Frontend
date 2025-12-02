@@ -1,4 +1,4 @@
-import React from "react";
+
 
 /*  
    EduPath Search Page UI
@@ -6,7 +6,7 @@ import React from "react";
    Fully responsive, Tailwind CSS based.
 */
 
-export default function EduPathSearchPage() {
+export const VideoSearch=()=> {
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800">
 
