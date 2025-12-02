@@ -1,7 +1,7 @@
  import React from "react";
 import { Navbar } from "../../componets/creator/navbar";
 import { NavLink } from "react-router-dom";
-
+import { Sidebar } from "../../componets/creator/sidebar";
 export const MonetizationDashboard=()=> {
   return (
     <div className="w-full min-h-screen bg-white text-[#111] font-sans flex flex-col">
@@ -10,24 +10,9 @@ export const MonetizationDashboard=()=> {
        <Navbar/>
       <div className="flex w-full">
         {/* Sidebar */}
-        <aside className="w-60 min-h-screen border-r p-4 bg-white">
-          <h2 className="font-semibold mb-6">
-            Tech Academy <br />
-            <span className="text-sm text-gray-500">Creator Studio</span>
-          </h2>
-
-          <ul className="space-y-4 text-[15px]">
-            <li className="font-semibold text-blue-600">Dashboard</li>
-            <li>Upload Video</li>
-            <li>Course Management</li>
-            <li>Channel Settings</li>
-            <li>Comment Moderation</li>
-            <li>Monetization</li>
-          </ul>
-        </aside>
-
+       <Sidebar/>
         {/* Main Content */}
-        <main className="flex-1 p-6 space-y-6">
+        <main className="flex-1 p-6 space-y-6 ml-64">
           <h1 className="text-2xl font-bold">Monetization Dashboard</h1>
           <p className="text-gray-600 -mt-3">
             Monitor your earnings and revenue performance

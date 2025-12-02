@@ -1,19 +1,10 @@
+import { Footer } from "../../componets/student/footer";
 
 export const HelpCenterPage=()=>{
   return (
     <div style={{ fontFamily: "Inter, sans-serif", background: "#fff", color: "#111" }}>
       {/* HEADER */}
-      <header style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "16px 32px", borderBottom: "1px solid #eee", position: "sticky", top: 0, background: "white", zIndex: 10 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-          <img src="/logo.svg" alt="EduStream" style={{ height: 32 }} />
-          <span style={{ fontSize: 20, fontWeight: 600 }}>EduStream</span>
-        </div>
-        <input placeholder="Search courses, videos, creators..." style={{ width: 420, padding: "10px 16px", borderRadius: 8, border: "1px solid #ddd" }} />
-        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-          <button style={{ background: "#f5f5f5", padding: "8px 16px", borderRadius: 8, border: "1px solid #ddd" }}>Creator Studio</button>
-          <img src="/user.png" style={{ height: 36, width: 36, borderRadius: "50%" }} />
-        </div>
-      </header>
+
 
       {/* MAIN SECTION */}
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "40px 24px" }}>
@@ -107,44 +98,7 @@ export const HelpCenterPage=()=>{
       </div>
 
       {/* FOOTER */}
-      <footer style={{ marginTop: 60, padding: "40px 24px", background: "#fafafa", borderTop: "1px solid #eee" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", justifyContent: "space-between" }}>
-          <div>
-            <h3>EduStream</h3>
-            <p style={{ maxWidth: 300, marginTop: 8, color: "#666" }}>
-              Democratizing education through free, high-quality video content.
-            </p>
-          </div>
-
-          <div style={{ display: "flex", gap: 40 }}>
-            <div>
-              <h4>Platform</h4>
-              <p>Browse Courses</p>
-              <p>Become a Creator</p>
-              <p>How It Works</p>
-              <p>Pricing</p>
-            </div>
-
-            <div>
-              <h4>Support</h4>
-              <p>Help Center</p>
-              <p>Community</p>
-              <p>Contact Us</p>
-              <p>Report Content</p>
-            </div>
-
-            <div>
-              <h4>Legal</h4>
-              <p>Privacy Policy</p>
-              <p>Terms of Service</p>
-              <p>Cookie Policy</p>
-              <p>Copyright</p>
-            </div>
-          </div>
-        </div>
-
-        <p style={{ textAlign: "center", marginTop: 32, color: "#777" }}>© 2025 EduStream. All rights reserved.</p>
-      </footer>
+     <Footer/>
     </div>
   );
 }

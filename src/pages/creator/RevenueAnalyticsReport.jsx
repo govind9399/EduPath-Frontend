@@ -1,54 +1,16 @@
  import React from "react";
+import { Navbar } from "../../componets/creator/navbar";
+import { Sidebar } from "../../componets/creator/sidebar";
 
 export const RevenueAnalyticsReport=()=> {
   return (
     <div className="w-full min-h-screen bg-white text-[#111] font-sans flex flex-col">
       {/* Top Navigation */}
-      <header className="w-full flex items-center justify-between px-6 py-4 border-b bg-white">
-        <div className="flex items-center space-x-2">
-          <div className="h-8 w-8 rounded-full bg-[#0038FF] flex items-center justify-center text-white font-bold">
-            ES
-          </div>
-          <span className="font-semibold text-lg">EduStream</span>
-        </div>
-
-        <div className="flex-1 flex justify-center">
-          <input
-            placeholder="Search courses, videos, creators..."
-            className="w-[50%] border rounded-lg px-4 py-2 text-sm"
-          />
-        </div>
-
-        <div className="flex items-center space-x-4">
-          <button className="bg-[#0038FF] text-white px-4 py-2 rounded-lg">
-            Upload
-          </button>
-          <div className="h-8 w-8 rounded-full bg-gray-300 flex items-center justify-center overflow-hidden">
-            <img src="/user.png" alt="user" className="h-full w-full" />
-          </div>
-        </div>
-      </header>
-
-      <div className="flex w-full">
-        {/* Sidebar */}
-        <aside className="w-60 min-h-screen border-r p-4 bg-white">
-          <h2 className="font-semibold mb-6">
-            Tech Academy <br />
-            <span className="text-sm text-gray-500">Creator Studio</span>
-          </h2>
-
-          <ul className="space-y-4 text-[15px]">
-            <li>Dashboard</li>
-            <li>Upload Video</li>
-            <li>Course Management</li>
-            <li>Channel Settings</li>
-            <li>Comment Moderation</li>
-            <li className="font-semibold text-blue-600">Monetization</li>
-          </ul>
-        </aside>
+        <Navbar/>
+        <Sidebar/>
 
         {/* Main Content */}
-        <main className="flex-1 p-6 space-y-6 pb-40">
+        <main className="flex-1 p-6 space-y-6 pb-40 ml-64 mt-12">
           {/* Header Row */}
           <div className="flex justify-between items-center">
             <div>
@@ -189,6 +151,6 @@ export const RevenueAnalyticsReport=()=> {
           </div>
         </main>
       </div>
-    </div>
+    // </div>
   );
 }

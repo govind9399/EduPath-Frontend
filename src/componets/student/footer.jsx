@@ -1,15 +1,15 @@
- import { FaLinkedinIn } from "react-icons/fa6";
- import { FaTwitter } from "react-icons/fa";
- import { IoLogoInstagram } from "react-icons/io5";
- import { FaFacebook } from "react-icons/fa6";
- import { FaYoutube } from "react-icons/fa6";
- export const Footer = () => {
+import { FaLinkedinIn } from "react-icons/fa6";
+import { FaTwitter } from "react-icons/fa";
+import { IoLogoInstagram } from "react-icons/io5";
+import { FaFacebook } from "react-icons/fa6";
+import { FaYoutube } from "react-icons/fa6";
+import { NavLink } from "react-router-dom";
+export const Footer = () => {
   return (
     <>
       <footer className=" mt-12 border-t border-gray-200 pt-8 px-4 md:px-8">
         {/* Top grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-sm text-gray-600">
-          
           {/* Brand Section */}
           <div>
             <div className="flex items-center gap-2 mb-3">
@@ -20,8 +20,8 @@
             </div>
 
             <p className="text-xs text-gray-700 leading-5">
-              Democratizing education through free, high-quality video
-              content. Learn anything, teach everything.
+              Democratizing education through free, high-quality video content.
+              Learn anything, teach everything.
             </p>
 
             <div className="mt-4 flex gap-4 text-gray-400 text-lg">
@@ -48,10 +48,14 @@
           <div>
             <h4 className="font-semibold text-gray-800 mb-2">Support</h4>
             <ul className="space-y-1 text-xs text-gray-600 cursor-pointer">
-              <li>Help Center</li>
+              <NavLink to="/help-center">
+                <li>Help Center</li>
+              </NavLink>
               <li>Community</li>
               <li>Contact Us</li>
-              <li>Report Content</li>
+              <NavLink>
+                <li>Report Content</li>
+              </NavLink>
             </ul>
           </div>
 
@@ -69,7 +73,9 @@
 
         {/* Bottom bar */}
         <div className="mt-8 flex flex-col md:flex-row items-center justify-between text-xs text-gray-700 gap-2 pb-4">
-          <span className="text-center md:text-left">© 2025 EduStream. All rights reserved.</span>
+          <span className="text-center md:text-left">
+            © 2025 EduPath. All rights reserved.
+          </span>
           <span className="text-center md:text-right">
             English • Made with ❤️ for learners
           </span>

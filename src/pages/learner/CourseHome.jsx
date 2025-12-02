@@ -1,7 +1,7 @@
 import { Footer } from "../../componets/student/footer";
-import { Navbar } from "../../componets/creator/navbar";
-import { NavLink } from "react-router-dom";
+ import { NavLink } from "react-router-dom";
 import { Play } from "lucide-react";
+import  Navbar  from "../../componets/student/navbar";
 export const Homepage = () => {
   const trendingCourses = [
     {
@@ -118,9 +118,9 @@ export const Homepage = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* NAVBAR */}
-      <Navbar />
+      <Navbar/>
       {/* HERO */}
-      <section className="bg-gradient-to-b from-blue-50 via-white to-orange-50">
+      <section className="bg-gradient-to-b from-blue-50 via-white to-orange-50 mt-16">
         <div className="max-w-5xl mx-auto px-6 py-16 text-center">
           <h1 className="text-4xl md:text-5xl font-bold leading-tight">
             <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-amber-500 bg-clip-text text-transparent">
@@ -135,42 +135,16 @@ export const Homepage = () => {
             pace.
           </p>
 
-          {/* Search bar */}
-          <div className="mt-8 max-w-xl mx-auto">
-            <div className="relative flex items-center rounded-full border border-gray-200 bg-white shadow-sm">
-              <input
-                className="flex-1 px-5 py-3 rounded-full text-sm focus:outline-none"
-                placeholder="Search courses, skills, creators..."
-              />
-              <button className="flex items-center justify-center w-12 h-12 rounded-full bg-blue-600 text-white mr-1 hover:bg-blue-700">
-                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M21 21l-4.35-4.35"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                  />
-                  <circle
-                    cx="11"
-                    cy="11"
-                    r="6"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  />
-                </svg>
-              </button>
-            </div>
-          </div>
 
           {/* CTA Buttons */}
           <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
             <button className="inline-flex items-center justify-center px-6 py-2.5 rounded-lg bg-blue-600 text-white text-sm font-medium hover:bg-blue-700">
               ▶ Start Learning
             </button>
-            <button className="inline-flex items-center justify-center px-6 py-2.5 rounded-lg border border-gray-300 bg-white text-sm font-medium hover:bg-gray-50 gap-2">
+            <NavLink to="/creator-dashboard" className="inline-flex items-center justify-center px-6 py-2.5 rounded-lg border border-gray-300 bg-white text-sm font-medium hover:bg-gray-50 gap-2">
               <span className="inline-block w-4 h-4 border border-gray-500 rounded-sm" />
               Become a Creator
-            </button>
+            </NavLink>
           </div>
         </div>
       </section>
@@ -286,55 +260,7 @@ export const Homepage = () => {
         </div>
       </section>
 
-      {/* FEATURED / JOURNEY SECTION + FOOTER */}
-      <section className="bg-gradient-to-b from-blue-50 via-white to-orange-50 mt-4">
-        <div className="max-w-7xl mx-auto px-6 py-16">
-          <div className="bg-white border border-gray-200 rounded-xl shadow-sm p-6 md:p-8 flex flex-col md:flex-row gap-8">
-            <div className="md:w-1/2">
-              <img
-                src="/images/featured-learners.jpg"
-                alt="Learners"
-                className="w-full h-64 object-cover rounded-lg"
-              />
-            </div>
 
-            <div className="md:w-1/2 flex flex-col justify-between">
-              <div>
-                <span className="text-xs font-semibold text-orange-500">
-                  Featured
-                </span>
-                <h3 className="mt-2 text-2xl font-semibold text-gray-900">
-                  Start Your Learning Journey Today
-                </h3>
-                <p className="mt-3 text-sm text-gray-600">
-                  Join thousands of learners who are transforming their careers
-                  and skills through our platform. Access world-class education
-                  completely free, supported by our creator community.
-                </p>
-
-                <ul className="mt-4 space-y-2 text-sm text-gray-700">
-                  <li>✅ 100% free access to all courses</li>
-                  <li>✅ Learn at your own pace</li>
-                  <li>✅ Certificates upon completion</li>
-                  <li>✅ Community support and Q&A</li>
-                </ul>
-              </div>
-
-              <div className="mt-5 flex flex-wrap gap-3">
-                <button className="inline-flex items-center justify-center px-5 py-2.5 rounded-lg bg-blue-600 text-white text-sm font-medium hover:bg-blue-700">
-                  ▶ Explore Courses
-                </button>
-                <button className="inline-flex items-center justify-center px-5 py-2.5 rounded-lg border border-gray-300 bg-white text-sm font-medium hover:bg-gray-50">
-                  ⬛ Create Content
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Stats row again */}
-          <div className="mt-10 flex flex-col sm:flex-row gap-8 justify-center text-center"></div>
-        </div>
-      </section>
       <Footer />
     </div>
   );

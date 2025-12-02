@@ -9,13 +9,13 @@ import { Sidebar } from "../../componets/creator/sidebar";
 export const MonetizationSetting=()=> {
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800">
-      <div className="max-w-[1200px] mx-auto flex gap-6 p-6">
-        {/* LEFT SIDEBAR */}
-         <Sidebar/>
-
            <Navbar/>
+         <Sidebar />
+
+      <div className="max-w-[1200px] flex ">
+
         {/* MAIN CONTENT */}
-        <main className="flex-1 ">
+        <main className="flex-1 ml-64 mt-18 ">
 
           {/* Eligibility Card */}
           <section className="bg-white rounded-2xl p-6 shadow mb-6">

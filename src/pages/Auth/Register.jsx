@@ -6,15 +6,23 @@ export default function Register() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white flex justify-center pt-10 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white flex justify-center  px-4">
       {/* CARD CONTAINER */}
-      <div className="max-w-md w-full bg-white p-8 rounded-xl shadow-sm">
+      <header className="w-full flex items-center justify-between px-6 py-4 shadow-sm bg-white fixed">
+        <NavLink to="/homepage" className="flex items-center gap-3">
+          <div
+            className="w-9 h-9 rounded-md bg-gradient-to-br from-blue-500 to-amber-400 flex items-center justify-center 
+ext-white font-bold"
+          >
+            EP
+          </div>
+          <span className="font-semibold text-gray-800 text-lg">EduPath</span>
+        </NavLink>
+      </header>
+
+      <div className="max-w-md w-full bg-white mt-8 p-8 rounded-xl shadow-sm">
         {/* LOGO */}
         <div className="flex flex-col items-center">
-          <div className="w-14 h-14 bg-blue-600 rounded-xl flex items-center justify-center text-white text-3xl">
-            ⭮
-          </div>
-
           <h2 className="text-3xl font-bold text-gray-900 mt-6">
             Create Your Account
           </h2>
@@ -27,7 +35,9 @@ export default function Register() {
         <form className="mt-8 space-y-5">
           {/* Email */}
           <div>
-            <label className="text-sm font-medium text-gray-700">Email Address</label>
+            <label className="text-sm font-medium text-gray-700">
+              Email Address
+            </label>
             <input
               type="email"
               placeholder="you@example.com"
@@ -37,7 +47,9 @@ export default function Register() {
 
           {/* Username */}
           <div>
-            <label className="text-sm font-medium text-gray-700">Username</label>
+            <label className="text-sm font-medium text-gray-700">
+              Username
+            </label>
             <input
               type="text"
               placeholder="your_username"
@@ -47,7 +59,9 @@ export default function Register() {
 
           {/* Password */}
           <div>
-            <label className="text-sm font-medium text-gray-700">Password</label>
+            <label className="text-sm font-medium text-gray-700">
+              Password
+            </label>
             <div className="relative">
               <input
                 type={showPassword ? "text" : "password"}
@@ -65,7 +79,9 @@ export default function Register() {
 
           {/* Confirm Password */}
           <div>
-            <label className="text-sm font-medium text-gray-700">Confirm Password</label>
+            <label className="text-sm font-medium text-gray-700">
+              Confirm Password
+            </label>
             <div className="relative">
               <input
                 type={showConfirmPassword ? "text" : "password"}
@@ -83,8 +99,7 @@ export default function Register() {
 
           {/* Terms */}
           <label className="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
-            <input type="checkbox" className="accent-blue-600" />
-            I agree to the{" "}
+            <input type="checkbox" className="accent-blue-600" />I agree to the{" "}
             <a className="text-blue-600 hover:underline cursor-pointer">
               Terms of Service
             </a>{" "}
@@ -95,30 +110,38 @@ export default function Register() {
           </label>
 
           {/* CTA Button */}
-          <NavLink to="/profilesetup" className="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 flex items-center justify-center gap-2">
-            🎉 Create Account
+          <NavLink
+            to="/profilesetup"
+            className="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 flex items-center justify-center gap-2"
+          >
+             Create Account
           </NavLink>
         </form>
 
         {/* Divider */}
-        <div className="text-center text-xs text-gray-500 my-6">OR CONTINUE WITH</div>
+        <div className="text-center text-xs text-gray-500 my-6">
+          OR CONTINUE WITH
+        </div>
 
         {/* Social Auth */}
         <div className="flex items-center justify-between gap-4">
           <button className="flex-1 border py-2 rounded-lg hover:bg-gray-50 flex items-center justify-center gap-2">
-            📧 Google
+             Google
           </button>
           <button className="flex-1 border py-2 rounded-lg hover:bg-gray-50 flex items-center justify-center gap-2">
-            💻 GitHub
+             GitHub
           </button>
         </div>
 
         {/* Already have an account */}
         <p className="text-center text-sm text-gray-700 mt-6">
           Already have an account?{" "}
-          {/* <Link className="text-blue-600 hover:underline font-medium"> */}
-            {/* Sign In */}
-          {/* </Link> */}
+          <Link
+            to="/login"
+            className="text-blue-600 hover:underline font-medium"
+          >
+            Sign In
+          </Link>
         </p>
 
         {/* Legal note */}

@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { X, Image, Settings } from "lucide-react";
+import { Navbar } from "../../componets/creator/navbar";
+import { Sidebar } from "../../componets/creator/sidebar";
 
 export const VideoDetailsEditor= ()=> {
   const [title, setTitle] = useState("");
@@ -32,8 +34,10 @@ export const VideoDetailsEditor= ()=> {
   };
 
   return (
-    <div className="w-full flex justify-center py-10 px-4">
-      <div className="w-full max-w-4xl">
+    <div className="w-full flex justify-center ">
+      <Navbar/>
+      <div className="w-full max-w-4xl mt-18 mb-10">
+      {/* <Sidebar/> */}
 
         {/* Top Title */}
         <h1 className="text-3xl font-semibold">Edit Video Details</h1>
