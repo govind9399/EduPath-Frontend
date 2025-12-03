@@ -1,24 +1,10 @@
 import React from "react";
 
-export default function AdFormatDemo() {
+export const AdRendering=() =>{
   return (
     <div className="w-full min-h-screen bg-white flex flex-col items-center font-sans">
       {/* Header */}
-      <header className="w-full flex items-center justify-between px-8 py-4 border-b bg-white">
-        <div className="flex items-center gap-2 text-xl font-semibold">
-          <img src="/logo.svg" alt="EduStream" className="w-8 h-8" />
-          EduStream
-        </div>
-        <input
-          className="border rounded-md px-4 py-2 w-96 text-sm"
-          placeholder="Search courses, videos, creators..."
-        />
-        <div className="flex items-center gap-4">
-          <button className="border rounded-md px-4 py-2 text-sm">Creator Studio</button>
-          <img src="/user.png" className="w-8 h-8 rounded-full" />
-        </div>
-      </header>
-
+ 
       {/* Page Title */}
       <div className="w-full max-w-6xl mt-10 px-4">
         <h1 className="text-3xl font-bold">Ad Format Demo</h1>

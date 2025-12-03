@@ -37,23 +37,29 @@ export const Footer = () => {
           <div>
             <h4 className="font-semibold text-gray-800 mb-2">Platform</h4>
             <ul className="space-y-1 text-xs text-gray-700 cursor-pointer">
-              <li>Browse Courses</li>
+              <li>Browse Videos</li>
               <li>Become a Creator</li>
               <li>How It Works</li>
-              <li>Pricing</li>
+              {/* <li>Pricing</li> */}
             </ul>
           </div>
 
           {/* Support */}
           <div>
             <h4 className="font-semibold text-gray-800 mb-2">Support</h4>
-            <ul className="space-y-1 text-xs text-gray-600 cursor-pointer">
+            <ul className="space-y-1 text-xs text-gray-600 cursor-pointer ">
               <NavLink to="/help-center">
                 <li>Help Center</li>
               </NavLink>
-              <li>Community</li>
-              <li>Contact Us</li>
-              <NavLink>
+              <NavLink to="">
+                <li>Community</li>
+              </NavLink>
+
+              <NavLink to="">
+                <li>Contact Us</li>
+              </NavLink>
+
+              <NavLink to="">
                 <li>Report Content</li>
               </NavLink>
             </ul>

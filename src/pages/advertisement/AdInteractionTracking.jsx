@@ -5,19 +5,6 @@ export default function AdInteractionTrackingPage() {
     <div className="w-full min-h-screen bg-white text-[#111]">  {
       <div className="w-full min-h-screen bg-[#fff] text-[#111] font-sans pb-20">
         {/* HEADER */}
-        <header className="w-full border-b bg-white sticky top-0 z-50">
-          <div className="max-w-[1400px] mx-auto flex items-center justify-between py-4 px-6">
-            <div className="flex items-center gap-2 text-xl font-semibold">
-              <div className="w-8 h-8 bg-[#4B6BFB] rounded-md"></div>
-              EduStream
-            </div>
-            <input className="w-[420px] h-[40px] rounded-lg border px-4 text-sm" placeholder="Search courses, videos, creators..." />
-            <div className="flex items-center gap-4">
-              <button className="px-4 py-2 bg-[#4B6BFB] text-white rounded-lg text-sm">Upload</button>
-              <div className="w-9 h-9 rounded-full bg-gray-300"></div>
-            </div>
-          </div>
-        </header>
 
         {/* PAGE TITLE */}
         <div className="max-w-[1400px] mx-auto px-6 mt-10">

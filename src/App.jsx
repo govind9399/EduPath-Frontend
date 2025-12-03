@@ -1,28 +1,27 @@
 
-import Login from "./pages/Auth/login"
-import AuthLanding from "./pages/Auth/AuthenticationEntry"
+import Login from "./pages/auth/login"
+import AuthLanding from "./pages/auth/AuthenticationEntry"
 import Register from "./pages/auth/Register"
-import ResetPassword from "./pages/Auth/resetpassword"
+import ResetPassword from "./pages/auth/resetpassword"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
-import UserProfileSetup from "./pages/Auth/UserProfileSetup"
-import VerifyEmail from "./pages/Auth/VerifyEmail"
-  import CreatorDashboard from "./pages/creator/creatorDashboard"
-import { VideoPlayer } from "./pages/learner/VideoPlayer"
-import { StudentDashboard } from "./pages/learner/StudentDashboard"
-import { ChannelSettings } from "./pages/creator/channelSetting"
-import { CourseManagement } from "./pages/creator/CourseManagement"
-import { MonetizationDashboard } from "./pages/creator/MonetizationDashboard"
-import { MonetizationSetting } from "./pages/creator/MonetizationSetting"
-import { CommentModeration } from "./pages/creator/CommentModeration"
-import { RevenueAnalyticsReport } from "./pages/creator/RevenueAnalyticsReport"
-import { CourseEditior } from "./pages/creator/CourseEditor"
-import UploadVideo from "./pages/creator/uploadVideo"
-import { VideoDetailsEditor } from "./pages/creator/VideodetailsEditior"
-import VideoComments from "./pages/learner/CommentSection"
-import { CourseDetails } from "./pages/learner/CourseDetails"
-import { Homepage } from "./pages/learner/CourseHome"
-import { SearchResult } from "./pages/learner/SearchResults"
-import { CourseCategoryBrowse } from "./pages/search/CourseCategoryBrowse"
+import UserProfileSetup from "./pages/auth/UserProfileSetup"
+import VerifyEmail from "./pages/auth/VerifyEmail"
+  import CreatorDashboard from "./pages/educator/creatorDashboard"
+import { VideoPlayer } from "./pages/student/VideoPlayer"
+import { StudentDashboard } from "./pages/student/StudentDashboard"
+import { ChannelSettings } from "./pages/educator/channelSetting"
+import { CourseManagement } from "./pages/educator/PlaylistManagement"
+import { MonetizationDashboard } from "./pages/educator/MonetizationDashboard"
+import { MonetizationSetting } from "./pages/educator/MonetizationSetting"
+import { CommentModeration } from "./pages/educator/CommentModeration"
+import { RevenueAnalyticsReport } from "./pages/educator/RevenueAnalyticsReport"
+import { CourseEditior } from "./pages/educator/VideoEditor"
+import UploadVideo from "./pages/educator/uploadVideo"
+ import {VideoComments} from "./pages/student/CommentSection"
+import { CourseDetails } from "./pages/student/VideoDetails"
+import { Homepage } from "./pages/student/Home"
+import { SearchResult } from "./pages/student/SearchResults"
+import { CourseCategoryBrowse } from "./pages/search/VideosCategoryBrowse"
 import { PersonalizedRecommendation } from "./pages/search/PersonalizedRecommendation"
 import { VideoSearch } from "./pages/search/VideoSearch"
 import { FAQArticleDetail } from "./pages/support/FAQArticleDetail"
@@ -30,6 +29,13 @@ import { HelpCenterPage } from "./pages/support/HelpCenter"
 import { ReportIssuePage } from "./pages/support/ReportIssue"
 import { FeedbackPage } from "./pages/support/SendFeedback"
 import { FeedbackSuccessPage } from "./pages/support/SubmissionConfirmation"
+import { VideoDetailsEditor } from "./pages/educator/VideodetailsEditor"
+import AdBlockerPage from "./pages/advertisement/AdBlockDetection"
+import AdImpressionTrigger from "./pages/advertisement/AdImpressionTrigger"
+import AdInteractionTrackingPage from "./pages/advertisement/AdInteractionTracking"
+import { AdRendering } from "./pages/advertisement/AdRendering"
+import {AdminDashboard} from"./pages/admin/adminDashboard"
+import {AdminLogin} from"./pages/admin/loginAdmin"
  const App=()=> {
      const router=createBrowserRouter([
       //Auth
@@ -59,7 +65,7 @@ import { FeedbackSuccessPage } from "./pages/support/SubmissionConfirmation"
       },
 
       {
-        path:"/coursehomepage",
+        path:"/homepage",
         element:<Homepage/>
       },
       {
@@ -170,6 +176,32 @@ import { FeedbackSuccessPage } from "./pages/support/SubmissionConfirmation"
        {
          path:"/feedback-success",
          element:<FeedbackSuccessPage/>
+       },
+       //Advertisement serving 
+       {
+         path:"/adblock-detection",
+         element:<AdBlockerPage/>
+       },
+       {
+         path:"/adimpression-trigger",
+         element:<AdImpressionTrigger/>
+       },
+       {
+         path:"/adinteraction-tracking",
+         element:<AdInteractionTrackingPage/>
+       },
+       {
+         path:"/adrendring",
+         element:<AdRendering/>
+       },
+       //admin
+       {
+         path:"/admin",
+         element:<AdminDashboard/>
+       },
+       {
+         path:"/admin-login",
+          element:<AdminLogin/>
        }
           ])
   return <RouterProvider router={router}/>

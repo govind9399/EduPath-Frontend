@@ -104,10 +104,10 @@ export default function UserProfileSetup() {
 
           {/* Buttons */}
           <div className="flex justify-between mt-8">
-            <NavLink to="/coursehomepage" className="px-6 py-3 border rounded-md text-sm">
+            <NavLink to="/homepage" className="px-6 py-3 border rounded-md text-sm">
               Skip for Now
             </NavLink>
-            <NavLink to="/coursehomepage" className="px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 text-sm">
+            <NavLink to="/homepage" className="px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 text-sm">
               Complete Setup
             </NavLink>
           </div>

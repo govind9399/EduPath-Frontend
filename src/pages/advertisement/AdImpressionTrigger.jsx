@@ -1,22 +1,9 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 export default function AdImpressionTrigger() {
   return (
     <div className="w-full min-h-screen bg-white text-[#1a1a1a] font-sans">
-      <header className="w-full border-b p-4 flex items-center justify-between">
-        <div className="flex items-center gap-2 text-xl font-semibold">
-          <img src="https://cdn-icons-png.flaticon.com/512/1048/1048949.png" className="w-6 h-6" />
-          EduStream
-        </div>
-        <input
-          className="border rounded-lg px-4 py-2 w-96 text-sm"
-          placeholder="Search courses, videos, creators..."
-        />
-        <div className="flex items-center gap-4">
-          <button className="text-sm border px-3 py-1 rounded-lg">Creator Studio</button>
-          <div className="w-8 h-8 rounded-full bg-gray-300"></div>
-        </div>
-      </header>
 
       <main className="w-full max-w-6xl mx-auto mt-10">
         <h1 className="text-3xl font-bold">Ad Impression Trigger</h1>
@@ -132,10 +119,14 @@ export default function AdImpressionTrigger() {
 
         {/* Buttons */}
         <div className="flex gap-4 mt-10">
+          <NavLink to="/adrendring">
           <button className="bg-blue-600 text-white px-6 py-3 rounded-lg flex items-center gap-2">
             ▶ Proceed to Ad Rendering
           </button>
+          </NavLink>
+          <NavLink to="/adrendering">
           <button className="border px-6 py-3 rounded-lg">↩ Return to Video</button>
+          </NavLink>
         </div>
 
         <details className="mt-8 text-sm cursor-pointer">

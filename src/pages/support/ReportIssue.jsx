@@ -1,196 +1,123 @@
-
-export const ReportIssuePage=()=> {
+ export const ReportIssuePage = () => {
   return (
-    <div style={{ fontFamily: "Inter, sans-serif", background: "#fff", paddingBottom: 80 }}>
+    <div className="font-sans bg-white min-h-screen pb-24">
+
       {/* HEADER */}
-      <header style={{ display: "flex", alignItems: "center", padding: "16px 32px", borderBottom: "1px solid #eee", gap: 20 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <img src="/logo.svg" alt="EduStream" style={{ height: 32 }} />
-          <span style={{ fontSize: 20, fontWeight: 600 }}>EduStream</span>
+      <header className="flex items-center gap-4 px-4 sm:px-8 py-4 border-b border-gray-200 flex-wrap">
+        <div className="flex items-center gap-2">
+          <img src="/logo.svg" alt="EduStream" className="h-8" />
+          <span className="text-lg font-semibold">EduStream</span>
         </div>
 
+        {/* SEARCH */}
         <input
           placeholder="Search courses, videos, creators..."
-          style={{
-            flex: 1,
-            maxWidth: 500,
-            padding: "10px 16px",
-            borderRadius: 8,
-            border: "1px solid #ddd",
-          }}
+          className="flex-1 w-full sm:max-w-md px-4 py-2 border rounded-lg text-sm"
         />
 
-        <button style={{ padding: "8px 16px", borderRadius: 8, border: "1px solid #ddd", background: "#fff" }}>
+        <button className="px-4 py-2 border rounded-lg text-sm bg-white whitespace-nowrap">
           Creator Studio
         </button>
-        <img src="/user.png" alt="user" style={{ width: 36, height: 36, borderRadius: "50%" }} />
+
+        <img
+          src="/user.png"
+          alt="user"
+          className="w-9 h-9 rounded-full"
+        />
       </header>
 
-      {/* CONTENT WRAPPER */}
-      <div style={{ maxWidth: 900, margin: "0 auto", padding: "40px 0" }}>
-        <a href="#" style={{ color: "#4A77FF", fontSize: 14 }}>&larr; Back to Support</a>
+      {/* CONTENT */}
+      <div className="max-w-3xl mx-auto px-4 py-10">
+        <a href="#" className="text-blue-600 text-sm">&larr; Back to Support</a>
 
-        <h1 style={{ marginTop: 16, fontSize: 32, fontWeight: 700 }}>Report an Issue</h1>
-        <p style={{ maxWidth: 600, color: "#555", marginTop: 8 }}>
+        <h1 className="text-3xl font-bold mt-4">Report an Issue</h1>
+        <p className="text-gray-600 mt-2 text-sm sm:text-base max-w-xl">
           Help us improve by reporting technical issues, bugs, or content problems you've encountered.
           Our support team will review your report and get back to you soon.
         </p>
 
-        <div
-          style={{
-            marginTop: 32,
-            border: "1px solid #eee",
-            borderRadius: 12,
-            padding: 32,
-            boxShadow: "0 2px 6px rgba(0,0,0,0.04)",
-          }}
-        >
-          <h3 style={{ fontSize: 18, marginBottom: 20 }}>Issue Details</h3>
+        {/* FORM BOX */}
+        <div className="mt-8 border border-gray-200 p-6 rounded-xl shadow-sm space-y-6">
+
+          <h3 className="text-lg font-semibold">Issue Details</h3>
 
           {/* ISSUE TYPE */}
-          <label style={{ fontSize: 14, fontWeight: 600 }}>Issue Type *</label>
-          <select
-            style={{
-              width: "100%",
-              marginTop: 6,
-              padding: "12px 14px",
-              border: "1px solid #ddd",
-              borderRadius: 8,
-            }}
-          >
-            <option>Select the type of issue you're experiencing</option>
-          </select>
+          <div>
+            <label className="text-sm font-semibold">Issue Type *</label>
+            <select className="w-full mt-2 px-4 py-3 border rounded-lg text-sm">
+              <option>Select the type of issue you're experiencing</option>
+            </select>
+          </div>
 
-          {/* ISSUE TITLE */}
-          <div style={{ marginTop: 20 }}>
-            <label style={{ fontSize: 14, fontWeight: 600 }}>Issue Title *</label>
+          {/* TITLE */}
+          <div>
+            <label className="text-sm font-semibold">Issue Title *</label>
             <input
               placeholder="Brief summary of the issue"
-              style={{
-                marginTop: 6,
-                width: "100%",
-                padding: "12px 14px",
-                borderRadius: 8,
-                border: "1px solid #ddd",
-              }}
+              className="w-full mt-2 px-4 py-3 border rounded-lg text-sm"
             />
-            <div style={{ fontSize: 12, color: "#777", marginTop: 4 }}>0/100 characters</div>
+            <p className="text-xs text-gray-500 mt-1">0/100 characters</p>
           </div>
 
           {/* DESCRIPTION */}
-          <div style={{ marginTop: 20 }}>
-            <label style={{ fontSize: 14, fontWeight: 600 }}>Description *</label>
+          <div>
+            <label className="text-sm font-semibold">Description *</label>
             <textarea
-              rows={7}
+              rows={6}
               placeholder={`Please describe the issue in detail. Include:\n- What were you trying to do?\n- What happened instead?\n- When did this occur?\n- Any error messages you saw?`}
-              style={{
-                marginTop: 6,
-                width: "100%",
-                padding: "12px 14px",
-                borderRadius: 8,
-                border: "1px solid #ddd",
-                fontFamily: "inherit",
-              }}
+              className="w-full mt-2 px-4 py-3 border rounded-lg text-sm"
             ></textarea>
-            <div style={{ fontSize: 12, color: "#777", marginTop: 4 }}>0/2000 characters</div>
+            <p className="text-xs text-gray-500 mt-1">0/2000 characters</p>
           </div>
 
           {/* EMAIL */}
-          <div style={{ marginTop: 20 }}>
-            <label style={{ fontSize: 14, fontWeight: 600 }}>Email Address *</label>
+          <div>
+            <label className="text-sm font-semibold">Email Address *</label>
             <input
               placeholder="your.email@example.com"
-              style={{
-                marginTop: 6,
-                width: "100%",
-                padding: "12px 14px",
-                borderRadius: 8,
-                border: "1px solid #ddd",
-              }}
+              className="w-full mt-2 px-4 py-3 border rounded-lg text-sm"
             />
-            <div style={{ fontSize: 12, color: "#777", marginTop: 4 }}>
+            <p className="text-xs text-gray-500 mt-1">
               We'll use this to contact you about your report
-            </div>
+            </p>
           </div>
 
           {/* ATTACHMENTS */}
-          <div style={{ marginTop: 24 }}>
-            <label style={{ fontSize: 14, fontWeight: 600 }}>Attachments (Optional)</label>
-            <div
-              style={{
-                marginTop: 10,
-                border: "2px dashed #cbd5e1",
-                borderRadius: 12,
-                padding: 40,
-                textAlign: "center",
-                color: "#555",
-              }}
-            >
-              <div style={{ fontSize: 28, marginBottom: 10 }}>⬆️</div>
-              <div>Click to upload or drag and drop</div>
-              <div style={{ fontSize: 12, color: "#777", marginTop: 4 }}>
+          <div>
+            <label className="text-sm font-semibold">Attachments (Optional)</label>
+
+            <div className="mt-3 border-2 border-dashed border-gray-300 rounded-xl py-10 text-center text-sm">
+              <div className="text-3xl mb-2">⬆️</div>
+              <p>Click to upload or drag and drop</p>
+              <p className="text-xs text-gray-500 mt-1">
                 PNG, JPG, PDF, TXT, LOG up to 10MB each (max 3 files)
-              </div>
+              </p>
             </div>
           </div>
 
           {/* BUTTONS */}
-          <div style={{ marginTop: 30, display: "flex", gap: 12 }}>
-            <button
-              style={{
-                padding: "10px 20px",
-                borderRadius: 8,
-                border: "1px solid #ddd",
-                background: "#fff",
-              }}
-            >
+          <div className="flex flex-col sm:flex-row gap-3 mt-6">
+            <button className="px-5 py-2 border rounded-lg text-sm bg-white w-full sm:w-auto">
               Cancel
             </button>
 
-            <button
-              style={{
-                flex: 1,
-                padding: "12px 20px",
-                borderRadius: 8,
-                border: "none",
-                background: "#2563eb",
-                color: "white",
-                fontWeight: 600,
-              }}
-            >
+            <button className="px-5 py-2 bg-blue-600 text-white rounded-lg w-full sm:flex-1 text-sm hover:bg-blue-700">
               Submit Report
             </button>
           </div>
 
           {/* TIP BOX */}
-          <div
-            style={{
-              marginTop: 20,
-              background: "#f8fafc",
-              padding: 16,
-              borderRadius: 8,
-              fontSize: 14,
-            }}
-          >
-            <strong>Tip:</strong> Including screenshots or screen recordings can help us understand and resolve your
+          <div className="bg-gray-50 p-4 rounded-lg text-sm">
+            <strong>Tip:</strong> Including screenshots or screen recordings can help us resolve your
             issue faster. You can attach up to 3 files.
           </div>
         </div>
       </div>
 
       {/* FOOTER */}
-      <footer
-        style={{
-          marginTop: 40,
-          padding: 20,
-          textAlign: "center",
-          fontSize: 14,
-          color: "#777",
-          borderTop: "1px solid #eee",
-        }}
-      >
-        © 2025 EduStream. All rights reserved. &nbsp; Privacy &nbsp; Terms &nbsp; Help
+      <footer className="text-center text-sm text-gray-600 border-t py-6">
+        © 2025 EduStream. All rights reserved. • Privacy • Terms • Help
       </footer>
     </div>
   );
-}
+};

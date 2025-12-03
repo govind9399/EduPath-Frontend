@@ -4,20 +4,6 @@ export default function AdBlockerPage() {
   return (
     <div className="w-full min-h-screen bg-white font-sans text-[#1a1a1a]">
       {/* HEADER */}
-      <header className="w-full h-16 flex items-center justify-between px-6 border-b bg-white sticky top-0 z-20">
-        <div className="flex items-center gap-2 text-xl font-semibold">
-          <img src="/logo.svg" alt="logo" className="w-6 h-6" />
-          EduStream
-        </div>
-        <input
-          className="w-96 px-3 py-2 border rounded-lg text-sm"
-          placeholder="Search courses, videos, creators..."
-        />
-        <div className="flex items-center gap-3">
-          <button className="px-4 py-2 border rounded-lg text-sm">Creator Studio</button>
-          <img src="/user.png" className="w-8 h-8 rounded-full" />
-        </div>
-      </header>
 
       {/* ALERT */}
       <div className="w-[80%] mx-auto mt-10 p-4 border border-red-300 bg-red-50 rounded-lg text-red-700 text-sm flex items-start gap-3">
@@ -94,14 +80,7 @@ export default function AdBlockerPage() {
 
 
       {/* FOOTER */}
-      <footer className="mt-20 w-full py-6 text-center border-t text-xs text-gray-500">
-        <p>© 2025 EduStream. All rights reserved.</p>
-        <div className="mt-2 flex justify-center gap-6">
-          <span>Privacy</span>
-          <span>Terms</span>
-          <span>Help</span>
-        </div>
-      </footer>
+ 
     </div>
   );
 }

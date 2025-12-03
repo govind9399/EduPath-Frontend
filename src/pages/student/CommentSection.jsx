@@ -1,6 +1,6 @@
  import React from "react";
 
-export default function VideoComments() {
+export const VideoComments=()=> {
   const comments = [
     { icon: "S", name: "Sarah Johnson", time: "2 hours ago", text: "This is an excellent explanation! I finally understand how React hooks work. The way you broke down the useState and useEffect was really clear. Thank you for taking the time to explain this so thoroughly.", likes: 245, dislikes: 2, replies: 1 },
     { icon: "M", name: "Mike Chen", time: "4 hours ago", text: "Could you provide more examples on custom hooks? I’m struggling to understand how to create and use them in my projects.", likes: 156, dislikes: 1, replies: 2 },
@@ -13,37 +13,20 @@ export default function VideoComments() {
   ];
 
   return (
-    <div className="w-full min-h-screen bg-white text-[#111] font-sans flex flex-col pb-20">
+    <div className="w-full min-h-screen bg-white text-[#111] font-sans flex flex-col pb-20  items-baseline">
       {/* Top Navigation */}
-      <header className="w-full flex items-center justify-between px-6 py-4 border-b bg-white">
-        <div className="flex items-center space-x-2">
-          <div className="h-8 w-8 rounded-full bg-[#0038FF] flex items-center justify-center text-white font-bold">ES</div>
-          <span className="font-semibold text-lg">EduStream</span>
-        </div>
-        <div className="flex-1 flex justify-center">
-          <input
-            placeholder="Search courses, videos, creators..."
-            className="w-[50%] border rounded-lg px-4 py-2 text-sm"
-          />
-        </div>
-        <div className="flex items-center space-x-4">
-          <button className="bg-[#0038FF] text-white px-4 py-2 rounded-lg">Creator Studio</button>
-          <div className="h-8 w-8 rounded-full bg-gray-300 flex items-center justify-center overflow-hidden">
-            <img src="/user.png" alt="user" className="h-full w-full" />
-          </div>
-        </div>
-      </header>
+     
 
       {/* Main Content */}
       <main className="w-[60%] mx-auto p-6 space-y-6">
         <div className="flex justify-between items-center">
           <h1 className="text-2xl font-bold">Comments</h1>
-          <button className="border px-4 py-2 rounded-md bg-white">⬅ Back to Video</button>
+          {/* <button className="border px-4 py-2 rounded-md bg-white">⬅ Back to Video</button> */}
         </div>
         <p className="text-gray-600 -mt-4">8 comments</p>
 
         {/* Add Comment */}
-        <div className="shadow-sm border rounded-lg p-4 space-y-4">
+        <div className="shadow-sm   p-4 space-y-4">
           <p className="font-semibold">Add a Comment</p>
           <textarea
             className="w-full border rounded-lg p-3 text-sm h-28"
@@ -51,19 +34,14 @@ export default function VideoComments() {
           />
           <div className="flex justify-end space-x-3">
             <button className="border px-4 py-2 rounded-md bg-white">Clear</button>
-            <button className="bg-[#0038FF] text-white px-4 py-2 rounded-lg">📨 Post Comment</button>
+            <button className="bg-[#0038FF] text-white px-4 py-2 rounded-lg"> Post Comment</button>
           </div>
         </div>
 
-        {/* Search */}
-        <input
-          placeholder="Search comments..."
-          className="w-full border rounded-lg px-4 py-2 text-sm"
-        />
 
         {/* Tabs */}
         <div className="flex items-center mt-2 border rounded-lg w-full bg-gray-50 p-1 text-sm text-center">
-          <button className="flex-1 py-2 bg-white rounded border">All Comments (8)</button>
+          <button className="flex-1 py-2 bg-white rounded ">All Comments (8)</button>
           <button className="flex-1 py-2">Creator (0)</button>
         </div>
 
@@ -97,12 +75,6 @@ export default function VideoComments() {
       </main>
 
       {/* Footer */}
-      <footer className="w-full py-6 text-center text-sm text-gray-500 border-t mt-10">
-        © 2025 EduStream. All rights reserved.
-        <span className="px-3">Privacy</span>
-        <span className="px-3">Terms</span>
-        <span className="px-3">Help</span>
-      </footer>
     </div>
   );
 }
