@@ -34,8 +34,14 @@ import AdBlockerPage from "./pages/advertisement/AdBlockDetection"
 import AdImpressionTrigger from "./pages/advertisement/AdImpressionTrigger"
 import AdInteractionTrackingPage from "./pages/advertisement/AdInteractionTracking"
 import { AdRendering } from "./pages/advertisement/AdRendering"
-import {AdminDashboard} from"./pages/admin/adminDashboard"
-import {AdminLogin} from"./pages/admin/loginAdmin"
+// import {AdminDashboard} from"./pages/admin/adminDashboard"
+// import {AdminLogin} from"./pages/admin/loginAdmin"
+// import { AdminLayout } from "./pages/admin/adminLayout"
+// import { IssueReport } from "./pages/admin/issueReport"
+// import { UserManagement } from "./pages/admin/userManagement"
+// import { VideoManagement } from "./pages/admin/videoManagement"
+// import { PlatformSettings } from "./pages/admin/plateformSetting"
+// import { MonetizationPanel } from "./pages/admin/monetizationPanel"
  const App=()=> {
      const router=createBrowserRouter([
       //Auth
@@ -195,14 +201,38 @@ import {AdminLogin} from"./pages/admin/loginAdmin"
          element:<AdRendering/>
        },
        //admin
-       {
-         path:"/admin",
-         element:<AdminDashboard/>
-       },
-       {
-         path:"/admin-login",
-          element:<AdminLogin/>
-       }
+      //  {
+        //  path:"/admin",
+        //  element:<AdminDashboard/>
+      //  },
+      //  {
+        //  path:"/admin-login",
+          // element:<AdminLogin/>
+      //  },
+      //  {
+        //  path:"/admin-layout",
+        //  element:<AdminLayout/>
+      //  },
+      //  {
+        //  path:"/issue-report",
+        //  element:<IssueReport/>
+      //  },
+      //  {
+        //  path:"/user-management",
+        //  element:<UserManagement/>
+      //  },
+      //  {
+        //  path:"/video-management",
+        //  element:<VideoManagement/>
+      //  },
+      //  {
+        // path:"/plateform-setting",
+        // element:<PlatformSettings/>
+      //  },
+      //  {
+        //  path:"/monetization-panel",
+        //  element:<MonetizationPanel/>
+      //  }
           ])
   return <RouterProvider router={router}/>
 }
