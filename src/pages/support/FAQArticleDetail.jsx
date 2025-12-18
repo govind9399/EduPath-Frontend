@@ -1,134 +1,271 @@
+import { Navbar } from "../../componets/student/navbar";
+import { NavLink } from "react-router-dom";
 
-export const FAQArticleDetail=()=> {
+export const FAQArticleDetail = () => {
+  const steps = [
+    "Search for a Course",
+    "View Course Details",
+    "Click Enroll Button",
+    "Start Learning",
+  ];
+
+  const tips = [
+    "You can enroll in multiple courses simultaneously at no cost.",
+    "Your enrollment is permanent.",
+    "Check the course schedule.",
+    "Join the course community.",
+  ];
+
+  const issues = [
+    "I see an error when trying to enroll",
+    "The course doesn't appear in my dashboard",
+    "I can't access course videos",
+  ];
+
+  const related = [
+    "Troubleshooting Video Playback Issues",
+    "How to Create a Creator Account",
+    "Uploading Your First Video",
+  ];
+
   return (
-    <div style={{ fontFamily: "Inter, sans-serif", background: "#fff", color: "#111", paddingBottom: "120px" }}>
-      {/* HEADER */}
-      <div style={{ display: "flex", alignItems: "center", padding: "16px 32px", borderBottom: "1px solid #eee", position: "sticky", top: 0, background: "white", zIndex: 10 }}>
-        <div style={{ display: "flex", alignItems: "center", fontSize: "20px", fontWeight: 600 }}>
-          <img src="/logo.svg" alt="logo" style={{ height: 28, marginRight: 8 }} /> EduStream
-        </div>
-        <input placeholder="Search courses, videos, creators..." style={{ marginLeft: 40, flex: 1, padding: "10px 16px", borderRadius: 8, border: "1px solid #ddd" }} />
-        <button style={{ marginLeft: 24, padding: "10px 16px", borderRadius: 8, border: "1px solid #ddd", background: "#f8f9fa" }}>Creator Studio</button>
-        <img src="/user.png" alt="user" style={{ width: 36, marginLeft: 16, borderRadius: "50%" }} />
-      </div>
+    <div className="
+      font-gpt min-h-screen
+      bg-white text-gray-800
+      dark:bg-gpt-bg dark:text-gpt-text
+      transition-colors duration-300
+    ">
+      {/* NAVBAR */}
+      <Navbar />
 
       {/* BODY */}
-      <div style={{ maxWidth: 880, margin: "40px auto" }}>
-        <div style={{ marginBottom: 12, fontSize: 14, color: "#888" }}>Help Center › How to Enroll in a Course</div>
-        <button style={{ border: "none", background: "none", color: "#3b82f6", marginBottom: 16 }}>← Back to Help Center</button>
+      <div className="max-w-3xl mx-auto px-4 py-10">
 
-        <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
-          <span style={{ background: "#eee", padding: "4px 10px", borderRadius: 6, fontSize: 13 }}>Getting Started</span>
-          <span style={{ background: "#d1fae5", padding: "4px 10px", borderRadius: 6, fontSize: 13, color: "#047857" }}>Beginner</span>
-        </div>
-
-        <h1 style={{ fontSize: 32, fontWeight: 700, marginBottom: 12 }}>How to Enroll in a Course</h1>
-        <p style={{ color: "#555", fontSize: 17, marginBottom: 16 }}>
-          Learn how to find and enroll in courses on EduStream to start your learning journey.
+        {/* BREADCRUMB */}
+        <p className="text-sm text-gray-500 dark:text-gpt-muted mb-3">
+          Help Center › How to Enroll in a Course
         </p>
 
-        <div style={{ display: "flex", gap: 20, fontSize: 14, color: "#666", marginBottom: 40 }}>
+        <NavLink
+          to="/help-center"
+          className="text-cyan-600 dark:text-gpt-accent text-sm mb-4 inline-block"
+        >
+          ← Back to Help Center
+        </NavLink>
+
+        {/* TAGS */}
+        <div className="flex gap-3 mb-4">
+          <span className="
+            bg-gray-200 dark:bg-gpt-surface
+            text-sm px-3 py-1 rounded-md
+            text-gray-800 dark:text-gpt-text
+          ">
+            Getting Started
+          </span>
+          <span className="
+            bg-green-100 text-green-700
+            dark:bg-gpt-surface dark:text-gpt-accent
+            text-sm px-3 py-1 rounded-md
+          ">
+            Beginner
+          </span>
+        </div>
+
+        {/* TITLE */}
+        <h1 className="text-3xl font-semibold mb-3 dark:text-gpt-text">
+          How to Enroll in a Course
+        </h1>
+
+        <p className="text-gray-600 dark:text-gpt-muted text-base mb-4">
+          Learn how to find and enroll in courses on EduStream to start your
+          learning journey.
+        </p>
+
+        {/* META INFO */}
+        <div className="flex flex-wrap gap-5 text-gray-600 dark:text-gpt-muted text-sm mb-10">
           <span>📅 Updated November 15, 2024</span>
-          <span>👁️ 15420 views</span>
+          <span>👁️ 15,420 views</span>
           <span>⏱️ 5 min read</span>
         </div>
 
-        <h2 style={{ fontSize: 22, marginBottom: 16 }}>What You Need to Know</h2>
-        <p style={{ marginBottom: 24 }}>
-          EduStream offers free access to thousands of educational courses. To enroll, you'll need an active account.
-          If you don't have one yet, you can create it in just a few minutes.
+        {/* SECTION */}
+        <h2 className="text-2xl font-semibold mb-4 dark:text-gpt-text">
+          What You Need to Know
+        </h2>
+        <p className="text-gray-700 dark:text-gpt-muted mb-6">
+          EduStream offers free access to thousands of educational courses...
         </p>
 
-        <h3 style={{ fontSize: 18, marginBottom: 12 }}>Prerequisites</h3>
-        <ul style={{ marginBottom: 32 }}>
+        {/* PREREQUISITES */}
+        <h3 className="text-xl font-semibold mb-3 dark:text-gpt-text">
+          Prerequisites
+        </h3>
+        <ul className="list-disc pl-6 text-gray-700 dark:text-gpt-muted mb-10 space-y-1">
           <li>A valid email address</li>
           <li>An active internet connection</li>
-          <li>A web browser (Chrome, Firefox, Safari, or Edge)</li>
+          <li>A supported web browser</li>
         </ul>
 
-        <h3 style={{ fontSize: 18, marginBottom: 12 }}>Finding Courses</h3>
-        <ul style={{ marginBottom: 40 }}>
+        {/* FINDING COURSES */}
+        <h3 className="text-xl font-semibold mb-3 dark:text-gpt-text">
+          Finding Courses
+        </h3>
+        <ul className="list-disc pl-6 text-gray-700 dark:text-gpt-muted mb-10 space-y-1">
           <li>Browse by category from the homepage</li>
-          <li>Use the search bar to find specific topics</li>
+          <li>Use the search bar to find topics</li>
           <li>Check personalized recommendations</li>
           <li>View trending courses</li>
         </ul>
 
-        <h2 style={{ fontSize: 24, marginBottom: 20 }}>Enrollment Process</h2>
-        <p style={{ marginBottom: 30 }}>Once you've found a course you're interested in, follow these simple steps to enroll.</p>
+        {/* ENROLLMENT PROCESS */}
+        <h2 className="text-2xl font-semibold mb-3 dark:text-gpt-text">
+          Enrollment Process
+        </h2>
+        <p className="text-gray-700 dark:text-gpt-muted mb-6">
+          Once you've found a course you're interested in, follow these steps:
+        </p>
 
         {/* STEP CARDS */}
-        {[1, 2, 3, 4].map((step) => (
-          <div key={step} style={{ border: "1px solid #e5e7eb", borderRadius: 12, padding: 24, marginBottom: 20 }}>
-            <div style={{ display: "flex", gap: 16 }}>
-              <div style={{ width: 32, height: 32, background: "#2563eb", color: "white", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center" }}>{step}</div>
+        {steps.map((label, index) => (
+          <div
+            key={label}
+            className="
+              border border-gray-200 dark:border-gpt-border rounded-xl p-5 mb-5
+              bg-white dark:bg-gpt-surface transition
+            "
+          >
+            <div className="flex gap-4">
+              <div className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-semibold">
+                {index + 1}
+              </div>
               <div>
-                <h4 style={{ fontSize: 18, marginBottom: 10 }}>
-                  {step === 1 && "Search for a Course"}
-                  {step === 2 && "View Course Details"}
-                  {step === 3 && "Click Enroll Button"}
-                  {step === 4 && "Start Learning"}
-                </h4>
-                <ul>
-                  <li>Lorem ipsum example text for step {step}.</li>
-                </ul>
+                <h4 className="text-lg font-medium mb-2 dark:text-gpt-text">{label}</h4>
+                <p className="text-sm dark:text-gpt-muted">
+                  Lorem ipsum example text for step {index + 1}.
+                </p>
               </div>
             </div>
           </div>
         ))}
 
-        {/* TIPS SECTION */}
-        <div style={{ marginTop: 30 }}>
-          {["You can enroll in multiple courses simultaneously at no cost.", "Your enrollment is permanent.", "Check the course schedule.", "Join the course community."]
-            .map((tip) => (
-              <div key={tip} style={{ border: "1px solid #fcd34d", background: "#fffbeb", padding: 16, borderRadius: 10, marginBottom: 12 }}>
-                💡 {tip}
-              </div>
-            ))}
-        </div>
-
-        {/* ISSUES SECTION */}
-        <h2 style={{ marginTop: 40, marginBottom: 20 }}>Common Issues & Solutions</h2>
-
-        {["I see an error when trying to enroll", "The course doesn't appear in my dashboard", "I can't access course videos"].map((issue) => (
-          <div key={issue} style={{ border: "1px solid #fee2e2", background: "#fef2f2", padding: 20, borderRadius: 12, marginBottom: 16 }}>
-            <strong>❗ {issue}</strong>
-            <p style={{ marginTop: 8 }}>Lorem ipsum placeholder explanation text for this issue.</p>
-          </div>
-        ))}
-
-        {/* FEEDBACK */}
-        <div style={{ borderTop: "1px solid #eee", marginTop: 40, paddingTop: 24 }}>
-          <p>Was this article helpful?</p>
-          <button style={{ marginRight: 12 }}>👍 Yes</button>
-          <button>👎 No</button>
-        </div>
-
-        {/* RELATED ARTICLES */}
-        <h2 style={{ marginTop: 40, marginBottom: 20 }}>Related Articles</h2>
-        <div style={{ display: "flex", gap: 20 }}>
-          {["Troubleshooting Video Playback Issues", "How to Create a Creator Account", "Uploading Your First Video"].map((txt) => (
-            <div key={txt} style={{ border: "1px solid #e5e7eb", borderRadius: 12, padding: 20, width: 260 }}>
-              <strong>{txt}</strong>
-              <p style={{ fontSize: 14, marginTop: 6 }}>Lorem ipsum preview text.</p>
-              <span style={{ fontSize: 13, color: "#888" }}>👁️ 12,340 views</span>
+        {/* TIPS */}
+        <div className="mt-8 space-y-3">
+          {tips.map((tip) => (
+            <div
+              key={tip}
+              className="
+                border border-yellow-300 bg-yellow-50
+                dark:bg-gpt-surface dark:border-gpt-border
+                p-4 rounded-lg text-sm dark:text-gpt-muted
+              "
+            >
+              💡 {tip}
             </div>
           ))}
         </div>
 
-        {/* SUPPORT */}
-        <div style={{ marginTop: 40, padding: 24, border: "1px solid #e5e7eb", borderRadius: 12 }}>
-          <h3>Still need help?</h3>
-          <p>If you couldn't find the answer, our support team is here to help.</p>
-          <button style={{ marginRight: 16 }}>📩 Contact Support</button>
-          <button>← Back to Help Center</button>
+        {/* ISSUES */}
+        <h2 className="text-2xl font-semibold mt-10 mb-4 dark:text-gpt-text">
+          Common Issues & Solutions
+        </h2>
+
+        {issues.map((issue) => (
+          <div
+            key={issue}
+            className="
+              border border-red-200 bg-red-50
+              dark:bg-gpt-surface dark:border-gpt-border
+              p-4 rounded-lg mb-4
+            "
+          >
+            <strong className="dark:text-gpt-text">❗ {issue}</strong>
+            <p className="text-sm dark:text-gpt-muted mt-2">
+              Lorem ipsum placeholder explanation text.
+            </p>
+          </div>
+        ))}
+
+        {/* FEEDBACK */}
+        <div className="border-t border-gray-200 dark:border-gpt-border mt-10 pt-6">
+          <p className="mb-3 dark:text-gpt-text">Was this article helpful?</p>
+
+          <button className="
+            mr-3 px-4 py-2 text-sm rounded-lg border
+            bg-gray-100 hover:bg-gray-200
+            dark:bg-gpt-surface dark:border-gpt-border dark:text-gpt-text dark:hover:bg-gpt-border
+          ">
+            👍 Yes
+          </button>
+
+          <button className="
+            px-4 py-2 text-sm rounded-lg border
+            bg-gray-100 hover:bg-gray-200
+            dark:bg-gpt-surface dark:border-gpt-border dark:text-gpt-text dark:hover:bg-gpt-border
+          ">
+            👎 No
+          </button>
+        </div>
+
+        {/* RELATED ARTICLES */}
+        <h2 className="text-2xl font-semibold mt-12 mb-4 dark:text-gpt-text">
+          Related Articles
+        </h2>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {related.map((txt) => (
+            <div
+              key={txt}
+              className="
+                border border-gray-200 dark:border-gpt-border rounded-xl p-4
+                bg-white dark:bg-gpt-surface transition
+              "
+            >
+              <strong className="dark:text-gpt-text">{txt}</strong>
+              <p className="text-sm dark:text-gpt-muted mt-2">
+                Lorem ipsum preview text.
+              </p>
+              <span className="text-xs text-gray-500 dark:text-gpt-muted mt-2 block">
+                👁️ 12,340 views
+              </span>
+            </div>
+          ))}
+        </div>
+
+        {/* SUPPORT BOX */}
+        <div className="
+          mt-12 p-6 rounded-xl border
+          bg-white border-gray-200
+          dark:bg-gpt-surface dark:border-gpt-border
+        ">
+          <h3 className="text-lg font-semibold dark:text-gpt-text">
+            Still need help?
+          </h3>
+          <p className="mt-1 text-sm dark:text-gpt-muted">
+            If you couldn't find an answer, our support team is here to help.
+          </p>
+
+          <div className="mt-4 flex flex-wrap gap-3">
+            <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm">
+              📩 Contact Support
+            </button>
+
+            <NavLink to="/help-center">
+              <button className="
+                px-4 py-2 text-sm rounded-lg border
+                bg-white hover:bg-gray-50
+                dark:bg-gpt-surface dark:border-gpt-border dark:hover:bg-gpt-border dark:text-gpt-text
+              ">
+                ← Back to Help Center
+              </button>
+            </NavLink>
+          </div>
         </div>
 
         {/* FOOTER */}
-        <div style={{ textAlign: "center", marginTop: 80, color: "#777" }}>
+        <footer className="text-center text-sm text-gray-600 dark:text-gpt-muted mt-16 mb-6">
           © 2025 EduStream. All rights reserved. · Privacy · Terms · Help
-        </div>
+        </footer>
       </div>
     </div>
   );
-}
+};

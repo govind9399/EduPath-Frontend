@@ -1,134 +1,170 @@
- import { Footer } from "../../componets/student/footer";
+ import { NavLink } from "react-router-dom";
+import { Footer } from "../../componets/student/footer";
+import { Navbar } from "../../componets/student/navbar";
 
 export const HelpCenterPage = () => {
-  return (
-    <div className="font-sans bg-white text-[#111] w-full">
-      
-      {/* MAIN SECTION */}
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-10">
+  const categories = [
+    "All Articles",
+    "Getting Started",
+    "Account & Profile",
+    "Learning & Courses",
+    "Creator Tools",
+    "Monetization",
+    "Technical Issues",
+  ];
 
-        <h1 className="text-center text-3xl sm:text-4xl font-bold">
+  const articles = [
+    "How do I create an account on EduStream?",
+    "How to reset your password",
+    "Understanding course progress tracking",
+    "Getting started as a creator",
+    "How to upload your first video",
+    "Understanding RPM and CPM",
+    "Video player not loading?",
+    "How to enable subtitles",
+    "Monetization eligibility requirements",
+    "How to organize videos into courses",
+    "Saving and bookmarking courses",
+    "Clearing cache and cookies",
+  ];
+
+  return (
+    <div className="font-gpt bg-gray-50 dark:bg-gpt-bg dark:text-gpt-text min-h-screen flex flex-col">
+      {/* NAVBAR */}
+      <Navbar />
+
+      {/* HERO SECTION */}
+      <section className="pt-24 pb-10 px-4 text-center max-w-2xl mx-auto">
+        <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gpt-text tracking-tight">
           Help Center
         </h1>
-
-        <p className="text-center mt-2 text-gray-600 text-sm sm:text-base">
-          Find answers to common questions and get help with any issues
+        <p className="text-gray-600 dark:text-gpt-muted mt-2 text-sm sm:text-base">
+          Find quick answers, solve issues, and explore helpful resources
         </p>
 
         {/* SEARCH */}
-        <div className="flex justify-center mt-6">
+        <div className="mt-6 flex justify-center">
           <input
             placeholder="Search articles, FAQs, and guides..."
-            className="w-full sm:w-[500px] lg:w-[600px] px-5 py-3 rounded-xl border border-gray-300 text-sm focus:outline-blue-500"
+            className="w-full sm:w-[480px] px-5 py-3 border border-gray-300 dark:border-gpt-border rounded-xl text-sm bg-white dark:bg-gpt-surface shadow-sm dark:text-gpt-text outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
+      </section>
 
-        {/* TOP BOXES */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">
-          {["Contact Support", "Report an Issue", "Send Feedback"].map((x) => (
-            <div
-              key={x}
-              className="border rounded-xl p-6 text-center hover:shadow-md transition"
+      {/* MAIN CONTENT */}
+      <main className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 w-full pb-16 flex-1">
+
+        {/* QUICK ACTION CARDS */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-6">
+          <NavLink to="/support-help">
+            <div className="rounded-xl p-6 bg-white dark:bg-gpt-surface border border-gray-200 dark:border-gpt-border hover:shadow-md transition text-center cursor-pointer">
+              <p className="font-semibold dark:text-gpt-text">Contact Support</p>
+              <p className="text-sm text-gray-600 dark:text-gpt-muted mt-1">
+                Get help from our team
+              </p>
+            </div>
+          </NavLink>
+
+          <NavLink to="/report-issues">
+            <div className="rounded-xl p-6 bg-white dark:bg-gpt-surface border border-gray-200 dark:border-gpt-border hover:shadow-md transition text-center cursor-pointer">
+              <p className="font-semibold dark:text-gpt-text">Report an Issue</p>
+              <p className="text-sm text-gray-600 dark:text-gpt-muted mt-1">
+                Tell us about a problem
+              </p>
+            </div>
+          </NavLink>
+
+          <NavLink to="/feedback">
+            <div className="rounded-xl p-6 bg-white dark:bg-gpt-surface border border-gray-200 dark:border-gpt-border hover:shadow-md transition text-center cursor-pointer">
+              <p className="font-semibold dark:text-gpt-text">Send Feedback</p>
+              <p className="text-sm text-gray-600 dark:text-gpt-muted mt-1">
+                Share your suggestions
+              </p>
+            </div>
+          </NavLink>
+        </div>
+
+        {/* CATEGORY TABS */}
+        <div className="flex overflow-x-auto gap-3 mt-12 pb-3 border-b border-gray-200 dark:border-gpt-border whitespace-nowrap text-sm no-scrollbar">
+          {categories.map((cat, i) => (
+            <button
+              key={i}
+              className={`px-4 py-2 rounded-lg transition ${
+                i === 0
+                  ? "bg-blue-600 text-white font-semibold shadow"
+                  : "bg-white dark:bg-gpt-surface border border-gray-300 dark:border-gpt-border text-gray-700 dark:text-gpt-text hover:bg-gray-100 dark:hover:bg-gpt-border"
+              }`}
             >
-              <p className="font-semibold">{x}</p>
-              <p className="text-sm text-gray-600 mt-1">
-                {x === "Contact Support" && "Get help from our team"}
-                {x === "Report an Issue" && "Tell us about a problem"}
-                {x === "Send Feedback" && "Share your suggestions"}
+              {cat}
+            </button>
+          ))}
+        </div>
+
+        {/* ARTICLES */}
+        <h2 className="mt-10 text-xl font-semibold text-gray-900 dark:text-gpt-text">
+          All Articles
+        </h2>
+        <p className="text-gray-600 dark:text-gpt-muted text-sm mb-4">
+          12 articles found
+        </p>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {articles.map((title) => (
+            <div
+              key={title}
+              className="bg-white dark:bg-gpt-surface border border-gray-200 dark:border-gpt-border rounded-xl p-5 hover:shadow-sm transition cursor-pointer"
+            >
+              <p className="font-semibold dark:text-gpt-text">{title}</p>
+              <p className="text-sm text-gray-600 dark:text-gpt-muted mt-1">
+                Learn how to solve this issue step-by-step
               </p>
             </div>
           ))}
         </div>
 
-        {/* CATEGORY TABS */}
-        <div className="flex overflow-x-auto gap-4 mt-12 border-b pb-3 text-sm whitespace-nowrap">
-          {[
-            "All Articles",
-            "Getting Started",
-            "Account & Profile",
-            "Learning & Courses",
-            "Creator Tools",
-            "Monetization",
-            "Technical Issues",
-          ].map((cat, i) => (
-            <div
-              key={i}
-              className={`px-3 py-2 rounded-lg ${
-                i === 0 ? "border-2 border-blue-600 font-semibold" : "font-medium"
-              }`}
-            >
-              {cat}
-            </div>
-          ))}
-        </div>
-
-        {/* ARTICLES LIST */}
-        <h2 className="mt-8 text-xl font-semibold">All Articles</h2>
-        <p className="text-gray-600 text-sm mb-4">12 articles found</p>
-
-        {/* ARTICLE GRID */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {[
-            "How do I create an account on EduStream?",
-            "How to reset your password",
-            "Understanding course progress tracking",
-            "Getting started as a creator",
-            "How to upload your first video",
-            "Understanding RPM and CPM",
-            "Video player not loading?",
-            "How to enable subtitles",
-            "Monetization eligibility requirements",
-            "How to organize videos into courses",
-            "Saving and bookmarking courses",
-            "Clearing cache and cookies",
-          ].map((title) => (
-            <div
-              key={title}
-              className="border p-5 rounded-xl hover:shadow-sm transition"
-            >
-              <p className="font-semibold">{title}</p>
-              <p className="text-sm text-gray-600 mt-1">Subtitle goes here…</p>
-            </div>
-          ))}
-        </div>
-
         {/* BROWSE BY CATEGORY */}
-        <h2 className="mt-12 text-xl font-semibold">Browse by Category</h2>
+        <h2 className="mt-14 text-xl font-semibold text-gray-900 dark:text-gpt-text">
+          Browse by Category
+        </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
-          {[
-            "Getting Started",
-            "Account & Profile",
-            "Learning & Courses",
-            "Creator Tools",
-            "Monetization",
-            "Technical Issues",
-          ].map((cat) => (
-            <div key={cat} className="border p-6 rounded-xl">
-              <p className="font-semibold">{cat}</p>
-              <p className="text-sm text-gray-600">Category description…</p>
+          {categories.slice(1).map((cat) => (
+            <div
+              key={cat}
+              className="bg-white dark:bg-gpt-surface border border-gray-200 dark:border-gpt-border p-6 rounded-xl hover:shadow transition cursor-pointer"
+            >
+              <p className="font-semibold dark:text-gpt-text">{cat}</p>
+              <p className="text-sm text-gray-600 dark:text-gpt-muted mt-1">
+                Explore related help content
+              </p>
             </div>
           ))}
         </div>
 
         {/* HELP BOX */}
-        <div className="mt-12 bg-blue-50 border border-blue-100 rounded-xl p-6 sm:p-8">
-          <h3 className="text-lg font-semibold">Still need help?</h3>
-          <p className="text-sm text-gray-600 mt-1">
-            Our support team is here to assist you with any questions or issues
+        <div className="mt-12 bg-blue-50 dark:bg-gpt-surface border border-blue-100 dark:border-gpt-border rounded-xl p-6 sm:p-8">
+          <h3 className="text-lg font-semibold text-blue-900 dark:text-gpt-text">
+            Still need help?
+          </h3>
+          <p className="text-sm text-blue-800 dark:text-gpt-muted mt-1">
+            Our support team is here to assist you anytime.
           </p>
 
-          <div className="flex flex-wrap gap-3 mt-5">
-            <button className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700">
-              Contact Support
-            </button>
+          <div className="flex flex-wrap gap-3 mt-6">
+            <NavLink to="/support-help">
+              <button className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 transition">
+                Contact Support
+              </button>
+            </NavLink>
 
-            <button className="px-4 py-2 border rounded-lg text-sm">
-              Back to Home
-            </button>
+            <NavLink to="/homepage">
+              <button className="px-4 py-2 border border-gray-300 dark:border-gpt-border rounded-lg text-sm text-gray-700 dark:text-gpt-text hover:bg-gray-50 dark:hover:bg-gpt-border transition">
+                Back to Home
+              </button>
+            </NavLink>
           </div>
         </div>
-      </div>
+      </main>
 
       {/* FOOTER */}
       <Footer />

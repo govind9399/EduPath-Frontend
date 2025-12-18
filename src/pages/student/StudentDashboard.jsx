@@ -1,52 +1,84 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { FaBook, FaClock, FaCheckCircle, FaHistory, FaBookmark } from "react-icons/fa";
-import Navbar from "../../componets/student/navbar";
- 
-export const StudentDashboard=() =>{
+import { Navbar } from "../../componets/student/navbar";
+import { TbCameraPlus } from "react-icons/tb";
+export const StudentDashboard = () => {
   const [activeTab, setActiveTab] = useState("overview");
- 
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-        <Navbar/>
-      {/* Greeting Section */}
-      <section className="px-10 mt-6">
-        <h1 className="text-3xl font-semibold">Welcome back, Learner!</h1>
-        <p className="text-gray-600 mt-1">
-          Continue your learning journey and track your progress
+    <div
+      className="
+      min-h-screen font-gpt
+      bg-gray-50 dark:bg-gpt-bg
+      text-gray-800 dark:text-gpt-text
+      transition-colors duration-300
+    "
+    >
+      {/* NAVBAR */}
+      <Navbar />
+
+      {/* GREETING */}
+      <section className="px-18 ml-8 sm:px-10 mt-28 sm:mt-20"> 
+         
+          <div className="  text-gray-800 p-6 rounded-xl flex items-center gap-6 w-full bg-gray-50">
+      {/* Avatar */}
+
+    <div className="flex flex-col">
+
+      <div className="w-20 h-20 rounded-full bg-orange-500 flex items-center justify-center text-4xl font-bold flex-col">
+        YO
+     <TbCameraPlus className=" text-xl "  />
+      </div>
+     </div>
+      {/* Profile Info */}
+      <div className="flex flex-col gap-2">
+        <h2 className="text-xl font-semibold">Your Profile</h2>
+        <p className="text-gray-800 text-sm">
+          Track your learning progress and manage your saved content
         </p>
+
+        <div className="flex gap-6 text-sm mt-2">
+          <p>
+            <span className="font-semibold">Videos Watched:</span> 125
+          </p>
+          <p>
+            <span className="font-semibold">Playlists :</span> 8
+          </p>
+          <p>
+            <span className="font-semibold">Watch Time:</span> 48 hours
+          </p>
+        </div>
+      </div>
+    </div>
       </section>
 
-      {/* Stats Cards */}
-      <section className="grid grid-cols-3 gap-6 px-10 mt-6">
-
-        <div className="bg-white p-6 shadow-sm rounded-xl border">
+      {/* STATS CARDS */}
+      <section className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 px-4 sm:px-10 mt-6">
+        <div className="bg-white dark:bg-gpt-surface border border-gray-200 dark:border-gpt-border p-5 shadow-sm hover:shadow-lg rounded-xl transition-all">
           <div className="flex justify-between items-center">
-            <p className="text-gray-600">Hours Watched</p>
-            <FaClock className="text-green-600" />
+            <p className="text-gray-600 dark:text-gpt-muted text-sm sm:text-base">Hours Watched</p>
+            <FaClock className="text-green-600 text-lg" />
           </div>
-          <h2 className="text-3xl font-bold mt-2">48.5</h2>
+          <h2 className="text-3xl font-bold mt-2 dark:text-gpt-text">48.5</h2>
         </div>
 
-        <div className="bg-white p-6 shadow-sm rounded-xl border">
+        <div className="bg-white dark:bg-gpt-surface border border-gray-200 dark:border-gpt-border p-5 shadow-sm hover:shadow-lg rounded-xl transition-all">
           <div className="flex justify-between items-center">
-            <p className="text-gray-600">Courses Completed</p>
-            <FaCheckCircle className="text-purple-600" />
+            <p className="text-gray-600 dark:text-gpt-muted text-sm sm:text-base">Courses Completed</p>
+            <FaCheckCircle className="text-purple-600 text-lg" />
           </div>
-          <h2 className="text-3xl font-bold mt-2">3</h2>
+          <h2 className="text-3xl font-bold mt-2 dark:text-gpt-text">3</h2>
         </div>
 
-        <div className="bg-white p-6 shadow-sm rounded-xl border">
-          <p className="text-gray-600">Current Streak</p>
-          <h2 className="text-3xl font-bold mt-2">7 days</h2>
+        <div className="bg-white dark:bg-gpt-surface border border-gray-200 dark:border-gpt-border p-5 shadow-sm hover:shadow-lg rounded-xl transition-all">
+          <p className="text-gray-600 dark:text-gpt-muted text-sm sm:text-base">Current Streak</p>
+          <h2 className="text-3xl font-bold mt-2 dark:text-gpt-text">7 days</h2>
         </div>
       </section>
 
-      {/* Tabs */}
-      <section className="flex justify-center px-10 mt-8">
-        <div className="flex gap-4 w-full max-w-3xl">
+      {/* TABS */}
+      <section className="flex justify-center px-4 sm:px-10 mt-8">
+        <div className="flex gap-2 sm:gap-4 w-full max-w-3xl overflow-x-auto scrollbar-hide">
           {[
             { key: "overview", label: "Overview", icon: <FaBook /> },
             { key: "progress", label: "In Progress", icon: <FaClock /> },
@@ -56,11 +88,13 @@ export const StudentDashboard=() =>{
             <button
               key={tab.key}
               onClick={() => setActiveTab(tab.key)}
-              className={`flex-1 py-3 rounded-lg border font-medium flex items-center justify-center gap-2 ${
-                activeTab === tab.key
-                  ? "bg-blue-600 text-white border-blue-600"
-                  : "bg-white hover:bg-gray-50"
-              }`}
+              className={`flex-1 py-3 min-w-[120px] rounded-lg border transition-all text-sm sm:text-base font-medium flex items-center justify-center gap-2
+                ${
+                  activeTab === tab.key
+                    ? "bg-blue-600 text-white border-blue-600 shadow-md"
+                    : "bg-white dark:bg-gpt-surface dark:border-gpt-border dark:text-gpt-text hover:bg-gray-100 dark:hover:bg-gpt-border border-gray-200"
+                }
+              `}
             >
               {tab.icon} {tab.label}
             </button>
@@ -68,42 +102,50 @@ export const StudentDashboard=() =>{
         </div>
       </section>
 
-      {/* Continue Watching */}
-      <section className="px-10 mt-10">
-        <h2 className="font-semibold mb-4 flex items-center gap-2">
+      {/* CONTINUE WATCHING */}
+      <section className="px-4 sm:px-10 mt-10">
+        <h2 className="font-semibold text-lg dark:text-gpt-text flex items-center gap-2">
           ▶ Continue Watching
         </h2>
 
-        <div className="bg-white rounded-xl shadow-sm border p-6 flex gap-6">
+        <div className="
+          bg-white dark:bg-gpt-surface border border-gray-200 dark:border-gpt-border
+          rounded-xl shadow-sm hover:shadow-lg transition-all
+          p-4 sm:p-6 flex flex-col sm:flex-row gap-6 mt-4
+        ">
           <img
             src="/courses/react-hooks.png"
             alt="Course Thumbnail"
-            className="w-60 rounded-lg"
+            className="w-full sm:w-60 rounded-lg object-cover"
           />
 
           <div className="flex flex-col justify-between flex-grow">
             <div>
-              <p className="text-sm text-gray-500">React Mastery 2024</p>
-              <h3 className="text-xl font-semibold">
+              <p className="text-sm text-gray-500 dark:text-gpt-muted">React Mastery 2024</p>
+              <h3 className="text-lg sm:text-xl font-semibold dark:text-gpt-text leading-snug">
                 Advanced React Hooks – useContext & useReducer Deep Dive
               </h3>
-              <p className="text-sm text-gray-500 mt-1 flex items-center gap-2">
+              <p className="text-xs sm:text-sm text-gray-500 dark:text-gpt-muted mt-1 flex items-center gap-2">
                 👤 Tech Academy Pro • 2 hours ago
               </p>
             </div>
 
-            <div className="w-full bg-gray-200 h-2 rounded-lg my-4">
-              <div className="bg-blue-600 h-2 rounded-lg" style={{ width: "62%" }} />
+            {/* PROGRESS BAR */}
+            <div className="w-full bg-gray-200 dark:bg-gpt-border h-2 rounded-lg mt-4">
+              <div className="bg-blue-600 h-2 rounded-lg transition-all" style={{ width: "62%" }} />
             </div>
 
-            <button className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 w-max">
+            <button className="
+              mt-4 sm:mt-0 px-5 py-3 bg-blue-600 dark:bg-blue-600
+              hover:bg-blue-700 text-white rounded-lg w-full sm:w-max transition-all
+            ">
               Continue Watching
             </button>
           </div>
         </div>
       </section>
 
-      <div className="h-10"></div>
+      <div className="h-12" />
     </div>
   );
-}
+};

@@ -1,82 +1,83 @@
- import React from "react";
+import React from "react";
+import { Navbar } from "../../componets/creator/navbar";
+import { Sidebar } from "../../componets/creator/sidebar";
+import { NavLink } from "react-router-dom";
 
-export const CourseManagement=()=> {
+export const CourseManagement = () => {
   return (
-    <div className="w-full min-h-screen bg-white text-[#111] font-sans flex flex-col">
-      {/* Top Navigation */}
-      <header className="w-full flex items-center justify-between px-6 py-4 border-b bg-white">
-        <div className="flex items-center space-x-2">
-          <div className="h-8 w-8 rounded-full bg-[#0038FF] flex items-center justify-center text-white font-bold">
-            ES
-          </div>
-          <span className="font-semibold text-lg">EduStream</span>
-        </div>
-
-        <div className="flex-1 flex justify-center">
-          <input
-            placeholder="Search courses, videos, creators..."
-            className="w-[50%] border rounded-lg px-4 py-2 text-sm"
-          />
-        </div>
-
-        <div className="flex items-center space-x-4">
-          <button className="bg-[#0038FF] text-white px-4 py-2 rounded-lg">Upload</button>
-          <div className="h-8 w-8 rounded-full bg-gray-300 flex items-center justify-center">
-            U
-          </div>
-        </div>
-      </header>
+    <div className="
+      font-gpt min-h-screen flex flex-col
+      bg-white text-gray-800
+      dark:bg-gpt-bg dark:text-gpt-text transition-colors duration-300
+    ">
+      {/* NAVBAR */}
+      <Navbar />
 
       <div className="flex w-full">
-        {/* Sidebar */}
-        <aside className="w-60 min-h-screen border-r p-4 bg-white">
-          <h2 className="font-semibold mb-6">
-            Tech Academy <br />
-            <span className="text-sm text-gray-500">Creator Studio</span>
-          </h2>
+        {/* SIDEBAR */}
+        <Sidebar />
 
-          <ul className="space-y-4 text-[15px]">
-            <li>Dashboard</li>
-            <li>Upload Video</li>
-            <li className="font-semibold text-blue-600">Course Management</li>
-            <li>Channel Settings</li>
-            <li>Comment Moderation</li>
-            <li>Monetization</li>
-          </ul>
-        </aside>
-
-        {/* Main Content */}
-        <main className="flex-1 p-6 space-y-6">
-          {/* Header Row */}
+        {/* MAIN CONTENT */}
+        <main className="
+          flex-1 md:ml-64 px-4 sm:px-6 py-24 space-y-6
+        ">
+          {/* HEADER */}
           <div className="flex justify-between items-center">
             <div>
-              <h1 className="text-2xl font-bold">Course Management</h1>
-              <p className="text-gray-600 -mt-1">
-                Manage your courses and create new ones
+              <h1 className="text-2xl font-bold dark:text-gpt-text">
+                Playlsit Management
+              </h1>
+              <p className="text-gray-600 dark:text-gpt-muted">
+                Manage your Playlists and create new ones
               </p>
             </div>
+          <NavLink to="/videos">
+            <button className="
+              px-4 py-2 rounded-lg text-sm
+              bg-cyan-600 text-white hover:bg-cyan-700 transition
+            ">
+              + Create New Playlist
+            </button>
+          </NavLink>
+          </div>
 
-            <button className="bg-[#0038FF] text-white px-4 py-2 rounded-lg">
-              + Create New Course
+          {/* SEARCH + VIEW BUTTONS */}
+          <div className="flex space-x-4 items-center">
+            <input
+              placeholder="Search playlists..."
+              className="
+                w-[40%] px-4 py-2 rounded-lg text-sm
+                border border-gray-300 bg-white
+                dark:bg-gpt-surface dark:border-gpt-border dark:text-gpt-text
+              "
+            />
+            <button className="
+              border px-3 py-2 rounded-md
+              bg-white dark:bg-gpt-surface dark:border-gpt-border dark:text-gpt-text
+            ">
+              ≡
+            </button>
+            <button className="
+              border px-3 py-2 rounded-md
+              bg-white dark:bg-gpt-surface dark:border-gpt-border dark:text-gpt-text
+            ">
+              ▦
             </button>
           </div>
 
-          {/* Search + View Buttons */}
-          <div className="flex space-x-4 items-center">
-            <input
-              placeholder="Search courses..."
-              className="w-[40%] border rounded-lg px-4 py-2 text-sm"
-            />
-            <button className="border px-3 py-2 rounded-md">≡</button>
-            <button className="border px-3 py-2 rounded-md">▦</button>
-          </div>
-
-          {/* Courses Table */}
-          <div className="border rounded-lg shadow-sm overflow-hidden">
+          {/* COURSES TABLE */}
+          <div className="
+            overflow-hidden rounded-lg shadow-sm border
+            bg-white border-gray-200
+            dark:bg-gpt-surface dark:border-gpt-border
+          ">
             <table className="w-full text-sm">
-              <thead className="text-left text-gray-500 border-b bg-gray-50">
+              <thead className="
+                text-left border-b bg-gray-50 text-gray-600
+                dark:bg-gpt-surface dark:border-gpt-border dark:text-gpt-muted
+              ">
                 <tr>
-                  <th className="p-4">Course Title</th>
+                  <th className="p-4">Playlist Title</th>
                   <th className="p-4">Videos</th>
                   <th className="p-4">Enrollments</th>
                   <th className="p-4">Status</th>
@@ -112,54 +113,80 @@ export const CourseManagement=()=> {
                     date: "11/24/2025",
                   },
                 ].map((c, i) => (
-                  <tr key={i} className="border-b hover:bg-gray-50">
-                    <td className="p-4 flex items-center space-x-3">
-                      <img src={c.img} alt={c.title} className="h-12 w-20 rounded" />
-                      <span className="font-medium">{c.title}</span>
+                  <tr
+                    key={i}
+                    className="
+                      border-b hover:bg-gray-50
+                      dark:border-gpt-border dark:hover:bg-gpt-surface
+                    "
+                  >
+                    <td className="p-4 flex items-center gap-3">
+                      <img
+                        src={c.img}
+                        alt={c.title}
+                        className="h-12 w-20 rounded object-cover"
+                      />
+                      <span className="font-medium dark:text-gpt-text">
+                        {c.title}
+                      </span>
                     </td>
+
                     <td className="p-4">{c.videos}</td>
                     <td className="p-4">{c.enroll}</td>
 
                     <td className="p-4">
                       {c.status === "PUBLISHED" && (
-                        <span className="bg-green-100 text-green-700 px-2 py-1 rounded text-xs font-semibold">
+                        <span className="
+                          bg-green-100 text-green-700 px-2 py-1 rounded text-xs font-semibold
+                          dark:bg-green-900/30 dark:text-green-300
+                        ">
                           PUBLISHED
                         </span>
                       )}
                       {c.status === "DRAFT" && (
-                        <span className="bg-orange-100 text-orange-700 px-2 py-1 rounded text-xs font-semibold">
+                        <span className="
+                          bg-orange-100 text-orange-700 px-2 py-1 rounded text-xs font-semibold
+                          dark:bg-orange-900/30 dark:text-orange-300
+                        ">
                           DRAFT
                         </span>
                       )}
                     </td>
 
                     <td className="p-4">{c.date}</td>
-                    <td className="p-4 cursor-pointer">⋮</td>
+                    <td className="p-4 cursor-pointer dark:text-gpt-muted">⋮</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
 
-          {/* Summary Stats */}
+          {/* SUMMARY STATS */}
           <div className="grid grid-cols-3 gap-4">
-            <div className="border shadow-sm rounded-lg p-6 text-center">
-              <p className="text-sm text-gray-500">Total Courses</p>
-              <p className="text-3xl font-bold">3</p>
-            </div>
-
-            <div className="border shadow-sm rounded-lg p-6 text-center">
-              <p className="text-sm text-gray-500">Total Videos</p>
-              <p className="text-3xl font-bold">60</p>
-            </div>
-
-            <div className="border shadow-sm rounded-lg p-6 text-center">
-              <p className="text-sm text-gray-500">Total Enrollments</p>
-              <p className="text-3xl font-bold">23,600</p>
-            </div>
+            {[
+              { label: "Total Playlists", value: "3" },
+              { label: "Total Videos", value: "60" },
+              { label: "Total Enrollments", value: "23,600" },
+            ].map((stat, i) => (
+              <div
+                key={i}
+                className="
+                  text-center rounded-lg p-6 shadow-sm border
+                  bg-white border-gray-200
+                  dark:bg-gpt-surface dark:border-gpt-border
+                "
+              >
+                <p className="text-sm text-gray-500 dark:text-gpt-muted">
+                  {stat.label}
+                </p>
+                <p className="text-3xl font-bold dark:text-gpt-text">
+                  {stat.value}
+                </p>
+              </div>
+            ))}
           </div>
         </main>
       </div>
     </div>
   );
-}
+};

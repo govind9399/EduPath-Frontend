@@ -60,19 +60,21 @@ export const SearchResult = () => {
           </h2>
 
           <div className="grid grid-cols-3 gap-6">
-            {[...Array(8)].map((_, index) => (
-              <NavLink to="/video-player" >
+            {/* {[...Array(8)].map((_, index) => ( */}
+              {/* <NavLink to="/video-player" > */}
 
               <div
-                key={index}
+                // key={index}
                 className="bg-white rounded-xl shadow hover:shadow-2xl transition"
               >
                 {/* <img src={`/video${index + 1}.png`} alt="" className="w-full rounded-t-xl" /> */}
-                <div className="bg-black rounded-xl h-[300px]  w-[370px] md:flex  hidden items-center justify-center m-4">
-                  <Play className="text-white w-20 h-20 opacity-40" />
-                </div>
+                {/* <div className="bg-black rounded-xl h-[300px]  w-[370px] md:flex  hidden items-center justify-center m-4"> */}
+                  {/* <Play className="text-white w-20 h-20 opacity-40" /> */}
+                {/* </div> */}
+             <iframe width="370" height="300" src="https://www.youtube.com/embed/HcOc7P5BMi4?si=VnH_JXTShPv8jtxo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
                 <div className="p-4">
-                  <h3 className="font-semibold">Video Title {index + 1}</h3>
+                  <h3 className="font-semibold">Video Title </h3>
 
                   <div className="flex items-center space-x-4 text-sm text-gray-500 mt-2">
                     <span>150K views</span>
@@ -80,8 +82,8 @@ export const SearchResult = () => {
                   </div>
                 </div>
               </div>
-              </NavLink>
-            ))}
+              {/* </NavLink> */}
+            {/* ))} */}
           </div>
         </main>
       </div>

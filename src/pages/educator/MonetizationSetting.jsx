@@ -1,29 +1,37 @@
- import React from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import { Navbar } from "../../componets/creator/navbar";
 import { Sidebar } from "../../componets/creator/sidebar";
 
-// EduPath Monetization Settings - single-file React component (Tailwind CSS)
-
 export const MonetizationSetting = () => {
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-800">
-      {/* TOP NAVBAR */}
+    <div className="
+      font-gpt min-h-screen flex flex-col
+      bg-white text-gray-800
+      dark:bg-gpt-bg dark:text-gpt-text transition-colors duration-300
+    ">
+      {/* NAVBAR */}
       <Navbar />
 
       <div className="flex w-full">
-        {/* SIDEBAR – hidden on mobile, shown from md+ */}
-        <div className="hidden md:block">
-          <Sidebar />
-        </div>
+        {/* SIDEBAR */}
+        <Sidebar />
 
         {/* MAIN WRAPPER */}
         <div className="flex-1">
-          <main className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 pt-24 md:pt-10 pb-10 md:ml-64 space-y-6">
-            {/* Eligibility Card */}
-            <section className="bg-white rounded-2xl p-6 shadow mb-2 sm:mb-6">
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
-                <h2 className="font-semibold text-base sm:text-lg">
+          <main className="
+            w-full max-w-[1200px] mx-auto px-4 sm:px-6
+            pt-24 md:pt-10 pb-10 md:ml-64 space-y-6
+          ">
+
+            {/* ELIGIBILITY */}
+            <section className="
+              rounded-2xl p-6 shadow border
+              bg-white border-gray-200
+              dark:bg-gpt-surface dark:border-gpt-border
+            ">
+              <div className="flex flex-col sm:flex-row justify-between mb-4 gap-3">
+                <h2 className="font-semibold text-base sm:text-lg dark:text-gpt-text">
                   Monetization Eligibility
                 </h2>
                 <span className="text-xs sm:text-sm bg-green-100 text-green-800 px-3 py-1 rounded">
@@ -48,54 +56,53 @@ export const MonetizationSetting = () => {
                   percent={100}
                 />
 
-                <p className="text-xs sm:text-sm text-gray-500 mt-2">
-                  ✓ Your channel meets all monetization requirements. You can
-                  earn revenue from ads on your videos.
+                <p className="text-xs sm:text-sm text-gray-600 dark:text-gpt-muted mt-2">
+                  ✓ Your channel meets all monetization requirements.
                 </p>
               </div>
             </section>
 
-            {/* Overview grid */}
+            {/* OVERVIEW GRID */}
             <section className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              
               <Card title="Revenue Sharing Model">
-                <div className="bg-gray-50 rounded p-4">
-                  <div className="flex justify-between text-xs sm:text-sm mb-2">
-                    <div>Creator Share</div>
-                    <div className="font-semibold">55%</div>
-                  </div>
-                  <div className="flex justify-between text-xs sm:text-sm">
-                    <div>Platform Share</div>
-                    <div className="font-semibold">45%</div>
-                  </div>
-                  <p className="text-[11px] sm:text-xs text-gray-400 mt-3">
-                    You earn 55% of all ad revenue generated from your content.
-                    Payments are processed monthly.
+                <div className="
+                  rounded p-4
+                  bg-gray-50 dark:bg-gpt-bg border dark:border-gpt-border
+                ">
+                  <Row label="Creator Share" value="70%" />
+                  <Row label="Platform Share" value="30%" />
+                  <p className="text-[11px] sm:text-xs text-gray-500 dark:text-gpt-muted mt-3">
+                    You earn 55% of ad revenue. Payments are monthly.
                   </p>
                 </div>
               </Card>
 
               <Card title="Monetization Status">
-                <div className="bg-green-50 rounded p-4">
-                  <div className="text-sm font-medium text-green-800">
-                    ✓ Your channel is eligible for monetization
-                  </div>
-                  <div className="text-xs text-gray-500 mt-1">
-                    You meet all requirements: 1000+ subscribers, 4000+ watch
-                    hours
-                  </div>
+                <div className="
+                  bg-green-50 rounded p-4
+                  dark:bg-gpt-surface border dark:border-gpt-border
+                ">
+                  <p className="text-sm font-medium text-green-700 dark:text-gpt-accent">
+                    ✓ Monetization Enabled
+                  </p>
+                  <p className="text-xs text-gray-600 dark:text-gpt-muted mt-1">
+                    Requirements completed
+                  </p>
                 </div>
               </Card>
 
               <Card title="Minimum Payout Threshold">
-                <div className="bg-gray-50 rounded p-4">
-                  <div className="text-sm">
-                    Earnings must reach{" "}
-                    <span className="font-semibold">₹100</span> before payout
-                  </div>
-                  <div className="text-xs text-gray-400 mt-2">
-                    Payments are processed on the 15th of each month for
-                    earnings from the previous month.
-                  </div>
+                <div className="
+                  bg-gray-50 rounded p-4
+                  dark:bg-gpt-surface border dark:border-gpt-border
+                ">
+                  <p className="text-sm dark:text-gpt-text">
+                    Payout starts at <span className="font-semibold">₹100</span>
+                  </p>
+                  <p className="text-xs text-gray-500 dark:text-gpt-muted mt-2">
+                    Payments every 15th of the month.
+                  </p>
                 </div>
               </Card>
 
@@ -108,32 +115,24 @@ export const MonetizationSetting = () => {
                   <PolicyRow title="Data Privacy & Tax Compliance" />
                 </div>
 
-                <div className="mt-4 bg-green-50 p-3 rounded text-green-800 text-xs sm:text-sm">
-                  ✓ You have accepted all required policies. Your monetization
-                  settings are compliant.
-                </div>
-
-                <div className="mt-4 text-[11px] sm:text-sm text-gray-500 space-y-1">
-                  <div>• Policies are updated periodically. You'll be notified of any changes.</div>
-                  <div>• Violations may result in demonetization or account suspension.</div>
+                <div className="
+                  mt-4 text-xs bg-green-50 p-3 rounded text-green-700
+                  dark:bg-gpt-surface dark:text-gpt-accent dark:border dark:border-gpt-border
+                ">
+                  ✓ All policies accepted
                 </div>
               </Card>
             </section>
 
-            {/* Tabs for Ad Placement & Payment (visual only) */}
-            <section className="mt-4 sm:mt-6">
+            {/* TABS */}
+            <section>
               <div className="flex flex-wrap gap-2 sm:gap-3">
-                <button className="px-4 py-2 bg-white border rounded-lg text-sm">
-                  Overview
-                </button>
-                <button className="px-4 py-2 bg-white border rounded-lg text-sm">
-                  Ad Placement
-                </button>
-                <button className="px-4 py-2 bg-white border rounded-lg text-sm">
-                  Payment
-                </button>
+                <Tab label="Overview" active />
+                <Tab label="Ad Placement" />
+                <Tab label="Payment" />
               </div>
             </section>
+
           </main>
         </div>
       </div>
@@ -141,28 +140,43 @@ export const MonetizationSetting = () => {
   );
 };
 
+/* UTIL COMPONENTS */
 function Card({ title, children }) {
   return (
-    <div className="bg-white rounded-2xl p-5 sm:p-6 shadow">
-      <h3 className="font-semibold mb-3 text-sm sm:text-base">{title}</h3>
+    <div className="
+      rounded-2xl p-5 sm:p-6 shadow border
+      bg-white border-gray-200
+      dark:bg-gpt-surface dark:border-gpt-border
+    ">
+      <h3 className="font-semibold mb-3 text-sm sm:text-base dark:text-gpt-text">
+        {title}
+      </h3>
       {children}
     </div>
   );
 }
 
-function ProgressRow({ label, valueLabel, percent = 50 }) {
-  const safePercent = Math.max(0, Math.min(100, percent));
+function Row({ label, value }) {
+  return (
+    <div className="flex justify-between text-xs sm:text-sm dark:text-gpt-text">
+      <span>{label}</span>
+      <span className="font-semibold">{value}</span>
+    </div>
+  );
+}
+
+function ProgressRow({ label, valueLabel, percent }) {
   return (
     <div>
-      <div className="flex justify-between text-xs sm:text-sm text-gray-600 mb-2">
-        <div>{label}</div>
-        <div className="text-xs sm:text-sm">{valueLabel}</div>
+      <div className="flex justify-between text-xs sm:text-sm text-gray-600 dark:text-gpt-muted mb-2">
+        <span>{label}</span>
+        <span>{valueLabel}</span>
       </div>
-      <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+      <div className="h-2 bg-gray-200 dark:bg-gpt-border rounded-full">
         <div
-          className="h-2 rounded-full"
-          style={{ width: `${safePercent}%`, backgroundColor: "#0ea5a4" }}
-        />
+          className="h-full rounded-full bg-cyan-600"
+          style={{ width: `${percent}%` }}
+        ></div>
       </div>
     </div>
   );
@@ -170,14 +184,29 @@ function ProgressRow({ label, valueLabel, percent = 50 }) {
 
 function PolicyRow({ title }) {
   return (
-    <div className="flex items-start gap-3">
-      <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs">
+    <div className="flex items-start gap-3 dark:text-gpt-text">
+      <div className="w-5 h-5 rounded-full bg-cyan-600 text-white flex items-center justify-center text-xs">
         ✓
       </div>
       <div>
-        <div className="font-medium text-sm">{title}</div>
-        <div className="text-[11px] sm:text-xs text-gray-500">Required</div>
+        <p className="font-medium text-sm">{title}</p>
+        <p className="text-[11px] text-gray-500 dark:text-gpt-muted">Required</p>
       </div>
     </div>
+  );
+}
+
+function Tab({ label, active }) {
+  return (
+    <button
+      className={`
+        px-4 py-2 border rounded-lg text-sm
+        bg-white border-gray-300 hover:bg-gray-50
+        dark:bg-gpt-surface dark:border-gpt-border dark:text-gpt-text dark:hover:bg-gpt-border
+        ${active && "bg-cyan-600 text-white dark:text-white"}
+      `}
+    >
+      {label}
+    </button>
   );
 }

@@ -1,109 +1,144 @@
- import React from "react";
+import React from "react";
+import { Navbar } from "../../componets/creator/navbar";
+import { Sidebar } from "../../componets/creator/sidebar";
+import { NavLink } from "react-router-dom";
 
 export const CourseEditior = () => {
   return (
-    <div className="w-full min-h-screen bg-white text-[#111] font-sans flex flex-col">
-      {/* Top Navigation */}
-      <header className="w-full flex items-center justify-between px-6 py-4 border-b bg-white">
-        <div className="flex items-center space-x-2">
-          <div className="h-8 w-8 rounded-full bg-[#0038FF] flex items-center justify-center text-white font-bold">ES</div>
-          <span className="font-semibold text-lg">EduStream</span>
-        </div>
-
-        <div className="flex-1 flex justify-center">
-          <input
-            placeholder="Search courses, videos, creators..."
-            className="w-[50%] border rounded-lg px-4 py-2 text-sm"
-          />
-        </div>
-
-        <div className="flex items-center space-x-4">
-          <button className="bg-[#0038FF] text-white px-4 py-2 rounded-md">Upload</button>
-          <div className="h-8 w-8 rounded-full bg-gray-300 flex items-center justify-center">U</div>
-        </div>
-      </header>
+    <div className="
+      w-full min-h-screen font-gpt flex flex-col
+      bg-white text-gray-800
+      dark:bg-gpt-bg dark:text-gpt-text transition
+    ">
+      {/* NAVBAR */}
+      <Navbar />
 
       <div className="flex w-full">
-        {/* Sidebar */}
-        <aside className="w-60 min-h-screen border-r p-4 bg-white">
-          <h2 className="font-semibold mb-6">
-            Tech Academy <br />
-            <span className="text-sm text-gray-500">Creator Studio</span>
-          </h2>
+        {/* SIDEBAR */}
+        <div className="hidden md:block">
+          <Sidebar />
+        </div>
 
-          <ul className="space-y-4 text-[15px]">
-            <li>Dashboard</li>
-            <li>Upload Video</li>
-            <li className="font-semibold text-blue-600">Course Management</li>
-            <li>Channel Settings</li>
-            <li>Comment Moderation</li>
-            <li>Monetization</li>
-          </ul>
-        </aside>
-
-        {/* Main Content */}
-        <main className="flex-1 p-6 space-y-6">
+        {/* MAIN CONTENT */}
+        <main className="flex-1 p-6 md:ml-64 mt-20 md:mt-6 space-y-6">
+          
+          {/* HEADER */}
           <div className="flex justify-between items-center">
             <div>
-              <h1 className="text-2xl font-bold">Edit Course</h1>
-              <p className="text-gray-600 -mt-1">Build and organize your course structure</p>
+              <h1 className="text-2xl font-bold dark:text-gpt-text">
+                Edit Course
+              </h1>
+              <p className="text-gray-500 dark:text-gpt-muted text-sm -mt-1">
+                Build and organize your course structure
+              </p>
             </div>
 
-            <div className="space-x-3">
-              <button className="border px-4 py-2 rounded-md bg-white">Cancel</button>
-              <button className="bg-[#0038FF] text-white px-4 py-2 rounded-md">💾 Save Course</button>
+            <div className="space-x-3 flex">
+              <button
+                className="
+                  border rounded-md px-4 py-2 text-sm
+                  bg-white hover:bg-gray-100
+                  dark:bg-gpt-surface dark:border-gpt-border
+                  dark:hover:bg-gpt-border dark:text-gpt-text
+                "
+              >
+                Cancel
+              </button>
+
+              <button
+                className="
+                  px-4 py-2 text-sm rounded-md bg-cyan-600 hover:bg-cyan-700 text-white
+                "
+              >
+                💾 Save Course
+              </button>
             </div>
           </div>
 
-          {/* Tabs */}
-          <div className="flex space-x-2 border rounded-lg w-[500px] bg-gray-50 p-1 text-sm">
-            <button className="flex-1 py-2 bg-white rounded text-center border">📄 Basic Info</button>
-            <button className="flex-1 py-2 text-center">🧩 Modules</button>
-            <button className="flex-1 py-2 text-center">👁 Preview</button>
+          {/* TABS */}
+          <div className="
+            flex overflow-x-auto gap-2 border rounded-lg bg-gray-50 p-1 text-sm
+            dark:bg-gpt-surface dark:border-gpt-border
+            w-full sm:w-[500px]
+          ">
+            <button className="
+              flex-1 py-2 rounded border
+              bg-white dark:bg-gpt-bg dark:text-gpt-text dark:border-gpt-border
+            ">
+              📄 Basic Info
+            </button>
+            <button className="
+              flex-1 py-2 rounded
+              hover:bg-gray-100 dark:hover:bg-gpt-border
+            ">
+              🧩 Modules
+            </button>
+            <button className="
+              flex-1 py-2 rounded
+              hover:bg-gray-100 dark:hover:bg-gpt-border
+            ">
+              👁 Preview
+            </button>
           </div>
 
-          {/* Course Form */}
-          <div className="shadow-sm border rounded-lg w-[80%] p-6 space-y-6">
+          {/* COURSE FORM CARD */}
+          <section className="
+            bg-white dark:bg-gpt-surface border rounded-xl shadow-sm p-6 space-y-6
+            dark:border-gpt-border
+            w-full sm:w-[90%] lg:w-[80%]
+          ">
             <div>
-              <h2 className="font-semibold">Course Information</h2>
-              <p className="text-sm text-gray-500 -mt-1">Set the basic details for your course</p>
+              <h2 className="font-semibold dark:text-gpt-text">
+                Course Information
+              </h2>
+              <p className="text-sm text-gray-500 dark:text-gpt-muted -mt-1">
+                Set the basic details for your course
+              </p>
             </div>
 
-            {/* Title */}
+            {/* TITLE */}
             <div>
-              <p className="font-medium text-sm">Course Title</p>
+              <p className="font-medium text-sm dark:text-gpt-text">Course Title</p>
               <input
-                className="border rounded-md w-full mt-1 px-3 py-2 text-sm"
-                value="Advanced DSA in C++ (Part 2)"
+                className="
+                  border rounded-md w-full mt-1 px-3 py-2 text-sm
+                  bg-white dark:bg-gpt-bg dark:text-gpt-text dark:border-gpt-border
+                "
+                defaultValue="Advanced DSA in C++ (Part 2)"
               />
-              <p className="text-xs text-gray-400 mt-1">
+              <p className="text-xs text-gray-400 dark:text-gpt-muted mt-1">
                 Make it descriptive and clear about what learners will achieve
               </p>
             </div>
 
-            {/* Description */}
+            {/* DESCRIPTION */}
             <div>
-              <p className="font-medium text-sm">Course Description</p>
+              <p className="font-medium text-sm dark:text-gpt-text">Course Description</p>
               <textarea
-                className="border rounded-md w-full mt-1 px-3 py-2 text-sm h-32"
+                className="
+                  border rounded-md w-full mt-1 px-3 py-2 text-sm h-32
+                  bg-white dark:bg-gpt-bg dark:text-gpt-text dark:border-gpt-border
+                "
                 defaultValue="A comprehensive continuation course covering advanced topics in Data Structures and Algorithms necessary for top tech job interviews."
               />
-              <p className="text-xs text-gray-400 mt-1">133/500 characters</p>
+              <p className="text-xs text-gray-400 dark:text-gpt-muted mt-1">
+                133/500 characters
+              </p>
             </div>
 
-            {/* Stats */}
-            <div className="flex space-x-20 pt-4">
+            {/* STATS */}
+            <div className="flex gap-16 pt-4">
               <div>
-                <p className="text-sm text-gray-500">Total Modules</p>
-                <p className="text-2xl font-bold">2</p>
+                <p className="text-sm text-gray-500 dark:text-gpt-muted">Total Modules</p>
+                <p className="text-2xl font-bold dark:text-gpt-text">2</p>
               </div>
 
               <div>
-                <p className="text-sm text-gray-500">Total Videos</p>
-                <p className="text-2xl font-bold">3</p>
+                <p className="text-sm text-gray-500 dark:text-gpt-muted">Total Videos</p>
+                <p className="text-2xl font-bold dark:text-gpt-text">3</p>
               </div>
             </div>
-          </div>
+          </section>
         </main>
       </div>
     </div>

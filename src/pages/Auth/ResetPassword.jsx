@@ -1,5 +1,5 @@
- import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 import { FaEnvelope } from "react-icons/fa";
 
 export default function ResetPassword() {
@@ -8,100 +8,88 @@ export default function ResetPassword() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Reset link sent to:", email);
-    // TODO: integrate backend API
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
-      {/* Top Navigation */}
-      <header className="w-full flex justify-between items-center px-10 py-4 border-b bg-white">
-        <div className="flex items-center gap-2 text-xl font-semibold">
-          <img
-            src="/logo.svg"
-            alt="EduStream Logo"
-            className="w-7 h-7"
-          />
-          EduStream
-        </div>
+    <div className="min-h-screen bg-gray-50 dark:bg-gpt-bg flex flex-col transition">
 
-        <input
-          type="text"
-          placeholder="Search courses, videos, creators..."
-          className="border rounded-lg px-4 py-2 w-96"
-        />
-
-        <div className="flex items-center gap-4">
-          <button className="flex gap-2 border px-4 py-2 rounded-lg hover:bg-gray-100">
-            🎥 Creator Studio
-          </button>
-          <img
-            src="/profile.jpg"
-            alt="user"
-            className="w-10 h-10 rounded-full"
-          />
-        </div>
+      {/* NAVBAR */}
+      <header className="w-full flex items-center justify-between px-4 sm:px-6 py-4 bg-white dark:bg-gpt-surface border-b border-gray-200 dark:border-gpt-border fixed top-0 z-50">
+        <NavLink to="/homepage" className="flex items-center gap-3">
+          <div className="w-9 h-9 rounded-md bg-gradient-to-br from-cyan-600 to-blue-700 flex items-center justify-center text-white font-bold shadow">
+            EP
+          </div>
+          <span className="font-semibold text-gray-900 dark:text-gpt-text text-lg">
+            EduPath
+          </span>
+        </NavLink>
       </header>
 
-      {/* Reset Password Card */}
-      <div className="flex-grow flex items-center justify-center px-6">
+      {/* RESET CARD */}
+      <div className="flex-1 flex items-center justify-center px-4 pt-28 pb-10">
         <form
           onSubmit={handleSubmit}
-          className="bg-white shadow-md rounded-xl p-10 w-full max-w-md"
+          className="w-full max-w-md bg-white dark:bg-gpt-surface border border-gray-200 dark:border-gpt-border rounded-xl shadow-lg p-6 sm:p-8"
         >
-          <h2 className="text-2xl font-semibold text-center mb-2">
+          <h2 className="text-2xl sm:text-3xl font-semibold text-center text-gray-900 dark:text-gpt-text">
             Reset Your Password
           </h2>
-          <p className="text-center text-gray-600 mb-8">
-            Enter your email address and we'll send you a link to reset your password
+          <p className="text-center text-gray-600 dark:text-gpt-muted text-sm mt-1 mb-6">
+            Enter your email to receive a password reset link
           </p>
 
-          {/* Email Address */}
-          <label className="text-sm font-medium">Email Address</label>
+          {/* EMAIL INPUT */}
+          <label className="text-sm font-medium text-gray-800 dark:text-gpt-text">
+            Email Address
+          </label>
           <input
             type="email"
+            required
             placeholder="you@example.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            required
-            className="w-full border rounded-lg px-4 py-3 mt-1 mb-1 focus:ring-2 focus:ring-blue-500"
+            className="mt-1 w-full border dark:border-gpt-border rounded-lg px-4 py-3 text-sm dark:bg-gpt-surface dark:text-gpt-text focus:ring-2 focus:ring-cyan-600 outline-none"
           />
-          <p className="text-xs text-gray-500 mb-4">
-            Enter the email address associated with your EduStream account
+          <p className="text-xs text-gray-500 dark:text-gpt-muted mt-1 mb-4">
+            We’ll send a link to reset your password
           </p>
 
-          {/* Submit Button */}
+          {/* SUBMIT BUTTON */}
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-blue-700"
+            className="w-full bg-cyan-600 hover:bg-cyan-700 text-white py-3 rounded-lg flex items-center justify-center gap-2 transition text-sm sm:text-base"
           >
             <FaEnvelope />
             Send Reset Link
           </button>
 
-          {/* What happens next */}
-          <div className="mt-6 text-sm text-gray-600">
-            <p className="flex gap-2 items-center">🔵 We'll send a password reset link to your email</p>
-            <p className="flex gap-2 items-center">🔵 Click the link to create a new password</p>
-            <p className="flex gap-2 items-center">🔵 Log in with your new password</p>
+          {/* INFO STEPS */}
+          <div className="mt-6 text-sm text-gray-600 dark:text-gpt-muted space-y-1">
+            <p>🔹 Check your inbox for the reset link</p>
+            <p>🔹 Create your new password</p>
+            <p>🔹 Log in and continue learning</p>
           </div>
 
-          {/* Back to Login */}
-          <p className="text-center text-sm mt-6">
+          {/* BACK TO LOGIN */}
+          <p className="text-center text-sm mt-6 text-gray-700 dark:text-gpt-text">
             Remember your password?
-            <Link to="/login" className="text-blue-600 font-medium ml-1">
+            <Link
+              to="/login"
+              className="text-cyan-600 hover:underline font-medium ml-1"
+            >
               Back to Login
             </Link>
           </p>
         </form>
       </div>
 
-      {/* Footer */}
-      <footer className="text-center text-gray-500 text-sm py-4 border-t">
-        © 2025 EduStream. All rights reserved.
+      {/* FOOTER */}
+      <footer className="text-center text-gray-500 dark:text-gpt-muted text-xs sm:text-sm py-4 border-t border-gray-200 dark:border-gpt-border">
+        © 2025 EduPath. All rights reserved.
         <div className="flex justify-center gap-6 mt-2">
-          <Link to="/privacy">Privacy</Link>
-          <Link to="/terms">Terms</Link>
-          <Link to="/help">Help</Link>
+          <Link to="/privacy" className="hover:underline">Privacy</Link>
+          <Link to="/terms" className="hover:underline">Terms</Link>
+          <Link to="/help" className="hover:underline">Help</Link>
         </div>
       </footer>
     </div>

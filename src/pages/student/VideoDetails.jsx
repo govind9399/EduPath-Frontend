@@ -1,9 +1,5 @@
 import React from "react";
 
-// FULL TAILWIND VERSION — STATIC UI EXACTLY LIKE SCREENSHOTS
-// No CSS file, no logic, 100% pixel‑style static layout
-// All styling done using Tailwind classes only
-
 export const CourseDetails=()=>{
   return (
     <div className="w-full min-h-screen bg-white text-[#0f172a]">
@@ -11,7 +7,7 @@ export const CourseDetails=()=>{
       <header className="w-full h-16 border-b flex items-center justify-between px-6 sticky top-0 bg-white z-50 shadow-sm">
         <div className="flex items-center gap-2">
           <div className="h-9 w-9 rounded-lg bg-blue-600 text-white flex items-center justify-center font-bold">ES</div>
-          <span className="font-semibold text-lg">EduStream</span>
+          <span className="font-semibold text-lg">EduStreamz</span>
         </div>
 
         <input

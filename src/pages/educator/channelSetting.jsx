@@ -1,152 +1,163 @@
-import React from "react";
-import { Upload, Search, CheckCircle, Trash2, PlusCircle} from "lucide-react";
+ import React, { useState } from "react";
+import { CheckCircle, Trash2, PlusCircle } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { Navbar } from "../../componets/creator/navbar";
 import { Sidebar } from "../../componets/creator/sidebar";
- 
-export const ChannelSettings =()=> {
+
+export const ChannelSettings = () => {
+  const [logo, setLogo] = useState(null);
+  const [banner, setBanner] = useState(null);
+
+  const handleLogoUpload = (e) => setLogo(URL.createObjectURL(e.target.files[0]));
+  const handleBannerUpload = (e) => setBanner(URL.createObjectURL(e.target.files[0]));
+
   return (
-    <div className="flex min-h-screen bg-gray-50">
-              <Navbar/>
+    <div className="flex min-h-screen bg-white dark:bg-gpt-bg dark:text-gpt-text transition-colors duration-300">
+      {/* TOP NAVBAR */}
+      <Navbar />
 
-      {/* ───────── Sidebar ───────── */}
-      <aside className="w-60 h-screen border-r bg-white p-4 flex flex-col fixed mt-16 ">
-        <div className="flex items-center gap-3 mb-6">
-          <img
-            src="https://via.placeholder.com/40"
-            className="w-10 h-10 rounded-full"
-            alt=""
-          />
-          <div>
-            <p className="font-semibold text-gray-800">Tech Academy</p>
-            <p className="text-xs text-gray-500">Creator Studio</p>
-          </div>
-        </div>
-      
-         
-        {/* // Sidebar */}
-         {/* <div className="space-y-3 text-sm flex flex-col"> */}
-          <Sidebar/>
-        {/* </div> */}
+      {/* SIDEBAR */}
+      <Sidebar />
 
-        <div className="mt-auto text-xs text-gray-500 p-2 flex items-center gap-2">
-          <img
-            src="https://via.placeholder.com/25"
-            className="rounded-full"
-            alt=""
-          />
-          Account
-        </div>
-      </aside>
-
-      {/* ───────── Content Area ───────── */}
- <main className="flex-1 ml-60 mt-18">
-
-        {/* Page Title */}
-        <div className="px-10 py-8 ">
-          <h1 className="text-3xl font-bold text-gray-900">Channel Settings</h1>
-          <p className="text-sm text-gray-600 mt-1">
-            Customize your channel profile, branding, and identity to reflect your style.
+      {/* MAIN CONTENT */}
+      <main className="flex-1 md:ml-64 px-4 md:px-10 py-24 mt-8">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-3xl font-bold dark:text-gpt-text">Channel Settings</h1>
+          <p className="text-sm text-gray-600 dark:text-gpt-muted mt-1">
+            Manage your channel identity, branding, and profile details
           </p>
 
-          {/* Channel Branding */}
-          <section className="mt-8 bg-white border rounded-xl p-6">
-            <h2 className="font-semibold text-lg">Channel Branding</h2>
-            <p className="text-sm text-gray-600">
-              Upload your channel logo and banner to establish your brand identity
-            </p>
+          {/* BRANDING */}
+          <section className="mt-8 p-6 rounded-xl border shadow-sm bg-white border-gray-200 dark:bg-gpt-surface dark:border-gpt-border">
+            <h2 className="font-semibold text-lg dark:text-gpt-text">Channel Branding</h2>
+            <p className="text-sm text-gray-600 dark:text-gpt-muted">Upload your logo and channel banner</p>
 
-            {/* Logo */}
-            <div className="mt-5 flex items-center gap-5">
+            {/* LOGO */}
+            <div className="mt-6 flex flex-col sm:flex-row items-center gap-5">
               <img
-                src="https://via.placeholder.com/80"
-                className="w-20 h-20 rounded-full"
-                alt=""
+                src={logo || "https://via.placeholder.com/100"}
+                alt="logo"
+                className="w-24 h-24 rounded-full object-cover border dark:border-gpt-border"
               />
-              <button className="px-4 py-2 border rounded-md text-sm bg-gray-50 hover:bg-gray-100">
-                Upload Logo
-              </button>
+
+              <input
+                type="file"
+                id="logoInput"
+                className="hidden"
+                accept="image/*"
+                onChange={handleLogoUpload}
+              />
+              <label
+                htmlFor="logoInput"
+                className="px-4 py-2 text-sm rounded-md border bg-gray-50 hover:bg-gray-100 dark:bg-gpt-surface dark:border-gpt-border dark:hover:bg-gpt-border cursor-pointer"
+              >
+                Upload Profile Photo
+              </label>
             </div>
 
-            {/* Banner */}
+            {/* BANNER */}
             <div className="mt-6">
               <img
-                src="https://via.placeholder.com/900x160"
-                className="w-full rounded-lg border"
-                alt=""
+                src={banner || "https://via.placeholder.com/900x160"}
+                alt="banner"
+                className="rounded-lg border w-full object-cover dark:border-gpt-border"
               />
-              <button className="mt-3 w-full py-3 border rounded-md bg-gray-50 hover:bg-gray-100 text-sm">
-                Click to upload banner
-              </button>
+
+              <input
+                type="file"
+                id="bannerInput"
+                className="hidden"
+                accept="image/*"
+                onChange={handleBannerUpload}
+              />
+              <label
+                htmlFor="bannerInput"
+                className="mt-3 block text-center w-full py-3 border rounded-md bg-gray-50 hover:bg-gray-100 dark:bg-gpt-surface dark:border-gpt-border dark:hover:bg-gpt-border text-sm cursor-pointer"
+              >
+                Upload Banner Background
+              </label>
             </div>
           </section>
 
-          {/* Basic Info */}
-          <section className="mt-8 bg-white border rounded-xl p-6">
-            <h2 className="font-semibold text-lg">Basic Information</h2>
+          {/* BASIC INFORMATION */}
+          <section className="mt-8 p-6 rounded-xl border shadow-sm bg-white border-gray-200 dark:bg-gpt-surface dark:border-gpt-border">
+            <h2 className="font-semibold text-lg dark:text-gpt-text">Basic Information</h2>
 
-            <label className="block mt-4 text-sm font-medium">Channel Name</label>
-            <input className="w-full mt-1 px-3 py-2 border rounded" value="Tech Academy" />
-
-            <label className="block mt-4 text-sm font-medium">Channel Description</label>
-            <textarea
-              className="w-full mt-1 px-3 py-2 border rounded h-24"
-              defaultValue="Teaching web development, programming, and digital skills to aspiring developers worldwide."
+            <label className="block text-sm mt-4 font-medium dark:text-gpt-text">Channel Name</label>
+            <input
+              className="w-full mt-1 px-3 py-2 rounded-md border text-sm bg-white border-gray-300 dark:bg-gpt-bg dark:border-gpt-border dark:text-gpt-text"
+              type="text"
+              placeholder="Tech Academy"
             />
 
-            <label className="block mt-4 text-sm font-medium">Primary Topic</label>
+            <label className="block text-sm mt-4 font-medium dark:text-gpt-text">Channel Description</label>
+            <textarea
+              className="w-full mt-1 px-3 py-2 h-24 rounded-md border text-sm bg-white border-gray-300 dark:bg-gpt-bg dark:border-gpt-border dark:text-gpt-text"
+            />
+
+            <label className="block text-sm mt-4 font-medium dark:text-gpt-text">Primary Topic</label>
             <input
-              className="w-full mt-1 px-3 py-2 border rounded"
-              value="Programming & Software Engineering"
+              className="w-full mt-1 px-3 py-2 rounded-md border text-sm bg-white border-gray-300 dark:bg-gpt-bg dark:border-gpt-border dark:text-gpt-text"
+              type="text"
+              placeholder="Programming & Software Engineering"
             />
           </section>
 
-          {/* Social Links */}
-          <section className="mt-8 bg-white border rounded-xl p-6">
-            <h2 className="font-semibold text-lg">Social Links</h2>
+          {/* SOCIAL LINKS */}
+          <section className="mt-8 p-6 rounded-xl border shadow-sm bg-white border-gray-200 dark:bg-gpt-surface dark:border-gpt-border">
+            <h2 className="font-semibold text-lg dark:text-gpt-text">Social Links</h2>
 
-            {["Twitter", "Instagram", "LinkedIn", "Website"].map((link, index) => (
+            {["Twitter", "Instagram", "LinkedIn", "Website"].map((item, i) => (
               <div
-                key={index}
-                className="w-full mt-3 px-4 py-3 bg-gray-50 rounded-md flex justify-between items-center"
+                key={i}
+                className="mt-3 flex justify-between items-center px-4 py-3 rounded-md bg-gray-50 dark:bg-gpt-bg border border-gray-200 dark:border-gpt-border text-sm"
               >
-                <span className="text-sm">{link}</span>
-                <Trash2 className="w-4 text-gray-500 cursor-pointer" />
+                <span>{item}</span>
+                <Trash2 className="w-4 text-gray-500 dark:text-gpt-muted cursor-pointer" />
               </div>
             ))}
 
-            <button className="mt-4 flex items-center gap-2 text-sm text-blue-600">
+            <button className="mt-4 flex items-center gap-2 text-blue-600 dark:text-gpt-accent text-sm hover:opacity-80 transition">
               <PlusCircle className="w-4" /> Add Social Link
             </button>
           </section>
 
-          {/* Verification */}
-          <section className="mt-8 bg-white border rounded-xl p-6 flex items-center justify-between">
+          {/* VERIFICATION */}
+          <section className="mt-8 p-6 rounded-xl border shadow-sm bg-white border-gray-200 dark:bg-gpt-surface dark:border-gpt-border flex justify-between items-center">
             <div>
-              <p className="font-semibold text-gray-800">Channel Verification</p>
-              <p className="text-sm text-gray-600">
-                Your channel is verified and eligible for monetization.
+              <p className="font-semibold dark:text-gpt-text">Channel Verification</p>
+              <p className="text-sm text-gray-600 dark:text-gpt-muted">
+                Your channel is eligible for monetization
               </p>
             </div>
-            <span className="px-4 py-2 bg-green-100 text-green-600 rounded flex items-center gap-2">
+
+            <span className="px-4 py-2 rounded-md flex items-center gap-2 bg-green-100 text-green-700 dark:bg-gpt-bg dark:text-gpt-accent dark:border-gpt-border border">
               <CheckCircle className="w-4" /> Verified
             </span>
           </section>
 
-          {/* Buttons */}
-          <div className="flex justify-end gap-3 mt-6">
-            <NavLink to="/creator-dashboard" className="px-4 py-2 border rounded-md bg-white">Back to Dashboard</NavLink>
-            <button className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
-              Save Settings
-            </button>
+          {/* BUTTONS */}
+          <div className="flex flex-col sm:flex-row justify-end gap-3 mt-6">
+            <NavLink
+              to="/creator-dashboard"
+              className="px-4 py-2 border rounded-md bg-white hover:bg-gray-50 dark:bg-gpt-surface dark:border-gpt-border dark:hover:bg-gpt-border text-sm text-center dark:text-gpt-text"
+            >
+              Back to Dashboard
+            </NavLink>
+
+            <NavLink to="/creator-dashboard">
+              <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md text-sm">
+                Save Settings
+              </button>
+            </NavLink>
           </div>
 
-          {/* Footer */}
-          <footer className="mt-10 text-center text-sm text-gray-500">
-            © 2025 EduStream. All rights reserved. • Privacy • Terms • Help
+          {/* FOOTER */}
+          <footer className="text-center text-sm text-gray-500 dark:text-gpt-muted mt-10">
+            © 2025 EduStream • Privacy • Terms • Help
           </footer>
         </div>
       </main>
     </div>
   );
-}
+};

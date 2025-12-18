@@ -1,92 +1,151 @@
+import { NavLink } from "react-router-dom";
 
-export const FeedbackPage=()=> {
+export const FeedbackPage = () => {
   return (
-    <div style={{ fontFamily: "Inter, sans-serif", background: "#fff", minHeight: "100vh" }}>
-      {/* HEADER */}
-      <header style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "16px 32px", borderBottom: "1px solid #eee", position: "sticky", top: 0, background: "white", zIndex: 10 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-          <img src="/logo.svg" alt="EduStream" style={{ height: "32px" }} />
-          <span style={{ fontSize: "20px", fontWeight: 600 }}>EduStream</span>
-        </div>
-        <input
-          placeholder="Search courses, videos, creators..."
-          style={{ width: "420px", padding: "10px 16px", borderRadius: "8px", border: "1px solid #ccc" }}
-        />
-        <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-          <button style={{ padding: "8px 16px", border: "1px solid #ddd", borderRadius: "8px", background: "#fafafa" }}>Creator Studio</button>
-          <img src="/user.png" alt="User" style={{ height: "36px", width: "36px", borderRadius: "50%" }} />
-        </div>
-      </header>
-
+    <div className="
+      font-gpt min-h-screen
+      bg-white text-gray-800
+      dark:bg-gpt-bg dark:text-gpt-text
+      transition-colors duration-300
+    ">
+      
       {/* PAGE BODY */}
-      <div style={{ maxWidth: "800px", margin: "0 auto", padding: "40px 20px" }}>
-        <a href="#" style={{ color: "#4f6ddf", display: "inline-flex", alignItems: "center", gap: "4px" }}>← Back to Support</a>
+      <div className="max-w-3xl mx-auto px-4 py-10">
+        <NavLink
+          to="/support-help"
+          className="
+            text-cyan-600 dark:text-gpt-accent
+            inline-flex items-center gap-1 text-sm
+          "
+        >
+          ← Back to Support
+        </NavLink>
 
-        <h1 style={{ fontSize: "32px", marginTop: "16px", fontWeight: 700 }}>Send Us Your Feedback</h1>
-        <p style={{ fontSize: "16px", color: "#666", marginBottom: "32px" }}>
+        <h1 className="text-3xl sm:text-4xl font-semibold mt-4 dark:text-gpt-text">
+          Send Us Your Feedback
+        </h1>
+        <p className="text-gray-600 dark:text-gpt-muted text-sm sm:text-base mb-8">
           We value your suggestions and opinions. Help us improve EduStream by sharing your thoughts.
         </p>
 
-        <div style={{ border: "1px solid #eee", borderRadius: "12px", padding: "24px" }}>
-          <h3 style={{ marginBottom: "16px" }}>Share Your Feedback</h3>
-          <p style={{ marginBottom: "24px", fontSize: "14px", color: "#666" }}>
+        {/* FEEDBACK CARD */}
+        <div className="
+          border border-gray-200 dark:border-gpt-border
+          rounded-xl p-6 shadow-sm
+          bg-white dark:bg-gpt-surface
+        ">
+          <h3 className="font-medium text-lg mb-4 dark:text-gpt-text">
+            Share Your Feedback
+          </h3>
+          <p className="text-gray-600 dark:text-gpt-muted text-sm mb-6">
             Help us improve EduStream by sharing your thoughts, suggestions, or reporting issues.
           </p>
 
           {/* CATEGORY */}
-          <label style={{ fontWeight: 600 }}>Feedback Category</label>
-          <select style={{ width: "100%", padding: "12px", marginTop: "8px", marginBottom: "24px", borderRadius: "8px", border: "1px solid #ccc" }}>
+          <label className="font-semibold text-sm dark:text-gpt-text">
+            Feedback Category
+          </label>
+          <select
+            className="
+              w-full px-3 py-3 mt-2 mb-6 rounded-lg border
+              border-gray-300 dark:border-gpt-border
+              bg-white dark:bg-gpt-bg text-gray-800 dark:text-gpt-text
+              focus:outline-cyan-500 text-sm
+            "
+          >
             <option>Feature Request</option>
             <option>Bug Report</option>
             <option>General Feedback</option>
           </select>
 
           {/* SUBJECT */}
-          <label style={{ fontWeight: 600 }}>Subject</label>
+          <label className="font-semibold text-sm dark:text-gpt-text">Subject</label>
           <input
             placeholder="Brief summary of your feedback"
-            style={{ width: "100%", padding: "12px", marginTop: "8px", marginBottom: "24px", borderRadius: "8px", border: "1px solid #ccc" }}
+            className="
+              w-full px-3 py-3 mt-2 mb-6 rounded-lg border
+              border-gray-300 dark:border-gpt-border
+              bg-white dark:bg-gpt-bg text-gray-900 dark:text-gpt-text
+              focus:outline-cyan-500 text-sm
+            "
           />
 
           {/* FEEDBACK */}
-          <label style={{ fontWeight: 600 }}>Your Feedback</label>
+          <label className="font-semibold text-sm dark:text-gpt-text">
+            Your Feedback
+          </label>
           <textarea
             placeholder="Please share your detailed feedback, suggestions, or describe the issue you encountered..."
-            style={{ width: "100%", height: "180px", padding: "12px", marginTop: "8px", marginBottom: "8px", borderRadius: "8px", border: "1px solid #ccc" }}
-          ></textarea>
-          <span style={{ fontSize: "12px", color: "#777" }}>Minimum 20 characters required</span>
+            className="
+              w-full h-44 px-3 py-3 mt-2 rounded-lg border
+              border-gray-300 dark:border-gpt-border
+              bg-white dark:bg-gpt-bg text-gray-900 dark:text-gpt-text
+              focus:outline-cyan-500 text-sm
+            "
+          />
+          <span className="text-xs text-gray-500 dark:text-gpt-muted">
+            Minimum 20 characters required
+          </span>
 
           {/* EMAIL OPTIONAL */}
-          <div style={{ marginTop: "24px" }}>
-            <label style={{ fontWeight: 600 }}>Email (Optional)</label>
+          <div className="mt-6">
+            <label className="font-semibold text-sm dark:text-gpt-text">
+              Email (Optional)
+            </label>
             <input
               placeholder="your@email.com"
-              style={{ width: "100%", padding: "12px", marginTop: "8px", borderRadius: "8px", border: "1px solid #ccc" }}
+              className="
+                w-full px-3 py-3 mt-2 rounded-lg border
+                border-gray-300 dark:border-gpt-border
+                bg-white dark:bg-gpt-bg text-gray-900 dark:text-gpt-text
+                focus:outline-cyan-500 text-sm
+              "
             />
-            <p style={{ fontSize: "12px", color: "#777", marginTop: "4px" }}>
-              Provide your email if you'd like us to follow up on your feedback
+            <p className="text-xs text-gray-500 dark:text-gpt-muted mt-1">
+              Provide your email if you'd like us to follow up
             </p>
           </div>
 
           {/* INFO BOX */}
-          <div style={{ background: "#f9fafc", padding: "16px", borderRadius: "8px", border: "1px solid #eee", marginTop: "24px", fontSize: "14px" }}>
+          <div className="
+            mt-6 rounded-lg border p-4 text-sm
+            bg-gray-50 dark:bg-gpt-surface
+            border-gray-200 dark:border-gpt-border
+            text-gray-700 dark:text-gpt-muted
+          ">
             ⚠️ Your feedback helps us improve EduStream. We read and consider all submissions carefully.
           </div>
 
           {/* BUTTONS */}
-          <div style={{ marginTop: "24px", display: "flex", justifyContent: "flex-start", gap: "16px" }}>
-            <button style={{ background: "#2563eb", color: "white", padding: "12px 24px", borderRadius: "8px", border: "none", cursor: "pointer" }}>
-              Submit Feedback
+          <div className="mt-6 flex flex-wrap gap-3">
+            <NavLink to="/feedback-success">
+              <button className="
+                px-6 py-3 text-sm rounded-lg transition
+                bg-cyan-600 hover:bg-cyan-700 text-white
+              ">
+                Submit Feedback
+              </button>
+            </NavLink>
+
+            <button className="
+              px-6 py-3 text-sm rounded-lg transition border
+              bg-gray-100 hover:bg-gray-200 text-gray-900
+              dark:bg-gpt-surface dark:border-gpt-border dark:text-gpt-text dark:hover:bg-gpt-border
+            ">
+              Cancel
             </button>
-            <button style={{ background: "#f3f4f6", padding: "12px 24px", borderRadius: "8px", border: "1px solid #ddd", cursor: "pointer" }}>Cancel</button>
           </div>
         </div>
       </div>
 
       {/* FOOTER */}
-      <footer style={{ textAlign: "center", padding: "24px", fontSize: "14px", color: "#777", borderTop: "1px solid #eee" }}>
-        © 2025 EduStream. All rights reserved. &nbsp;•&nbsp; Privacy &nbsp;•&nbsp; Terms &nbsp;•&nbsp; Help
+      <footer className="
+        text-center py-5 text-sm mt-10
+        text-gray-600 border-t border-gray-200
+        dark:text-gpt-muted dark:border-gpt-border
+      ">
+        © 2025 EduStream. All rights reserved. • Privacy • Terms • Help
       </footer>
     </div>
   );
-}
+};
