@@ -1,14 +1,57 @@
-import { NavLink } from "react-router-dom";
+import axios from "axios";
+import { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 
 export const FeedbackPage = () => {
+  const [email, setEmail] = useState("");
+  const [category, setCategory] = useState("");
+  const [topic, setTopic] = useState("");
+  const [feedback, setFeedback] = useState("");
+
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const data = {
+      email,
+      category,
+      topic,
+      feedback,
+    };
+
+    console.log("Sending:", data);
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/support/feedback",
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      console.log("Response:", response.data);
+      navigate("/feedback-success");
+    } catch (error) {
+      console.error(
+        "Feedback failed:",
+        error.response?.data || error.message
+      );
+    }
+  };
+
   return (
-    <div className="
-      font-gpt min-h-screen
-      bg-white text-gray-800
-      dark:bg-gpt-bg dark:text-gpt-text
-      transition-colors duration-300
-    ">
-      
+    <div
+      className="
+        font-gpt min-h-screen
+        bg-white text-gray-800
+        dark:bg-gpt-bg dark:text-gpt-text
+        transition-colors duration-300
+      "
+    >
       {/* PAGE BODY */}
       <div className="max-w-3xl mx-auto px-4 py-10">
         <NavLink
@@ -25,126 +68,122 @@ export const FeedbackPage = () => {
           Send Us Your Feedback
         </h1>
         <p className="text-gray-600 dark:text-gpt-muted text-sm sm:text-base mb-8">
-          We value your suggestions and opinions. Help us improve EduStream by sharing your thoughts.
+          We value your suggestions and opinions. Help us improve EduStream by
+          sharing your thoughts.
         </p>
 
-        {/* FEEDBACK CARD */}
-        <div className="
-          border border-gray-200 dark:border-gpt-border
-          rounded-xl p-6 shadow-sm
-          bg-white dark:bg-gpt-surface
-        ">
-          <h3 className="font-medium text-lg mb-4 dark:text-gpt-text">
-            Share Your Feedback
-          </h3>
-          <p className="text-gray-600 dark:text-gpt-muted text-sm mb-6">
-            Help us improve EduStream by sharing your thoughts, suggestions, or reporting issues.
-          </p>
-
-          {/* CATEGORY */}
-          <label className="font-semibold text-sm dark:text-gpt-text">
-            Feedback Category
-          </label>
-          <select
+        {/* FEEDBACK FORM */}
+        <form onSubmit={handleSubmit}>
+          <div
             className="
-              w-full px-3 py-3 mt-2 mb-6 rounded-lg border
-              border-gray-300 dark:border-gpt-border
-              bg-white dark:bg-gpt-bg text-gray-800 dark:text-gpt-text
-              focus:outline-cyan-500 text-sm
+              border border-gray-200 dark:border-gpt-border
+              rounded-xl p-6 shadow-sm
+              bg-white dark:bg-gpt-surface
             "
           >
-            <option>Feature Request</option>
-            <option>Bug Report</option>
-            <option>General Feedback</option>
-          </select>
+            <h3 className="font-medium text-lg mb-4 dark:text-gpt-text">
+              Share Your Feedback
+            </h3>
 
-          {/* SUBJECT */}
-          <label className="font-semibold text-sm dark:text-gpt-text">Subject</label>
-          <input
-            placeholder="Brief summary of your feedback"
-            className="
-              w-full px-3 py-3 mt-2 mb-6 rounded-lg border
-              border-gray-300 dark:border-gpt-border
-              bg-white dark:bg-gpt-bg text-gray-900 dark:text-gpt-text
-              focus:outline-cyan-500 text-sm
-            "
-          />
-
-          {/* FEEDBACK */}
-          <label className="font-semibold text-sm dark:text-gpt-text">
-            Your Feedback
-          </label>
-          <textarea
-            placeholder="Please share your detailed feedback, suggestions, or describe the issue you encountered..."
-            className="
-              w-full h-44 px-3 py-3 mt-2 rounded-lg border
-              border-gray-300 dark:border-gpt-border
-              bg-white dark:bg-gpt-bg text-gray-900 dark:text-gpt-text
-              focus:outline-cyan-500 text-sm
-            "
-          />
-          <span className="text-xs text-gray-500 dark:text-gpt-muted">
-            Minimum 20 characters required
-          </span>
-
-          {/* EMAIL OPTIONAL */}
-          <div className="mt-6">
+            {/* CATEGORY */}
             <label className="font-semibold text-sm dark:text-gpt-text">
-              Email (Optional)
+              Feedback Category
+            </label>
+            <select
+              className="
+                w-full px-3 py-3 mt-2 mb-6 rounded-lg border
+                border-gray-300 dark:border-gpt-border
+                bg-white dark:bg-gpt-bg text-gray-800 dark:text-gpt-text
+                focus:outline-cyan-500 text-sm
+              "
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              required
+            >
+              <option value="">Select category</option>
+              <option value="Feature Request">Feature Request</option>
+              <option value="Bug Report">Bug Report</option>
+              <option value="General Feedback">General Feedback</option>
+            </select>
+
+            {/* SUBJECT */}
+            <label className="font-semibold text-sm dark:text-gpt-text">
+              Subject
             </label>
             <input
-              placeholder="your@email.com"
+              placeholder="Brief summary of your feedback"
               className="
-                w-full px-3 py-3 mt-2 rounded-lg border
+                w-full px-3 py-3 mt-2 mb-6 rounded-lg border
                 border-gray-300 dark:border-gpt-border
                 bg-white dark:bg-gpt-bg text-gray-900 dark:text-gpt-text
                 focus:outline-cyan-500 text-sm
               "
+              value={topic}
+              onChange={(e) => setTopic(e.target.value)}
+              required
             />
-            <p className="text-xs text-gray-500 dark:text-gpt-muted mt-1">
-              Provide your email if you'd like us to follow up
-            </p>
-          </div>
 
-          {/* INFO BOX */}
-          <div className="
-            mt-6 rounded-lg border p-4 text-sm
-            bg-gray-50 dark:bg-gpt-surface
-            border-gray-200 dark:border-gpt-border
-            text-gray-700 dark:text-gpt-muted
-          ">
-            ⚠️ Your feedback helps us improve EduStream. We read and consider all submissions carefully.
-          </div>
+            {/* MESSAGE */}
+            <label className="font-semibold text-sm dark:text-gpt-text">
+              Your Feedback
+            </label>
+            <textarea
+              placeholder="Please share your detailed feedback..."
+              className="
+                w-full h-44 px-3 py-3 mt-2 rounded-lg border
+                border-gray-300 dark:border-gpt-border
+                bg-white dark:bg-gpt-bg text-gray-900 dark:text-gpt-text
+                focus:outline-cyan-500 text-sm
+              "
+              value={feedback}
+              onChange={(e) => setFeedback(e.target.value)}
+              minLength={20}
+              required
+            />
 
-          {/* BUTTONS */}
-          <div className="mt-6 flex flex-wrap gap-3">
-            <NavLink to="/feedback-success">
-              <button className="
-                px-6 py-3 text-sm rounded-lg transition
-                bg-cyan-600 hover:bg-cyan-700 text-white
-              ">
+            {/* EMAIL */}
+            <div className="mt-6">
+              <label className="font-semibold text-sm dark:text-gpt-text">
+                Email (optional)
+              </label>
+              <input
+                placeholder="your@email.com"
+                className="
+                  w-full px-3 py-3 mt-2 rounded-lg border
+                  border-gray-300 dark:border-gpt-border
+                  bg-white dark:bg-gpt-bg text-gray-900 dark:text-gpt-text
+                  focus:outline-cyan-500 text-sm
+                "
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+
+            {/* BUTTON */}
+            <div className="mt-6">
+              <button
+                type="submit"
+                className="
+                  px-6 py-3 text-sm rounded-lg transition
+                  bg-cyan-600 hover:bg-cyan-700 text-white
+                "
+              >
                 Submit Feedback
               </button>
-            </NavLink>
-
-            <button className="
-              px-6 py-3 text-sm rounded-lg transition border
-              bg-gray-100 hover:bg-gray-200 text-gray-900
-              dark:bg-gpt-surface dark:border-gpt-border dark:text-gpt-text dark:hover:bg-gpt-border
-            ">
-              Cancel
-            </button>
+            </div>
           </div>
-        </div>
+        </form>
       </div>
 
       {/* FOOTER */}
-      <footer className="
-        text-center py-5 text-sm mt-10
-        text-gray-600 border-t border-gray-200
-        dark:text-gpt-muted dark:border-gpt-border
-      ">
-        © 2025 EduStream. All rights reserved. • Privacy • Terms • Help
+      <footer
+        className="
+          text-center py-5 text-sm mt-10
+          text-gray-600 border-t border-gray-200
+          dark:text-gpt-muted dark:border-gpt-border
+        "
+      >
+        © 2025 EduStream. All rights reserved.
       </footer>
     </div>
   );

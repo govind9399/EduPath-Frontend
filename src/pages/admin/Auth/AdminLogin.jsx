@@ -3,6 +3,7 @@ import { Lock, User } from "lucide-react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
 // Mock admin accounts for demo
 const MOCK_STUDENTS = {
   "student@edupath.com": {
@@ -52,8 +53,27 @@ export function AdminLogin({ onLogin }) {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const data= {
+      email,
+      password
+    }
+    console.log("sending", data)
+    try{
+        const response= await axios.post(
+           "http://localhost:3000/api/auth/login",
+           data,{
+              headers:{
+                 "Content-Type": "application/json"
+              }
+           }
+        )
+        console.log("Response: ", response.data)
+    }
+    catch(error){
+       console.log(error);
+    }
     setError("");
 
     const adminAccount = MOCK_ADMINS[email];

@@ -11,10 +11,14 @@ export default function Register() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [role, setRole] = useState("learner");
-
+  const [role, setRole] = useState("student");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
+      setError("");
+      setSuccess("");
 
     const data = {
       username,
@@ -36,16 +40,19 @@ export default function Register() {
           },
         }
       );
-
-      console.log("Response:", response.data);
+       setSuccess(response.data.message);
+      console.log("Token:", response.data.token);
 
       // navigate ONLY after successful backend response
       navigate("/profilesetup");
     } catch (error) {
-      console.error(
-        "Registration failed:",
-        error.response?.data || error.message
-      );
+        setError(
+           error.response?.data?.message || "Something went wrong"
+        );
+      // console.error(
+        // "Registration failed:",
+        // error.response?.data || error.message
+      // );
     }
   };
 
@@ -79,7 +86,8 @@ export default function Register() {
 
         {/* FORM */}
         <form className="mt-8 space-y-5" onSubmit={handleSubmit}>
-
+           {error && <p style={{color:"red"}}> {error}</p>}
+           {success && <p style={{color:"green"}}> {success}</p>}
           {/* Email */}
           <div>
             <label className="text-sm font-medium text-gray-700 dark:text-gpt-text">
@@ -163,9 +171,9 @@ export default function Register() {
             <div className="flex justify-around gap-3">
               <button
                 type="button"
-                onClick={() => setRole("learner")}
+                onClick={() => setRole("student")}
                 className={`flex flex-col w-32 border px-4 py-3 rounded-xl transition
-                ${role === "learner"
+                ${role === "student"
                   ? "border-cyan-600 bg-cyan-50 text-cyan-700 dark:bg-cyan-900/30 dark:border-cyan-500"
                   : "border-gray-300 dark:border-gpt-border dark:text-gpt-muted"}`}
               >
@@ -175,9 +183,9 @@ export default function Register() {
 
               <button
                 type="button"
-                onClick={() => setRole("instructor")}
+                onClick={() => setRole("educator")}
                 className={`flex flex-col w-32 border px-4 py-3 rounded-xl transition
-                ${role === "instructor"
+                ${role === "educator"
                   ? "border-cyan-600 bg-cyan-50 text-cyan-700 dark:bg-cyan-900/30 dark:border-cyan-500"
                   : "border-gray-300 dark:border-gpt-border dark:text-gpt-muted"}`}
               >

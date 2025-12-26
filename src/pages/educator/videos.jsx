@@ -2,8 +2,32 @@ import { NavLink } from "react-router-dom";
 import { Play, Search, Filter } from "lucide-react";
 import { Sidebar } from "../../componets/creator/sidebar";
 import { Navbar } from "../../componets/creator/navbar";
+import { useState } from "react";
+import { useEffect } from "react";
+import axios from "axios";
 
 export const Videos = () => {
+    const [videos, setVideos] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
+
+     useEffect(()=>{
+        const fetchVideos = async ()=>{
+           try{
+            const response = await axios.get(
+              "http://localhost:300/api/video"
+            );
+            setVideos(response.data.videos);
+           }catch(error){
+            setError("Failed to load videos");
+           }finally{
+            setLoading(false);
+           }
+        }
+        fetchVideos();
+     }, []);
+      if(loading) return <p>Loading videos ... </p>
+      if(error) return <p>{error}</p>
   const trendingCourses = [
     // ...your existing data
     {
@@ -184,6 +208,8 @@ export const Videos = () => {
               </NavLink>
             ))}
           </div>
+
+          
         </div>
       </div>
     </div>

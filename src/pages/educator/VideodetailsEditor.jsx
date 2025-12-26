@@ -2,14 +2,41 @@ import { useState } from "react";
 import { X } from "lucide-react";
 import { Navbar } from "../../componets/creator/navbar";
 import { Sidebar } from "../../componets/creator/sidebar";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export const VideoDetailsEditor = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [tagInput, setTagInput] = useState("");
   const [tags, setTags] = useState([]);
+  const navigate= useNavigate();
 
+const handleSubmit = async ()=>{
+        e.preventDefault();
+        const data= {
+            title,
+            description,
+            tagInput,
+            tags
+        }
+      try{
+          const response = await axios.post(
+             "http://localhost/3000/api/video/details",
+             data,
+             {
+              header:{
+                 "Content-Type" : "json"
+              }
+             }
+          )
+          console.log(response)
+          console.log(data);
+          navigate("/thumbnail")
+      }catch(error){
+        console.error(error);
+      }
+}
   const suggestedTags = [
     "Programming",
     "Web Development",
@@ -56,6 +83,7 @@ export const VideoDetailsEditor = () => {
         </p>
 
         {/* FORM CARD */}
+        <form  onSubmit={handleSubmit}>
         <div className="mt-6 bg-white dark:bg-gpt-surface border border-gray-200 dark:border-gpt-border rounded-xl shadow-sm p-5 sm:p-8 space-y-8">
           {/* Title */}
           <div>
@@ -158,7 +186,6 @@ export const VideoDetailsEditor = () => {
             </div>
           </div>
         </div>
-
         {/* Footer Buttons */}
         <div className="flex flex-wrap justify-end gap-3 mt-6">
           <NavLink to="/upload-video">
@@ -166,13 +193,14 @@ export const VideoDetailsEditor = () => {
               Cancel
             </button>
           </NavLink>
-          <NavLink
-            to="/thumbnail"
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700"
+          <button type="submit"
+             className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700"
           >
             Next
-          </NavLink>
+          </button>
         </div>
+     </form>
+
       </div>
     </div>
   );

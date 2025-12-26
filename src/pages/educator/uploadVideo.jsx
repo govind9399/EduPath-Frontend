@@ -1,26 +1,51 @@
 import { Upload } from "lucide-react";
 import { useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { GrFormNextLink } from "react-icons/gr";
 import { Navbar } from "../../componets/creator/navbar";
 import { Sidebar } from "../../componets/creator/sidebar";
+import axios from "axios";
 
 export default function UploadVideo() {
-  const [file, setFile] = useState(null);
+  const [video, setVideo] = useState(null);
+  const navigate = useNavigate();
 
-  const handleFileChange = (e) => {
-    const selectedFile = e.target.files[0];
-    setFile(selectedFile);
-  };
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  if (!video) {
+    alert("Please select a video file");
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("video", video);
+
+  try {
+    const response = await axios.post(
+      "http://localhost:3000/api/video/upload-video",
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+
+    console.log(response.data);
+    navigate("/video-details-editor");
+  } catch (error) {
+    console.error("Upload error:", error);
+  }
+};
+
 
   return (
     <div className="min-h-screen flex bg-gray-50 dark:bg-gpt-bg dark:text-gpt-text transition">
       {/* NAVBAR */}
       <Navbar />
-
       {/* SIDEBAR */}
       <Sidebar />
-
       {/* MAIN CONTENT */}
       <div className="flex-1 md:ml-64 px-4 py-24">
         <NavLink
@@ -39,6 +64,7 @@ export default function UploadVideo() {
         </p>
 
         {/* UPLOAD CARD */}
+       <form  onSubmit={handleSubmit}>
         <div className="mt-6 sm:mt-8 bg-white dark:bg-gpt-surface border border-gray-200 dark:border-gpt-border rounded-xl shadow-sm p-5 sm:p-8 space-y-6">
           {/* TITLE */}
           <div>
@@ -69,16 +95,17 @@ export default function UploadVideo() {
               Choose File
               <input
                 type="file"
+                accept="video/*"
                 className="hidden"
-                onChange={handleFileChange}
+                onChange={(e)=>setVideo(e.target.files[0])}
               />
             </label>
 
-            {file && (
+            {video && (
               <p className="mt-2 text-sm dark:text-gpt-text">
                 Selected File:{" "}
                 <span className="font-semibold text-blue-700 dark:text-gpt-text">
-                  {file.name}
+                  {video.name}
                 </span>
               </p>
             )}
@@ -89,14 +116,14 @@ export default function UploadVideo() {
           </div>
 
           {/* NEXT BUTTON */}
-          {file && (
-            <div className="flex justify-center">
-              <Link to="/video-details-editor">
+          {video && (
+            <button type="submit" className="flex justify-center">
+              {/* <Link to="/video-details-editor"> */}
                 <span className="px-6 py-2 rounded-xl flex items-center gap-2 bg-blue-700 text-white text-sm sm:text-base hover:bg-blue-800">
                   Next <GrFormNextLink className="text-xl" />
                 </span>
-              </Link>
-            </div>
+              {/* </Link> */}
+            </button>
           )}
 
           {/* TIPS BOX */}
@@ -113,6 +140,7 @@ export default function UploadVideo() {
             </ul>
           </div>
         </div>
+        </form>
       </div>
     </div>
   );

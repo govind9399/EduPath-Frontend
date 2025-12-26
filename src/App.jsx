@@ -5,7 +5,7 @@ import { PlaylistManagementPage } from "./playlist";
 // ================= AUTH PAGES =================
 import Login from "./pages/auth/login";
 import AuthLanding from "./pages/auth/AuthenticationEntry";
-import Register from "./pages/auth/Register";
+import Register from "./pages/Auth/Register";
 import ResetPassword from "./pages/auth/resetpassword";
 import UserProfileSetup from "./pages/auth/UserProfileSetup";
 import VerifyEmail from "./pages/auth/VerifyEmail";

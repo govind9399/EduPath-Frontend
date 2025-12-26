@@ -1,4 +1,12 @@
  @import "tailwindcss";
-* {
-  @apply transition-colors duration-300;
-}
+/* * { */
+  /* @apply transition-colors duration-300; */
+/* } */
+ @layer base{
+     html{
+        scroll-behavior: smooth;
+     }
+ }
+ ::-webkit-scrollbar{
+    display: none;
+ }
