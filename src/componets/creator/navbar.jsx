@@ -5,13 +5,32 @@ import { CiSearch } from "react-icons/ci";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { FaMicrophone } from "react-icons/fa";
 import { ThemeToggle } from "../themeToggle/themetoggle";
+import axios from "axios";
 
 export const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [profilePic, setProfilePic] = useState(null);
+
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
 
+  useEffect(()=>{
+        const fetchProfile= async ()=>{
+          try{
+            const token = localStorage.getItem("token");
+            const res= await axios.get("http://localhost:3000/api/auth/me",{headers:{Authorization:`Bearer ${token}`}})
+
+            const pictureUrl = res.data.user?.pictureUrl;
+            if(pictureUrl){
+               setProfilePic(`http://localhost:3000/${pictureUrl}`);
+            }
+          }catch(error){
+            console.error("Falied to load profile picture", error)
+          }
+         }
+         fetchProfile();
+  }, [])
   const handleVoiceInput = () => {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SpeechRecognition) return alert("Your browser doesn't support voice recognition.");
@@ -83,11 +102,18 @@ export const Navbar = () => {
           <IoMdNotificationsOutline className="md:text-3xl text-2xl cursor-pointer dark:text-gpt-text" />
 
           <div ref={dropdownRef} className="relative">
+            {profilePic ?(
+              <img src={profilePic} alt="profile"  className="w-9 h-9 rounded-full object-cover border"
+              onClick={() => setDropdownOpen((prev) => !prev)}
+              />
+            ):(
+
             <CgProfile
               className="md:text-3xl text-2xl cursor-pointer dark:text-gpt-text"
               onClick={() => setDropdownOpen((prev) => !prev)}
             />
-
+            )}
+      
             {dropdownOpen && (
               <div
                 className="

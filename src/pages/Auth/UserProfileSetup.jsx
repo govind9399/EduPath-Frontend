@@ -28,6 +28,7 @@ export default function UserProfileSetup() {
   const [preview, setPreview] = useState(null);
   const [selected, setSelected] = useState([]);
 
+  /* ================= IMAGE HANDLER ================= */
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -36,6 +37,16 @@ export default function UserProfileSetup() {
     setPreview(URL.createObjectURL(file));
   };
 
+  /* ================= INTEREST HANDLER ================= */
+  const toggleInterest = (interest) => {
+    setSelected((prev) =>
+      prev.includes(interest)
+        ? prev.filter((i) => i !== interest)
+        : [...prev, interest]
+    );
+  };
+
+  /* ================= SUBMIT HANDLER ================= */
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -49,18 +60,17 @@ export default function UserProfileSetup() {
     }
 
     try {
-      const response = await axios.post(
+      const response = await axios.put(
         "http://localhost:3000/api/auth/profile",
         formData,
         {
           headers: {
-            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         }
       );
 
-      console.log("Response:", response.data);
-      console.log(formData)
+      console.log("Profile updated:", response.data);
       navigate("/homepage");
     } catch (error) {
       console.error(
@@ -68,14 +78,6 @@ export default function UserProfileSetup() {
         error.response?.data || error.message
       );
     }
-  };
-
-  const toggleInterest = (interest) => {
-    setSelected((prev) =>
-      prev.includes(interest)
-        ? prev.filter((i) => i !== interest)
-        : [...prev, interest]
-    );
   };
 
   return (
@@ -88,7 +90,7 @@ export default function UserProfileSetup() {
             Complete Your Profile
           </h1>
 
-          {/* Image Upload */}
+          {/* ================= IMAGE UPLOAD ================= */}
           <div className="flex flex-col items-center mt-10">
             <img
               src={preview || "https://via.placeholder.com/100"}
@@ -108,10 +110,11 @@ export default function UserProfileSetup() {
             </label>
           </div>
 
-          {/* Form */}
+          {/* ================= FORM ================= */}
           <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-10">
               <input
+                type="text"
                 placeholder="First Name"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
@@ -119,6 +122,7 @@ export default function UserProfileSetup() {
               />
 
               <input
+                type="text"
                 placeholder="Last Name"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
@@ -126,40 +130,36 @@ export default function UserProfileSetup() {
               />
             </div>
 
-            {/* Interests */}
+            {/* ================= INTERESTS ================= */}
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-8">
               {interests.map((interest) => (
                 <button
                   key={interest}
                   type="button"
                   onClick={() => toggleInterest(interest)}
-                  className={`py-2 border rounded ${
+                  className={`py-2 border rounded flex items-center justify-center gap-1 ${
                     selected.includes(interest)
                       ? "bg-cyan-600 text-white"
                       : "bg-white"
                   }`}
                 >
                   {selected.includes(interest) && (
-                    <Check className="inline w-4 mr-1" />
+                    <Check className="w-4" />
                   )}
                   {interest}
                 </button>
               ))}
             </div>
 
-            {/* Buttons */}
+            {/* ================= BUTTONS ================= */}
             <div className="flex justify-between mt-8">
-              <NavLink
-                to="/homepage"
-                className="px-6 py-3 border rounded"
-              >
+              <NavLink to="/homepage" className="px-6 py-3 border rounded">
                 Skip
               </NavLink>
 
               <button
                 type="submit"
-                className="px-6 py-3 bg-cyan-600 text-white rounded"
-              >
+                className="px-6 py-3 bg-cyan-600 text-white rounded">
                 Complete Setup
               </button>
             </div>

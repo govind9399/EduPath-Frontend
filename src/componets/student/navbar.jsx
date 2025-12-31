@@ -5,12 +5,44 @@ import { CiSearch } from "react-icons/ci";
 import { FaMicrophone } from "react-icons/fa";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { ThemeToggle } from "../themeToggle/themetoggle";
+import axios from "axios";
 
 export const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [profilePic, setProfilePic] = useState(null);
+
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
 
+  /* ================= FETCH PROFILE ================= */
+  useEffect(() => {
+    console.log("Navbar useEffect started");
+
+    const fetchProfile = async () => {
+      try {
+        const token = localStorage.getItem("token"); // ✅ FIX
+        const res = await axios.get(
+          "http://localhost:3000/api/auth/me",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        const pictureUrl = res.data.user?.pictureUrl;
+        if (pictureUrl) {
+          setProfilePic(`http://localhost:3000/${pictureUrl}`);
+        }
+      } catch (error) {
+        console.error("Failed to load profile picture", error);
+      }
+    };
+
+    fetchProfile();
+  }, []);
+
+  /* ================= DROPDOWN CLOSE ================= */
   useEffect(() => {
     function handleClickOutside(event) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -18,8 +50,15 @@ export const Navbar = () => {
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    return () =>
+      document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  /* ================= LOGOUT ================= */
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
 
   return (
     <header
@@ -36,7 +75,9 @@ export const Navbar = () => {
           <div className="w-9 h-9 rounded-md bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold">
             EP
           </div>
-          <span className="font-semibold text-lg dark:text-gpt-text">EduPath</span>
+          <span className="font-semibold text-lg dark:text-gpt-text">
+            EduPath
+          </span>
         </NavLink>
 
         {/* SEARCH BAR (Desktop) */}
@@ -49,7 +90,6 @@ export const Navbar = () => {
                 bg-white text-gray-800 border-gray-200
                 focus:outline-none focus:ring-2 focus:ring-cyan-500
                 dark:bg-gpt-bg dark:text-gpt-text dark:border-gpt-border
-                dark:focus:ring-cyan-400
               "
                 placeholder="Search courses, videos, creators..."
               />
@@ -59,36 +99,51 @@ export const Navbar = () => {
           </div>
         </div>
 
-        {/* THEME TOGGLE */}
+        {/* PROFILE + ACTIONS */}
+        <div className="flex relative shrink-0 items-center" ref={dropdownRef}>
+          <ThemeToggle />
 
-        {/* PROFILE + DROPDOWN */}
-        <div className="flex relative shrink-0" ref={dropdownRef}>
-        <ThemeToggle />
-          <IoMdNotificationsOutline className="md:text-3xl text-2xl mx-2 cursor-pointer text-gray-800 dark:text-gpt-text hover:text-cyan-500 dark:hover:text-cyan-400" />
+          <IoMdNotificationsOutline className="md:text-3xl text-2xl mx-2 cursor-pointer text-gray-800 dark:text-gpt-text hover:text-cyan-500" />
 
-          <RiAccountCircleLine
+          {/* PROFILE IMAGE / ICON */}
+          <div
             onClick={() => setDropdownOpen(prev => !prev)}
-            className="hover:text-cyan-500 dark:hover:text-cyan-400 transition md:text-3xl text-2xl cursor-pointer text-gray-800 dark:text-gpt-text"
-          />
+            className="cursor-pointer"
+          >
+            {profilePic ? (
+              <img
+                src={profilePic}
+                alt="profile"
+                className="w-9 h-9 rounded-full object-cover border"
+              />
+            ) : (
+              <RiAccountCircleLine className="md:text-3xl text-2xl text-gray-800 dark:text-gpt-text hover:text-cyan-500" />
+            )}
+          </div>
 
+          {/* DROPDOWN */}
           {dropdownOpen && (
             <div
               className="
-              absolute right-0 mt-2 w-56 bg-white border shadow-lg rounded-lg py-2 text-sm
+              absolute right-0 mt-18 w-56 bg-white border shadow-lg rounded-lg py-2 text-sm
               border-gray-200
               dark:bg-gpt-surface dark:border-gpt-border dark:text-gpt-text
-              backdrop-blur-sm
             "
             >
-              <Link className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gpt-border" to="/student-dashboard">Dashboard</Link>
-              <Link className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gpt-border" to="/watch-history">Watch History</Link>
-              {/* <Link className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gpt-border" to="/saved">Saved Courses</Link> */}
-              {/* <Link className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gpt-border" to="/creator-dashboard">Switch to Creator</Link> */}
-              <Link className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gpt-border" to="/settings">Settings</Link>
-
-              <Link className="block px-4 py-2 hover:bg-red-50 dark:hover:bg-gpt-border text-red-500" to="/">
-                Sign Out
+              <Link className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gpt-border" to="/student-dashboard">
+                Dashboard
               </Link>
+
+              <Link className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gpt-border" to="/settings">
+                Settings
+              </Link>
+
+              <button
+                onClick={handleLogout}
+                className="block w-full text-left px-4 py-2 hover:bg-red-50 text-red-500"
+              >
+                Sign Out
+              </button>
             </div>
           )}
         </div>
@@ -102,7 +157,7 @@ export const Navbar = () => {
             w-full pl-4 pr-20 py-2 rounded-lg border text-sm shadow-sm
             bg-white text-gray-800 border-gray-200
             dark:bg-gpt-bg dark:text-gpt-text dark:border-gpt-border
-            focus:outline-none focus:ring-2 focus:ring-cyan-500 dark:focus:ring-cyan-400
+            focus:outline-none focus:ring-2 focus:ring-cyan-500
           "
             placeholder="Search courses, videos, creators..."
           />

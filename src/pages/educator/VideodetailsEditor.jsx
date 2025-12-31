@@ -2,41 +2,47 @@ import { useState } from "react";
 import { X } from "lucide-react";
 import { Navbar } from "../../componets/creator/navbar";
 import { Sidebar } from "../../componets/creator/sidebar";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-
+// import { useParams } from "react-router-dom";
 export const VideoDetailsEditor = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [tagInput, setTagInput] = useState("");
   const [tags, setTags] = useState([]);
   const navigate= useNavigate();
+   const {videoId} = useParams();
+  console.log("Video id from url", videoId);
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-const handleSubmit = async ()=>{
-        e.preventDefault();
-        const data= {
-            title,
-            description,
-            tagInput,
-            tags
-        }
-      try{
-          const response = await axios.post(
-             "http://localhost/3000/api/video/details",
-             data,
-             {
-              header:{
-                 "Content-Type" : "json"
-              }
-             }
-          )
-          console.log(response)
-          console.log(data);
-          navigate("/thumbnail")
-      }catch(error){
-        console.error(error);
+  const data = {
+    title,
+    description,
+    tags,
+  };
+
+  try {
+    const response = await axios.put(
+      `http://localhost:3000/api/video/${videoId}/details`,
+      data,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
       }
-}
+    );
+
+    if (response.data.success) {
+      navigate(`/video/${videoId}/thumbnail`);
+    }
+  } catch (error) {
+    console.error("Update failed:", error.response?.data || error.message);
+  }
+};
+    
+       
+ 
   const suggestedTags = [
     "Programming",
     "Web Development",

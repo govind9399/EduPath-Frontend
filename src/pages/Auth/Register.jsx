@@ -14,45 +14,44 @@ export default function Register() {
   const [role, setRole] = useState("student");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-      setError("");
-      setSuccess("");
+    setError("");
+    setSuccess("");
 
-    const data = {
-      username,
-      email,
-      password,
-      confirmPassword,
-      role,
-    };
-
-    console.log("Sending:", data);
+    // ✅ Password match check
+    if (password !== confirmPassword) {
+      return setError("Passwords do not match");
+    }
 
     try {
       const response = await axios.post(
         "http://localhost:3000/api/auth/register",
-        data,
+        {
+          username,
+          email,
+          password,
+          role,
+        },
         {
           headers: {
             "Content-Type": "application/json",
           },
         }
       );
-       setSuccess(response.data.message);
-      console.log("Token:", response.data.token);
 
-      // navigate ONLY after successful backend response
-      navigate("/profilesetup");
-    } catch (error) {
-        setError(
-           error.response?.data?.message || "Something went wrong"
-        );
-      // console.error(
-        // "Registration failed:",
-        // error.response?.data || error.message
-      // );
+      const { token, message } = response.data;
+
+      // ✅ Store JWT (SECURE FLOW)
+      localStorage.setItem("token", token);
+
+      setSuccess(message);
+
+      // ✅ Secure navigation (NO userId)
+      navigate("/profile");
+    } catch (err) {
+      setError(err.response?.data?.message || "Something went wrong");
     }
   };
 
@@ -74,7 +73,6 @@ export default function Register() {
       {/* FORM CARD */}
       <div className="w-full max-w-md bg-white dark:bg-gpt-surface border border-gray-200 dark:border-gpt-border mt-28 p-6 sm:p-8 rounded-xl shadow-lg transition">
 
-        {/* HEADING */}
         <div className="flex flex-col items-center">
           <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gpt-text">
             Create Your Account
@@ -84,130 +82,62 @@ export default function Register() {
           </p>
         </div>
 
-        {/* FORM */}
         <form className="mt-8 space-y-5" onSubmit={handleSubmit}>
-           {error && <p style={{color:"red"}}> {error}</p>}
-           {success && <p style={{color:"green"}}> {success}</p>}
-          {/* Email */}
-          <div>
-            <label className="text-sm font-medium text-gray-700 dark:text-gpt-text">
-              Email Address
-            </label>
-            <input
-              type="email"
-              placeholder="you@example.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 w-full border dark:bg-gpt-surface dark:text-gpt-text dark:border-gpt-border rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-cyan-600 outline-none"
-            />
+          {error && <p className="text-red-500 text-sm">{error}</p>}
+          {success && <p className="text-green-500 text-sm">{success}</p>}
+
+          <input
+            type="email"
+            placeholder="you@example.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full border rounded-lg px-4 py-2"
+          />
+
+          <input
+            type="text"
+            placeholder="your_username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            className="w-full border rounded-lg px-4 py-2"
+          />
+
+          <input
+            type={showPassword ? "text" : "password"}
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full border rounded-lg px-4 py-2"
+          />
+
+          <input
+            type={showConfirmPassword ? "text" : "password"}
+            placeholder="Confirm Password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            className="w-full border rounded-lg px-4 py-2"
+          />
+
+          <div className="flex gap-4 justify-center">
+            <button type="button" onClick={() => setRole("student")}>
+              Student
+            </button>
+            <button type="button" onClick={() => setRole("educator")}>
+              Educator
+            </button>
           </div>
 
-          {/* Username */}
-          <div>
-            <label className="text-sm font-medium text-gray-700 dark:text-gpt-text">
-              Username
-            </label>
-            <input
-              type="text"
-              placeholder="your_username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              className="mt-1 w-full border dark:bg-gpt-surface dark:text-gpt-text dark:border-gpt-border rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-cyan-600 outline-none"
-            />
-          </div>
-
-          {/* Password */}
-          <div>
-            <label className="text-sm font-medium text-gray-700 dark:text-gpt-text">
-              Password
-            </label>
-            <div className="relative">
-              <input
-                type={showPassword ? "text" : "password"}
-                placeholder="********"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="mt-1 w-full border dark:bg-gpt-surface dark:text-gpt-text dark:border-gpt-border rounded-lg px-4 py-2 pr-10 text-sm focus:ring-2 focus:ring-cyan-600 outline-none"
-              />
-              <span
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-[11px] cursor-pointer text-gray-500 dark:text-gpt-muted text-sm"
-              >
-                {showPassword ? "👁️" : "👁"}
-              </span>
-            </div>
-          </div>
-
-          {/* Confirm Password */}
-          <div>
-            <label className="text-sm font-medium text-gray-700 dark:text-gpt-text">
-              Confirm Password
-            </label>
-            <div className="relative">
-              <input
-                type={showConfirmPassword ? "text" : "password"}
-                placeholder="********"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                className="mt-1 w-full border dark:bg-gpt-surface dark:text-gpt-text dark:border-gpt-border rounded-lg px-4 py-2 pr-10 text-sm focus:ring-2 focus:ring-cyan-600 outline-none"
-              />
-              <span
-                onClick={() =>
-                  setShowConfirmPassword(!showConfirmPassword)
-                }
-                className="absolute right-3 top-[11px] cursor-pointer text-gray-500 dark:text-gpt-muted text-sm"
-              >
-                {showConfirmPassword ? "👁️" : "👁"}
-              </span>
-            </div>
-          </div>
-
-          {/* ROLE SELECTION */}
-          <div className="flex flex-col text-center mt-4">
-            <h3 className="my-3 font-semibold text-gray-800 dark:text-gpt-text">
-              I want to
-            </h3>
-
-            <div className="flex justify-around gap-3">
-              <button
-                type="button"
-                onClick={() => setRole("student")}
-                className={`flex flex-col w-32 border px-4 py-3 rounded-xl transition
-                ${role === "student"
-                  ? "border-cyan-600 bg-cyan-50 text-cyan-700 dark:bg-cyan-900/30 dark:border-cyan-500"
-                  : "border-gray-300 dark:border-gpt-border dark:text-gpt-muted"}`}
-              >
-                <p className="text-base font-semibold">Learn</p>
-                <p className="text-xs">I'm a student</p>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setRole("educator")}
-                className={`flex flex-col w-32 border px-4 py-3 rounded-xl transition
-                ${role === "educator"
-                  ? "border-cyan-600 bg-cyan-50 text-cyan-700 dark:bg-cyan-900/30 dark:border-cyan-500"
-                  : "border-gray-300 dark:border-gpt-border dark:text-gpt-muted"}`}
-              >
-                <p className="text-base font-semibold">Teach</p>
-                <p className="text-xs">I'm an instructor</p>
-              </button>
-            </div>
-          </div>
-
-          {/* CTA — FIXED */}
           <button
             type="submit"
-            className="w-full bg-cyan-600 hover:bg-cyan-700 text-white py-2 rounded-lg font-semibold flex items-center justify-center text-sm sm:text-base transition"
+            className="w-full bg-cyan-600 text-white py-2 rounded-lg"
           >
             Create Account
           </button>
         </form>
 
-        {/* LOGIN LINK */}
-        <p className="text-center text-sm mt-6 text-gray-700 dark:text-gpt-text">
+        <p className="text-center text-sm mt-6">
           Already have an account?{" "}
-          <Link to="/login" className="text-cyan-600 font-medium hover:underline">
+          <Link to="/login" className="text-cyan-600 font-medium">
             Sign In
           </Link>
         </p>

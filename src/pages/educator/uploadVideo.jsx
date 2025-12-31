@@ -23,7 +23,7 @@ const handleSubmit = async (e) => {
 
   try {
     const response = await axios.post(
-      "http://localhost:3000/api/video/upload-video",
+      "http://localhost:3000/api/video/upload",
       formData,
       {
         headers: {
@@ -33,7 +33,7 @@ const handleSubmit = async (e) => {
     );
 
     console.log(response.data);
-    navigate("/video-details-editor");
+navigate(`/video/${response.data.videoId}/details`);
   } catch (error) {
     console.error("Upload error:", error);
   }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Navbar } from "../../componets/creator/navbar";
 import { Sidebar } from "../../componets/creator/sidebar";
 import { NavLink } from "react-router-dom";
@@ -6,9 +6,32 @@ import { MdOutlineFileUpload } from "react-icons/md";
 import { BiSolidVideos } from "react-icons/bi";
 import { IoSettingsOutline } from "react-icons/io5";
 import { HiOutlineCurrencyRupee } from "react-icons/hi2";
+import axios from "axios";
 export default function CreatorDashboard() {
   const [activeTab, setActiveTab] = useState("overview");
+  const [username, setUsername] = useState("");
+  const [profilePic, setProfilePic] = useState(null);
 
+  useEffect(()=>{
+      const fetchProfile= async()=>{
+           try{
+              const token = localStorage.getItem("token");
+              const res= await axios.get("http://localhost:3000/api/auth/me",{headers:{Authorization:`Bearer ${token}`}})
+
+              const fetchedPictureUrl= res.data.user?.pictureUrl;
+              const fetchedUsername = res.data.user?.username;
+              if(fetchedPictureUrl){
+                 setProfilePic(`http://localhost:3000/${fetchedPictureUrl}`)
+              }
+              if(fetchedUsername){
+                 setUsername(fetchedUsername);
+              }
+           }catch(error){
+            console.error("Failed to load profile picture", error)
+           }
+      };
+      fetchProfile();
+  },[])
   return (
     <div
       className="
@@ -48,15 +71,9 @@ export default function CreatorDashboard() {
             <div className="p-6">
               <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
                 <div className="flex gap-4">
-                  <div
-                    className="
-                    w-16 h-16 rounded-full flex items-center justify-center text-lg font-semibold
-                    bg-gray-200 dark:bg-gpt-border text-gray-700 dark:text-gpt-text
-                  "
-                  >
-                    T
-                  </div>
-
+                   
+                    <img src={profilePic} alt="picture" className="w-16 h-16 rounded-full " />
+  
                   <div className="max-w-lg">
                     <h3 className="text-lg font-semibold dark:text-gpt-text">
                       Teaching web development, programming, and digital skills
@@ -103,7 +120,7 @@ export default function CreatorDashboard() {
           {/* QUICK ACTIONS */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mt-6">
             <NavLink
-              to="/upload-video"
+              to="/upload"
               className="
                 rounded-xl flex flex-col items-center justify-center p-6 shadow-sm border bg-white
                 border-gray-200 hover:shadow-md
