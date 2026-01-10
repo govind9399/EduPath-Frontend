@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Search, UserCheck, UserX, Shield, Eye, Ban, CheckCircle } from 'lucide-react';
 import React from "react";
+import axios from 'axios';
 
 const MOCK_USERS = [
   {
@@ -73,7 +74,8 @@ export function UserManagement({ adminRole }) {
   const [filterType, setFilterType] = useState('all');
   const [filterStatus, setFilterStatus] = useState('all');
   const [selectedUser, setSelectedUser] = useState(null);
-
+  const [totalusers, setTotalusers] = useState(null);
+ 
   const filteredUsers = users.filter(user => {
     const matchesSearch = user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          user.email.toLowerCase().includes(searchTerm.toLowerCase());
@@ -81,7 +83,22 @@ export function UserManagement({ adminRole }) {
     const matchesStatus = filterStatus === 'all' || user.status === filterStatus;
     return matchesSearch && matchesType && matchesStatus;
   });
+  
+  useEffect(()=>{
+        const fetchUsers= async()=>{
+           try{
+              const res= await axios.get("http://localhost:3000/admin/management");
+              console.log("users data",res.data.users);
+              console.log("total users",res.data.totalUsers);
+              setTotalusers(res.data.totalUsers);
 
+           }catch(error){
+            console.error("Failed to fetch users",error)
+           }
+        }
+
+        fetchUsers();
+  },[])
   const handleBanUser = (userId, ban) => {
     setUsers(users.map(user => 
       user.id === userId ? { ...user, status: ban ? 'banned' : 'active' } : user
@@ -96,7 +113,7 @@ export function UserManagement({ adminRole }) {
     setSelectedUser(null);
   };
 
-  const canPerformActions = adminRole === 'super_admin' || adminRole === 'content_admin';
+  const canPerformActions = adminRole === 'super_admin' || adminRole === 'content_admin' ||adminRole==='admin';
 
   return (
     <div className="space-y-6">

@@ -23,17 +23,17 @@ export function PlatformSettings({ adminRole }) {
   const [autoApproval, setAutoApproval] = useState(false);
   const [notification, setNotification] = useState('');
 
-  if (adminRole !== 'super_admin') {
-    return (
-      <div className="bg-white rounded-lg shadow p-8 text-center">
-        <Settings className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-        <h3 className="text-gray-900 mb-2">Access Restricted</h3>
-        <p className="text-gray-600">
-          Only Super Admins can access platform settings.
-        </p>
-      </div>
-    );
-  }
+  // if (adminRole !== 'super_admin') {
+    // return (
+      // <div className="bg-white rounded-lg shadow p-8 text-center">
+        {/* <Settings className="w-16 h-16 text-gray-300 mx-auto mb-4" /> */}
+        {/* <h3 className="text-gray-900 mb-2">Access Restricted</h3> */}
+        {/* <p className="text-gray-600"> */}
+          {/* Only Super Admins can access platform settings. */}
+        {/* </p> */}
+      {/* </div> */}
+    // );
+  // }
 
   const handleAddCategory = () => {
     const trimmed = newCategory.trim();

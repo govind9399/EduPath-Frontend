@@ -50,17 +50,17 @@ const TOP_EARNERS = [
 ];
 
 export function MonetizationPanel({ adminRole }) {
-  if (adminRole !== 'super_admin') {
-    return (
-      <div className="bg-white rounded-lg shadow p-8 text-center">
-        <DollarSign className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-        <h3 className="text-gray-900 mb-2">Access Restricted</h3>
-        <p className="text-gray-600">
-          Only Super Admins can access monetization data and controls.
-        </p>
-      </div>
-    );
-  }
+  // if (adminRole !== 'admin') {
+    // return (
+      // <div className="bg-white rounded-lg shadow p-8 text-center">
+        {/* <DollarSign className="w-16 h-16 text-gray-300 mx-auto mb-4" /> */}
+        {/* <h3 className="text-gray-900 mb-2">Access Restricted</h3> */}
+        {/* <p className="text-gray-600"> */}
+          {/* Only Super Admins can access monetization data and controls. */}
+        {/* </p> */}
+      {/* </div> */}
+    // );
+  // }
 
   return (
     <div className="space-y-6">

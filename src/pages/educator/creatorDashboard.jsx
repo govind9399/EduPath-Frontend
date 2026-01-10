@@ -23,6 +23,7 @@ export default function CreatorDashboard() {
               if(fetchedPictureUrl){
                  setProfilePic(`http://localhost:3000/${fetchedPictureUrl}`)
               }
+              // const fetchedUsername= res.data.user?.username;
               if(fetchedUsername){
                  setUsername(fetchedUsername);
               }
@@ -75,10 +76,11 @@ export default function CreatorDashboard() {
                     <img src={profilePic} alt="picture" className="w-16 h-16 rounded-full " />
   
                   <div className="max-w-lg">
-                    <h3 className="text-lg font-semibold dark:text-gpt-text">
+                    <h5 className="text-lg font-semibold dark:text-gpt-text">
                       Teaching web development, programming, and digital skills
                       to aspiring developers worldwide.
-                    </h3>
+                    </h5>
+                     <p>{username}</p>
                     <div className="mt-2 text-xs sm:text-sm text-gray-500 dark:text-gpt-muted flex flex-wrap gap-4">
                       <span>Subscribers</span>
                       <span>Total Videos</span>

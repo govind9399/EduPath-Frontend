@@ -27,10 +27,17 @@ export function AdminLogin() {
 
       const { token, user } = response.data;
 
-      // ✅ Save JWT
+      /* ------------------ IMPORTANT FIX ------------------ */
+
+      // Save JWT
       localStorage.setItem("token", token);
 
-      // ✅ Role-based navigation (BACKEND DRIVEN)
+      // ✅ SAVE USER (ADMIN) DATA — THIS WAS MISSING
+      localStorage.setItem("adminUser", JSON.stringify(user));
+
+      /* --------------------------------------------------- */
+
+      // Role-based navigation
       if (user.role === "student") {
         navigate("/homepage");
       } else if (user.role === "educator") {
@@ -52,7 +59,9 @@ export function AdminLogin() {
       <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-8">
         <div className="text-center mb-8">
           <h1 className="text-indigo-600 mb-2">Welcome back</h1>
-          <p className="text-gray-600 text-2xl font-semibold">Sign in</p>
+          <p className="text-gray-600 text-2xl font-semibold">
+            Sign in
+          </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">

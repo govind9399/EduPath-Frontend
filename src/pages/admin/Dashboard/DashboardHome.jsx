@@ -23,6 +23,9 @@ import {
   Cell
 } from 'recharts';
 import React from "react";
+import { useEffect } from 'react';
+import axios from 'axios';
+import { useState } from 'react';
 
 const KPI_DATA = [
   { label: 'Total Users', value: '1,234,567', icon: Users, color: 'bg-blue-500', change: '+12.3%' },
@@ -72,6 +75,26 @@ const RECENT_ACTIVITIES = [
 ];
 
 export function DashboardHome({ adminRole }) {
+    const[users,setUsers]= useState(null);
+    const[educator,setEducator] = useState(null);
+    const [videos, setVideos] = useState(null);
+
+    useEffect(()=>{
+        const fetchUsers = async ()=>{
+           try{
+             const res= await axios.get("http://localhost:3000/admin/dashboard");
+
+            //  const users= res.data.totalusers;
+             console.log("total users: ", res.data);
+             setUsers(res.data.totalUsers);
+             setEducator(res.data.totalCreators);
+             setVideos(res.data.totalVideos);
+           }catch(error){
+                 console.error("Failed to fetch users data: ",error)
+           }
+        }
+        fetchUsers();
+    },[])
   const visibleKPIs = adminRole === 'support_admin' 
     ? KPI_DATA.filter(kpi => !['Monthly Revenue', 'Watch Hours'].includes(kpi.label))
     : KPI_DATA;
@@ -79,6 +102,9 @@ export function DashboardHome({ adminRole }) {
   return (
     <div className="space-y-6">
       {/* KPIs Grid */}
+      <h1>Users:{users}</h1>
+      <h1>Total educators:{educator}</h1>
+      <h1>Total Videos:{videos}</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {visibleKPIs.map((kpi) => {
           const Icon = kpi.icon;
@@ -105,7 +131,7 @@ export function DashboardHome({ adminRole }) {
       {/* Charts Row */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Revenue Trend */}
-        {adminRole === 'super_admin' && (
+        {adminRole === 'admin' && (
           <div className="bg-white rounded-lg shadow p-6">
             <h3 className="text-gray-900 mb-4">Revenue Trend (6 Months)</h3>
             <ResponsiveContainer width="100%" height={250}>
