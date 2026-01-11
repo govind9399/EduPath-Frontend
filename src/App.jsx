@@ -5,7 +5,7 @@ import ProtectedRoute from "./componets/protectedRoute";
 import Login from "./pages/Auth/Login";
  import {AuthLanding} from "./pages/Auth/AuthenticationEntry";
 import Register from "./pages/Auth/Register";
-import ResetPassword from "./pages/Auth/resetpassword";
+import ResetPassword from "./pages/Auth/ResetPassword";
 import UserProfileSetup from "./pages/Auth/UserProfileSetup";
 import VerifyEmail from "./pages/Auth/VerifyEmail";
 
