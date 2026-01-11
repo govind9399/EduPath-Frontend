@@ -3,11 +3,11 @@ import ProtectedRoute from "./componets/protectedRoute";
 
 // ================= AUTH PAGES =================
 import Login from "./pages/Auth/Login";
-import AuthLanding from "./pages/auth/AuthenticationEntry";
+ import {AuthLanding} from "./pages/Auth/AuthenticationEntry";
 import Register from "./pages/Auth/Register";
-import ResetPassword from "./pages/auth/resetpassword";
+import ResetPassword from "./pages/Auth/resetpassword";
 import UserProfileSetup from "./pages/Auth/UserProfileSetup";
-import VerifyEmail from "./pages/auth/VerifyEmail";
+import VerifyEmail from "./pages/Auth/VerifyEmail";
 
 // ================= STUDENT =================
 import { Homepage } from "./pages/student/Home";
@@ -65,7 +65,7 @@ const Unauthorized = () => (
 export default function App() {
   const router = createBrowserRouter([
     // ========= PUBLIC =========
-    { path: "/", element: <AuthLanding /> },
+     { path:"/", element:<AuthLanding/>},
     { path: "/login", element: <Login /> },
     { path: "/register", element: <Register /> },
     { path: "/reset-password", element: <ResetPassword /> },

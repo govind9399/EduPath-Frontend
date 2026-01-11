@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-export default function AuthLanding() {
+export  function AuthLanding() {
   return (
     <div
       className="
