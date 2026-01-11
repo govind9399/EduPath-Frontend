@@ -23,8 +23,9 @@ const handleSubmit = async (e) => {
   };
 
   try {
+         const API_BASE_URL = import.meta.env.VITE_API_URL; 
     const response = await axios.put(
-      `http://localhost:3000/api/video/${videoId}/details`,
+      `${API_BASE_URL}/api/video/${videoId}/details`,
       data,
       {
         headers: {

@@ -87,7 +87,8 @@ export function UserManagement({ adminRole }) {
   useEffect(()=>{
         const fetchUsers= async()=>{
            try{
-              const res= await axios.get("http://localhost:3000/admin/management");
+             const API_BASE_URL = import.meta.env.VITE_API_URL;
+              const res= await axios.get(`${API_BASE_URL}/admin/management`);
               console.log("users data",res.data.users);
               console.log("total users",res.data.totalUsers);
               setTotalusers(res.data.totalUsers);

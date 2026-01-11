@@ -23,8 +23,9 @@ export const FeedbackPage = () => {
     console.log("Sending:", data);
 
     try {
+        const API_BASE_URL = import.meta.env.VITE_API_URL; 
       const response = await axios.post(
-        "http://localhost:3000/api/support/feedback",
+        `${API_BASE_URL}/api/support/feedback`,
         data,
         {
           headers: {

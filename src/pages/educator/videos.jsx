@@ -4,7 +4,7 @@ import { Navbar } from "../../componets/creator/navbar";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:3000";
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 const DEFAULT_THUMBNAIL = "uploads/default-thumb.jpg";
 
 export const Videos = () => {

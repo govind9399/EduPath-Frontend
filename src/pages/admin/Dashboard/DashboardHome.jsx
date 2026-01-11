@@ -75,29 +75,36 @@ const RECENT_ACTIVITIES = [
 ];
 
 export function DashboardHome({ adminRole }) {
-    const[users,setUsers]= useState(null);
-    const[educator,setEducator] = useState(null);
-    const [videos, setVideos] = useState(null);
+  const [users, setUsers] = useState(null);
+  const [educator, setEducator] = useState(null);
+  const [videos, setVideos] = useState(null);
 
-    useEffect(()=>{
-        const fetchUsers = async ()=>{
-           try{
-             const res= await axios.get("http://localhost:3000/admin/dashboard");
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const API_BASE_URL = import.meta.env.VITE_API_URL; 
 
-            //  const users= res.data.totalusers;
-             console.log("total users: ", res.data);
-             setUsers(res.data.totalUsers);
-             setEducator(res.data.totalCreators);
-             setVideos(res.data.totalVideos);
-           }catch(error){
-                 console.error("Failed to fetch users data: ",error)
-           }
-        }
-        fetchUsers();
-    },[])
-  const visibleKPIs = adminRole === 'support_admin' 
-    ? KPI_DATA.filter(kpi => !['Monthly Revenue', 'Watch Hours'].includes(kpi.label))
-    : KPI_DATA;
+        const res = await axios.get(
+          `${API_BASE_URL}/admin/dashboard`
+        );
+
+        console.log("total users: ", res.data);
+        setUsers(res.data.totalUsers);
+        setEducator(res.data.totalCreators);
+        setVideos(res.data.totalVideos);
+      } catch (error) {
+        console.error("Failed to fetch users data: ", error);
+      }
+    };
+    fetchUsers();
+  }, []);
+
+  const visibleKPIs =
+    adminRole === 'support_admin'
+      ? KPI_DATA.filter(
+          (kpi) => !['Monthly Revenue', 'Watch Hours'].includes(kpi.label)
+        )
+      : KPI_DATA;
 
   return (
     <div className="space-y-6">
@@ -105,6 +112,7 @@ export function DashboardHome({ adminRole }) {
       <h1>Users:{users}</h1>
       <h1>Total educators:{educator}</h1>
       <h1>Total Videos:{videos}</h1>
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {visibleKPIs.map((kpi) => {
           const Icon = kpi.icon;
@@ -115,11 +123,17 @@ export function DashboardHome({ adminRole }) {
                 <div className="flex-1">
                   <p className="text-gray-500 text-sm mb-1">{kpi.label}</p>
                   <p className="text-gray-900 mb-2">{kpi.value}</p>
-                  <span className={`text-xs ${isPositive ? 'text-green-600' : 'text-red-600'}`}>
+                  <span
+                    className={`text-xs ${
+                      isPositive ? 'text-green-600' : 'text-red-600'
+                    }`}
+                  >
                     {kpi.change} vs last month
                   </span>
                 </div>
-                <div className={`${kpi.color} w-12 h-12 rounded-lg flex items-center justify-center`}>
+                <div
+                  className={`${kpi.color} w-12 h-12 rounded-lg flex items-center justify-center`}
+                >
                   <Icon className="w-6 h-6 text-white" />
                 </div>
               </div>
@@ -139,14 +153,17 @@ export function DashboardHome({ adminRole }) {
                 <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
                 <XAxis dataKey="month" stroke="#6b7280" />
                 <YAxis stroke="#6b7280" />
-                <Tooltip 
+                <Tooltip
                   formatter={(value) => `$${value.toLocaleString()}`}
-                  contentStyle={{ backgroundColor: '#fff', border: '1px solid #e5e7eb' }}
+                  contentStyle={{
+                    backgroundColor: '#fff',
+                    border: '1px solid #e5e7eb',
+                  }}
                 />
-                <Line 
-                  type="monotone" 
-                  dataKey="revenue" 
-                  stroke="#10b981" 
+                <Line
+                  type="monotone"
+                  dataKey="revenue"
+                  stroke="#10b981"
                   strokeWidth={2}
                   dot={{ fill: '#10b981', r: 4 }}
                 />
@@ -163,26 +180,23 @@ export function DashboardHome({ adminRole }) {
               <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
               <XAxis dataKey="month" stroke="#6b7280" />
               <YAxis stroke="#6b7280" />
-              <Tooltip contentStyle={{ backgroundColor: '#fff', border: '1px solid #e5e7eb' }} />
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: '#fff',
+                  border: '1px solid #e5e7eb',
+                }}
+              />
               <Bar dataKey="users" fill="#6366f1" />
               <Bar dataKey="creators" fill="#8b5cf6" />
             </BarChart>
           </ResponsiveContainer>
-          <div className="flex items-center justify-center gap-6 mt-4">
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 bg-indigo-500 rounded"></div>
-              <span className="text-gray-600 text-sm">Users</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 bg-purple-500 rounded"></div>
-              <span className="text-gray-600 text-sm">Creators</span>
-            </div>
-          </div>
         </div>
 
         {/* Content Distribution */}
         <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-gray-900 mb-4">Content Distribution by Category</h3>
+          <h3 className="text-gray-900 mb-4">
+            Content Distribution by Category
+          </h3>
           <ResponsiveContainer width="100%" height={250}>
             <PieChart>
               <Pie
@@ -190,13 +204,18 @@ export function DashboardHome({ adminRole }) {
                 cx="50%"
                 cy="50%"
                 labelLine={false}
-                label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                label={({ name, percent }) =>
+                  `${name} ${(percent * 100).toFixed(0)}%`
+                }
                 outerRadius={80}
                 fill="#8884d8"
                 dataKey="value"
               >
                 {CONTENT_DISTRIBUTION.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={COLORS[index % COLORS.length]}
+                  />
                 ))}
               </Pie>
               <Tooltip />
@@ -209,10 +228,15 @@ export function DashboardHome({ adminRole }) {
           <h3 className="text-gray-900 mb-4">Recent Activity</h3>
           <div className="space-y-4">
             {RECENT_ACTIVITIES.map((activity) => (
-              <div key={activity.id} className="flex items-start gap-3 pb-4 border-b border-gray-100 last:border-0 last:pb-0">
+              <div
+                key={activity.id}
+                className="flex items-start gap-3 pb-4 border-b border-gray-100 last:border-0 last:pb-0"
+              >
                 <div className="w-2 h-2 bg-indigo-500 rounded-full mt-2"></div>
                 <div className="flex-1">
-                  <p className="text-gray-900 text-sm">{activity.action}</p>
+                  <p className="text-gray-900 text-sm">
+                    {activity.action}
+                  </p>
                   <p className="text-gray-500 text-xs mt-1">
                     {activity.user} • {activity.time}
                   </p>
@@ -231,23 +255,38 @@ export function DashboardHome({ adminRole }) {
             <p className="text-gray-500 text-sm mb-2">Average Load Time</p>
             <p className="text-gray-900">247ms</p>
             <div className="mt-2 bg-gray-200 rounded-full h-2">
-              <div className="bg-green-500 h-2 rounded-full" style={{ width: '85%' }}></div>
+              <div
+                className="bg-green-500 h-2 rounded-full"
+                style={{ width: '85%' }}
+              ></div>
             </div>
             <p className="text-green-600 text-xs mt-1">Excellent</p>
           </div>
+
           <div>
-            <p className="text-gray-500 text-sm mb-2">Content Moderation Time</p>
+            <p className="text-gray-500 text-sm mb-2">
+              Content Moderation Time
+            </p>
             <p className="text-gray-900">18.5 hours</p>
             <div className="mt-2 bg-gray-200 rounded-full h-2">
-              <div className="bg-yellow-500 h-2 rounded-full" style={{ width: '65%' }}></div>
+              <div
+                className="bg-yellow-500 h-2 rounded-full"
+                style={{ width: '65%' }}
+              ></div>
             </div>
-            <p className="text-yellow-600 text-xs mt-1">Target: {'<'} 24hrs</p>
+            <p className="text-yellow-600 text-xs mt-1">
+              Target: {'<'} 24hrs
+            </p>
           </div>
+
           <div>
             <p className="text-gray-500 text-sm mb-2">Payout Accuracy</p>
             <p className="text-gray-900">100%</p>
             <div className="mt-2 bg-gray-200 rounded-full h-2">
-              <div className="bg-green-500 h-2 rounded-full" style={{ width: '100%' }}></div>
+              <div
+                className="bg-green-500 h-2 rounded-full"
+                style={{ width: '100%' }}
+              ></div>
             </div>
             <p className="text-green-600 text-xs mt-1">On Target</p>
           </div>

@@ -5,8 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 /* ================= CONFIG ================= */
-
-const API_BASE_URL = "http://localhost:3000"; // backend base URL
+ const API_BASE_URL = import.meta.env.VITE_API_URL; 
 const DEFAULT_THUMBNAIL = `${API_BASE_URL}/uploads/default-thumb.jpg`;
 
 /* ========================================= */

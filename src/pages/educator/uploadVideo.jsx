@@ -22,8 +22,9 @@ const handleSubmit = async (e) => {
   formData.append("video", video);
 
   try {
+        const API_BASE_URL = import.meta.env.VITE_API_URL; 
     const response = await axios.post(
-      "http://localhost:3000/api/video/upload",
+      `${API_BASE_URL}/api/video/upload`,
       formData,
       {
         headers: {

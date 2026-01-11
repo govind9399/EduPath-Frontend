@@ -20,9 +20,13 @@ export const Navbar = () => {
 
     const fetchProfile = async () => {
       try {
-        const token = localStorage.getItem("token"); // ✅ FIX
+        const token = localStorage.getItem("token");
+        if (!token) return;
+
+        const API_BASE_URL = import.meta.env.VITE_API_URL;
+
         const res = await axios.get(
-          "http://localhost:3000/api/auth/me",
+          `${API_BASE_URL}/api/auth/me`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -32,7 +36,7 @@ export const Navbar = () => {
 
         const pictureUrl = res.data.user?.pictureUrl;
         if (pictureUrl) {
-          setProfilePic(`http://localhost:3000/${pictureUrl}`);
+          setProfilePic(`${API_BASE_URL}/${pictureUrl}`);
         }
       } catch (error) {
         console.error("Failed to load profile picture", error);

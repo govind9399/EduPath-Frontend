@@ -15,41 +15,63 @@ export const Navbar = () => {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
 
-  useEffect(()=>{
-        const fetchProfile= async ()=>{
-          try{
-            const token = localStorage.getItem("token");
-            const res= await axios.get("http://localhost:3000/api/auth/me",{headers:{Authorization:`Bearer ${token}`}})
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) return;
 
-            const pictureUrl = res.data.user?.pictureUrl;
-            if(pictureUrl){
-               setProfilePic(`http://localhost:3000/${pictureUrl}`);
-            }
-          }catch(error){
-            console.error("Falied to load profile picture", error)
+        const API_BASE_URL = import.meta.env.VITE_API_URL;
+
+        const res = await axios.get(
+          `${API_BASE_URL}/api/auth/me`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           }
-         }
-         fetchProfile();
-  }, [])
+        );
+
+        const pictureUrl = res.data.user?.pictureUrl;
+        if (pictureUrl) {
+          setProfilePic(`${API_BASE_URL}/${pictureUrl}`);
+        }
+      } catch (error) {
+        console.error("Falied to load profile picture", error);
+      }
+    };
+
+    fetchProfile();
+  }, []);
+
   const handleVoiceInput = () => {
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SpeechRecognition) return alert("Your browser doesn't support voice recognition.");
+    const SpeechRecognition =
+      window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition)
+      return alert("Your browser doesn't support voice recognition.");
 
     const recognition = new SpeechRecognition();
     recognition.lang = "en-US";
     recognition.interimResults = false;
     recognition.start();
 
-    recognition.onresult = (event) => setSearch(event.results[0][0].transcript);
-    recognition.onerror = () => alert("Voice recognition error. Try again.");
+    recognition.onresult = (event) =>
+      setSearch(event.results[0][0].transcript);
+    recognition.onerror = () =>
+      alert("Voice recognition error. Try again.");
   };
 
   useEffect(() => {
     const closeDropdown = (e) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) setDropdownOpen(false);
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target)
+      )
+        setDropdownOpen(false);
     };
     document.addEventListener("mousedown", closeDropdown);
-    return () => document.removeEventListener("mousedown", closeDropdown);
+    return () =>
+      document.removeEventListener("mousedown", closeDropdown);
   }, []);
 
   return (
@@ -63,13 +85,14 @@ export const Navbar = () => {
       "
     >
       <div className="max-w-7xl mx-auto h-16 px-4 sm:px-6 flex items-center justify-between">
-
         {/* LOGO */}
         <NavLink to="/homepage" className="flex items-center gap-3 shrink-0">
           <div className="w-9 h-9 rounded-md bg-gradient-to-br from-blue-500 to-amber-400 flex items-center justify-center text-white font-bold">
             EP
           </div>
-          <span className="font-semibold text-lg dark:text-gpt-text">EduPath</span>
+          <span className="font-semibold text-lg dark:text-gpt-text">
+            EduPath
+          </span>
         </NavLink>
 
         {/* DESKTOP SEARCH BAR */}
@@ -94,26 +117,26 @@ export const Navbar = () => {
           </div>
         </div>
 
-        {/* THEME TOGGLE */}
-
         {/* PROFILE + NOTIFICATION */}
         <div className="flex items-center gap-4 shrink-0">
-        <ThemeToggle />
+          <ThemeToggle />
           <IoMdNotificationsOutline className="md:text-3xl text-2xl cursor-pointer dark:text-gpt-text" />
 
           <div ref={dropdownRef} className="relative">
-            {profilePic ?(
-              <img src={profilePic} alt="profile"  className="w-9 h-9 rounded-full object-cover border"
-              onClick={() => setDropdownOpen((prev) => !prev)}
+            {profilePic ? (
+              <img
+                src={profilePic}
+                alt="profile"
+                className="w-9 h-9 rounded-full object-cover border"
+                onClick={() => setDropdownOpen((prev) => !prev)}
               />
-            ):(
-
-            <CgProfile
-              className="md:text-3xl text-2xl cursor-pointer dark:text-gpt-text"
-              onClick={() => setDropdownOpen((prev) => !prev)}
-            />
+            ) : (
+              <CgProfile
+                className="md:text-3xl text-2xl cursor-pointer dark:text-gpt-text"
+                onClick={() => setDropdownOpen((prev) => !prev)}
+              />
             )}
-      
+
             {dropdownOpen && (
               <div
                 className="
